@@ -11,6 +11,8 @@
 		866B0C762AB7469400F28C46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C752AB7469400F28C46 /* ContentView.swift */; };
 		866B0C782AB7469500F28C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866B0C772AB7469500F28C46 /* Assets.xcassets */; };
 		866B0C7B2AB7469500F28C46 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866B0C7A2AB7469500F28C46 /* Preview Assets.xcassets */; };
+		866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C812AB7470900F28C46 /* LibraryView.swift */; };
+		866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C832AB747B300F28C46 /* ReviewListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		866B0C752AB7469400F28C46 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		866B0C772AB7469500F28C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		866B0C7A2AB7469500F28C46 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		866B0C812AB7470900F28C46 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		866B0C832AB747B300F28C46 /* ReviewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				866B0C732AB7469400F28C46 /* DadokDadokApp.swift */,
 				866B0C752AB7469400F28C46 /* ContentView.swift */,
+				866B0C812AB7470900F28C46 /* LibraryView.swift */,
+				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
 				866B0C772AB7469500F28C46 /* Assets.xcassets */,
 				866B0C792AB7469500F28C46 /* Preview Content */,
 			);
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				866B0C762AB7469400F28C46 /* ContentView.swift in Sources */,
+				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
