@@ -14,6 +14,7 @@
 		866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C812AB7470900F28C46 /* LibraryView.swift */; };
 		866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C832AB747B300F28C46 /* ReviewListView.swift */; };
 		866B0C862AB7484800F28C46 /* BookReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C852AB7484800F28C46 /* BookReview.swift */; };
+		866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C872AB74C7D00F28C46 /* ReviewCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		866B0C812AB7470900F28C46 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		866B0C832AB747B300F28C46 /* ReviewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListView.swift; sourceTree = "<group>"; };
 		866B0C852AB7484800F28C46 /* BookReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReview.swift; sourceTree = "<group>"; };
+		866B0C872AB74C7D00F28C46 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				866B0C752AB7469400F28C46 /* ContentView.swift */,
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
+				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
 				866B0C852AB7484800F28C46 /* BookReview.swift */,
 				866B0C772AB7469500F28C46 /* Assets.xcassets */,
 				866B0C792AB7469500F28C46 /* Preview Content */,
@@ -149,6 +152,7 @@
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				866B0C762AB7469400F28C46 /* ContentView.swift in Sources */,
+				866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */,
 			);

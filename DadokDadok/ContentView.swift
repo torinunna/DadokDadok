@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var reviews: [BookReview]
+    
     var body: some View {
         TabView {
             LibraryView()
@@ -15,7 +17,7 @@ struct ContentView: View {
                     Image(systemName: "books.vertical")
                     Text("나의 서재")
                 }
-            ReviewListView()
+            ReviewListView(reviews: $reviews)
                 .tabItem {
                     Image(systemName: "book.closed")
                     Text("나의 서평")
@@ -26,6 +28,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(reviews: .constant(BookReview.sampleData))
     }
 }

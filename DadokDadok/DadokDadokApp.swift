@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct DadokDadokApp: App {
+    @State private var reviews = BookReview.sampleData
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(reviews: $reviews)
         }
     }
 }

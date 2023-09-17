@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ReviewListView: View {
+    @Binding var reviews: [BookReview]
+    
     var body: some View {
-        Text("Review")
+        List($reviews) { $review in
+            ReviewCard(review: review)
+        }
     }
 }
 
 struct ReviewListView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewListView()
+        ReviewListView(reviews: .constant(BookReview.sampleData))
     }
 }
