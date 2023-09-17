@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct LibraryView: View {
+    @Binding var reviews: [BookReview]
+    
+    let layout: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        Text("Library")
+        ScrollView {
+            LazyVGrid(columns: layout) {
+                ForEach($reviews) { $review in
+                    BookView(review: review)
+                }
+            }
+        }
     }
 }
 
 struct LibraryView_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryView()
+        LibraryView(reviews: .constant(BookReview.sampleData))
     }
 }

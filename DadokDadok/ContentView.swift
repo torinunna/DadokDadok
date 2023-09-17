@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            LibraryView()
+            LibraryView(reviews: $reviews)
                 .tabItem {
                     Image(systemName: "books.vertical")
                     Text("나의 서재")
