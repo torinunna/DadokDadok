@@ -13,6 +13,17 @@ struct BookReview: Identifiable {
     var imageName: String
     var date: String
     var review: String
+    
+    init(title: String, imageName: String, date: String, review: String) {
+        self.title = title
+        self.imageName = imageName
+        self.date = date
+        self.review = review
+    }
+    
+    static var emptyReview: BookReview {
+        BookReview(title: "", imageName: "", date: "", review: "")
+    }
 }
 
 extension BookReview {

@@ -10,6 +10,9 @@ import SwiftUI
 struct ReviewDetailView: View {
     @Binding var review: BookReview
     
+    @State var editingReview = BookReview.emptyReview
+    @State private var isPresentingEditView = false
+    
     var body: some View {
         VStack(spacing: 10) {
             Text(review.title)
@@ -57,13 +60,32 @@ struct ReviewDetailView: View {
                 Spacer()
                 
                 Button {
-                    
+                    isPresentingEditView = true
+                    editingReview = review
                 } label: {
                     Text("수정하기")
                         .frame(width: 120, height: 40)
                         .foregroundColor(.white)
                         .background(Color.black)
                         .cornerRadius(10)
+                }
+                .sheet(isPresented: $isPresentingEditView) {
+                    NavigationStack {
+                        ReviewEditView(review: $editingReview)
+                            .toolbar {
+                                ToolbarItem(placement: .cancellationAction) {
+                                    Button("취소") {
+                                        isPresentingEditView = false
+                                    }
+                                }
+                                ToolbarItem(placement: .confirmationAction) {
+                                    Button("저장") {
+                                        isPresentingEditView = false
+                                        review = editingReview
+                                    }
+                                }
+                            }
+                    }
                 }
                 
                 Spacer()
