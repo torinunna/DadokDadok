@@ -11,8 +11,14 @@ struct ReviewListView: View {
     @Binding var reviews: [BookReview]
     
     var body: some View {
-        List($reviews) { $review in
-            ReviewCard(review: review)
+        NavigationStack {
+            List($reviews) { $review in
+                NavigationLink(destination: ReviewDetailView(review: $review)) {
+                    ReviewCard(review: review)
+                }
+            }
+            .navigationTitle("나의 서평")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

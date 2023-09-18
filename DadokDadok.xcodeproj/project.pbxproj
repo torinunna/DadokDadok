@@ -16,6 +16,7 @@
 		866B0C862AB7484800F28C46 /* BookReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C852AB7484800F28C46 /* BookReview.swift */; };
 		866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C872AB74C7D00F28C46 /* ReviewCard.swift */; };
 		866B0C8A2AB75DD700F28C46 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C892AB75DD700F28C46 /* BookView.swift */; };
+		86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		866B0C852AB7484800F28C46 /* BookReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReview.swift; sourceTree = "<group>"; };
 		866B0C872AB74C7D00F28C46 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		866B0C892AB75DD700F28C46 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				866B0C892AB75DD700F28C46 /* BookView.swift */,
 				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
+				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
 				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
 				866B0C852AB7484800F28C46 /* BookReview.swift */,
 				866B0C772AB7469500F28C46 /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
+				86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				866B0C762AB7469400F28C46 /* ContentView.swift in Sources */,
 				866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */,
