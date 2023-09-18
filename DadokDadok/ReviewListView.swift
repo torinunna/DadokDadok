@@ -13,7 +13,7 @@ struct ReviewListView: View {
     var body: some View {
         NavigationStack {
             List($reviews) { $review in
-                NavigationLink(destination: ReviewDetailView(review: $review)) {
+                NavigationLink(destination: ReviewDetailView(review: $review, reviews: $reviews)) {
                     ReviewCard(review: review)
                 }
             }

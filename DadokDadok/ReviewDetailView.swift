@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ReviewDetailView: View {
     @Binding var review: BookReview
+    @Binding var reviews: [BookReview]
+    @Environment(\.presentationMode) var presentationMode
     
     @State var editingReview = BookReview.emptyReview
     @State private var isPresentingEditView = false
@@ -48,7 +50,7 @@ struct ReviewDetailView: View {
                 Spacer()
                 
                 Button {
-                    
+                    deleteReview()
                 } label: {
                     Text("삭제하기")
                         .frame(width: 120, height: 40)
@@ -96,10 +98,16 @@ struct ReviewDetailView: View {
         .frame(maxWidth: .infinity)
         .navigationBarTitleDisplayMode(.inline)
     }
+    
+    private func deleteReview() {
+        $reviews.wrappedValue = $reviews.wrappedValue.filter { $0.id != review.id }
+        presentationMode.wrappedValue.dismiss()
+        print(reviews)
+    }
 }
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewDetailView(review: .constant(BookReview.sampleData[0]))
+        ReviewDetailView(review: .constant(BookReview.sampleData[0]), reviews: .constant(BookReview.sampleData))
     }
 }
