@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ReviewListView: View {
     @Binding var reviews: [BookReview]
+    @State private var isPresentingNewReviewView = false
     
     var body: some View {
         NavigationStack {
@@ -19,7 +20,18 @@ struct ReviewListView: View {
             }
             .navigationTitle("나의 서평")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                Button(action: {
+                    isPresentingNewReviewView = true
+                   }) {
+                 Image(systemName: "plus")
+                }
+            }
+            .sheet(isPresented: $isPresentingNewReviewView) {
+                NewReviewView(isPresentingNewReviewView: $isPresentingNewReviewView, reviews: $reviews)
+            }
         }
+        
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A39B02AC9664E00F5EDFD /* NewReviewView.swift */; };
 		866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C732AB7469400F28C46 /* DadokDadokApp.swift */; };
 		866B0C762AB7469400F28C46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C752AB7469400F28C46 /* ContentView.swift */; };
 		866B0C782AB7469500F28C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866B0C772AB7469500F28C46 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		864A39B02AC9664E00F5EDFD /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		866B0C702AB7469400F28C46 /* DadokDadok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadokDadok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866B0C732AB7469400F28C46 /* DadokDadokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadokDadokApp.swift; sourceTree = "<group>"; };
 		866B0C752AB7469400F28C46 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				866B0C892AB75DD700F28C46 /* BookView.swift */,
 				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
+				864A39B02AC9664E00F5EDFD /* NewReviewView.swift */,
 				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
 				86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */,
 				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
@@ -167,6 +170,7 @@
 				86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */,
 				866B0C8A2AB75DD700F28C46 /* BookView.swift in Sources */,
 				866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */,
+				864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
