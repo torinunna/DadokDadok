@@ -11,14 +11,14 @@ struct ReviewEditView: View {
     @Binding var review: BookReview
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack(spacing: 20) {
                 Image(systemName: review.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 100)
                 
-                TextField("도서명", text: $review.title)
+                Text(review.title)
             }
             .padding()
             
