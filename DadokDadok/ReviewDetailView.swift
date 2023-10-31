@@ -16,35 +16,29 @@ struct ReviewDetailView: View {
     @State private var isPresentingEditView = false
     
     var body: some View {
-        VStack(spacing: 10) {
-            Text(review.title)
-                .font(.system(size: 30, weight: .bold))
-                .padding(.bottom, 30)
-            
+        VStack(spacing: 15) {
             Image(systemName: review.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 100)
             
-            Spacer()
+            Text(review.title)
+                .font(.system(size: 18, weight: .semibold))
+                .padding(.top, 10)
             
             Divider()
             
-            Spacer()
-            
             Text(review.date)
-                .font(.system(size: 13, weight: .semibold))
+                .font(.system(size: 15, weight: .medium))
             
             ScrollView {
                 VStack(alignment: .leading) {
                     Text(review.review)
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 15, weight: .regular))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
-            
-            Spacer()
             
             HStack {
                 Spacer()
