@@ -10,6 +10,7 @@ import SwiftUI
 struct NewReviewView: View {
     @State private var newReview = BookReview.emptyReview
     @Binding var isPresentingNewReviewView: Bool
+    @State private var isPresentingBookSearchView = false
     @Binding var reviews: [BookReview]
     
     var body: some View {
@@ -22,6 +23,14 @@ struct NewReviewView: View {
                         .frame(width: 90, height: 120)
                     
                     TextField("도서명", text: $newReview.title)
+                    
+                    Button("검색") {
+                        isPresentingBookSearchView = true
+                    }
+                    .frame(alignment: .trailing)
+                    .sheet(isPresented: $isPresentingBookSearchView) {
+                        BookSearchView()
+                    }
                 }
                 .padding()
                 

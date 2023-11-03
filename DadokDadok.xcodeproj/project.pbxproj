@@ -17,8 +17,16 @@
 		866B0C862AB7484800F28C46 /* BookReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C852AB7484800F28C46 /* BookReview.swift */; };
 		866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C872AB74C7D00F28C46 /* ReviewCard.swift */; };
 		866B0C8A2AB75DD700F28C46 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C892AB75DD700F28C46 /* BookView.swift */; };
+		869374192AF1EA29005684FF /* BookSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374182AF1EA29005684FF /* BookSearchView.swift */; };
+		869374212AF29F7C005684FF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374202AF29F7C005684FF /* Book.swift */; };
+		869374252AF29FE7005684FF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374242AF29FE7005684FF /* HTTPMethod.swift */; };
+		869374282AF2A057005684FF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 869374272AF2A057005684FF /* Alamofire */; };
+		8693742A2AF2A072005684FF /* RequestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374292AF2A072005684FF /* RequestAPI.swift */; };
+		8693742C2AF37EC9005684FF /* BookSearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693742B2AF37EC9005684FF /* BookSearchRowView.swift */; };
+		869374312AF38091005684FF /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374302AF38091005684FF /* URLImage.swift */; };
 		86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */; };
 		86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */; };
+		86D179302AF54727004DF299 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1792F2AF54727004DF299 /* Storage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +41,15 @@
 		866B0C852AB7484800F28C46 /* BookReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReview.swift; sourceTree = "<group>"; };
 		866B0C872AB74C7D00F28C46 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		866B0C892AB75DD700F28C46 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		869374182AF1EA29005684FF /* BookSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchView.swift; sourceTree = "<group>"; };
+		869374202AF29F7C005684FF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		869374242AF29FE7005684FF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		869374292AF2A072005684FF /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
+		8693742B2AF37EC9005684FF /* BookSearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchRowView.swift; sourceTree = "<group>"; };
+		869374302AF38091005684FF /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailView.swift; sourceTree = "<group>"; };
 		86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditView.swift; sourceTree = "<group>"; };
+		86D1792F2AF54727004DF299 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869374282AF2A057005684FF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +89,7 @@
 				866B0C892AB75DD700F28C46 /* BookView.swift */,
 				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
 				864A39B02AC9664E00F5EDFD /* NewReviewView.swift */,
+				8693742D2AF37F86005684FF /* BookSearch */,
 				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
 				86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */,
 				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
@@ -91,6 +108,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8693742D2AF37F86005684FF /* BookSearch */ = {
+			isa = PBXGroup;
+			children = (
+				869374182AF1EA29005684FF /* BookSearchView.swift */,
+				8693742B2AF37EC9005684FF /* BookSearchRowView.swift */,
+				869374202AF29F7C005684FF /* Book.swift */,
+				869374302AF38091005684FF /* URLImage.swift */,
+				869374292AF2A072005684FF /* RequestAPI.swift */,
+				869374242AF29FE7005684FF /* HTTPMethod.swift */,
+				86D1792F2AF54727004DF299 /* Storage.swift */,
+			);
+			path = BookSearch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,6 +138,9 @@
 			dependencies = (
 			);
 			name = DadokDadok;
+			packageProductDependencies = (
+				869374272AF2A057005684FF /* Alamofire */,
+			);
 			productName = DadokDadok;
 			productReference = 866B0C702AB7469400F28C46 /* DadokDadok.app */;
 			productType = "com.apple.product-type.application";
@@ -136,6 +170,9 @@
 				ko,
 			);
 			mainGroup = 866B0C672AB7469400F28C46;
+			packageReferences = (
+				869374262AF2A057005684FF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 866B0C712AB7469400F28C46 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,15 +199,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869374192AF1EA29005684FF /* BookSearchView.swift in Sources */,
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
 				86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				866B0C762AB7469400F28C46 /* ContentView.swift in Sources */,
+				8693742C2AF37EC9005684FF /* BookSearchRowView.swift in Sources */,
 				866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */,
+				869374312AF38091005684FF /* URLImage.swift in Sources */,
+				869374252AF29FE7005684FF /* HTTPMethod.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */,
 				866B0C8A2AB75DD700F28C46 /* BookView.swift in Sources */,
 				866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */,
+				869374212AF29F7C005684FF /* Book.swift in Sources */,
+				8693742A2AF2A072005684FF /* RequestAPI.swift in Sources */,
+				86D179302AF54727004DF299 /* Storage.swift in Sources */,
 				864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		869374262AF2A057005684FF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		869374272AF2A057005684FF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 869374262AF2A057005684FF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 866B0C682AB7469400F28C46 /* Project object */;
 }
