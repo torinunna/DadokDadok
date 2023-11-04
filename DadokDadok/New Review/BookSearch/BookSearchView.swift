@@ -20,9 +20,9 @@ struct BookSearchView: View {
                 .searchable(text: $searchKeyword, prompt: "도서명/저자/출판사를 입력해주세요")
             }
         }
-        .onChange(of: searchKeyword, perform: { _ in
+        .onSubmit(of: .search) {
             requestAPI.requestSearchBookList(query: searchKeyword)
-        })
+        }
     }
 }
 
