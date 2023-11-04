@@ -12,16 +12,23 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            LibraryView(reviews: $reviews)
-                .tabItem {
-                    Image(systemName: "books.vertical")
-                    Text("나의 서재")
-                }
-            ReviewListView(reviews: $reviews)
-                .tabItem {
-                    Image(systemName: "book.closed")
-                    Text("나의 서평")
-                }
+            NavigationStack {
+                LibraryView(reviews: $reviews)
+                    .navigationTitle("나의 서재")
+            }
+            .tabItem {
+                Image(systemName: "books.vertical")
+                Text("나의 서재")
+            }
+            
+            NavigationStack {
+                ReviewListView(reviews: $reviews)
+                    .navigationTitle("나의 서평")
+            }
+            .tabItem {
+                Image(systemName: "book.closed")
+                Text("나의 서평")
+            }
         }
     }
 }
