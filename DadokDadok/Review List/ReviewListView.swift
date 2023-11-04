@@ -25,7 +25,8 @@ struct ReviewListView: View {
             }
         }
         .sheet(isPresented: $isPresentingNewReviewView) {
-            NewReviewView(isPresentingNewReviewView: $isPresentingNewReviewView, reviews: $reviews)
+            let vm = ReviewViewModel(reviewList: $reviews)
+            NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
         }
     }
 }

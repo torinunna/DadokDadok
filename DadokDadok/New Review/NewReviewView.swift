@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct NewReviewView: View {
-    @State private var newReview = BookReview.emptyReview
+    @StateObject var vm: ReviewViewModel
     @Binding var isPresentingNewReviewView: Bool
     @State private var isPresentingBookSearchView = false
-    @Binding var reviews: [BookReview]
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 10) {
                 HStack(spacing: 20) {
                     Image(systemName: "book")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 90, height: 120)
+                        .frame(width: 80, height: 100)
                     
-                    TextField("도서명", text: $newReview.title)
+                    TextField("도서명", text: $vm.title)
                     
                     Button("검색") {
                         isPresentingBookSearchView = true
@@ -32,21 +31,27 @@ struct NewReviewView: View {
                         BookSearchView()
                     }
                 }
-                .padding()
+                .padding(.horizontal)
                 
-                TextEditor(text: $newReview.review)
+                DatePicker("읽은 날짜", selection: $vm.date, displayedComponents: .date)
+                    .datePickerStyle(.compact)
+                    .environment(\.locale, Locale.init(identifier: "ko-KR"))
+                    .padding(.horizontal)
+                
+                TextEditor(text: $vm.review)
                     .border(.gray.opacity(0.2), width: 3)
             }
-            .padding()
+            .padding(.horizontal)
+            
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Dismiss") {
+                    Button("취소") {
                         isPresentingNewReviewView = false
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Add") {
-                        reviews.append(newReview)
+                    Button("저장") {
+                        vm.completed()
                         isPresentingNewReviewView = false
                     }
                 }
@@ -57,6 +62,7 @@ struct NewReviewView: View {
 
 struct NewReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        NewReviewView(isPresentingNewReviewView: .constant(true), reviews: .constant(BookReview.sampleData))
+        let vm = ReviewViewModel(reviewList: .constant(BookReview.sampleData))
+        NewReviewView(vm: vm, isPresentingNewReviewView: .constant(true))
     }
 }

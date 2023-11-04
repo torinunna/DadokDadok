@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8603637B2AF62A3700FC5480 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */; };
 		864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A39B02AC9664E00F5EDFD /* NewReviewView.swift */; };
 		866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C732AB7469400F28C46 /* DadokDadokApp.swift */; };
 		866B0C762AB7469400F28C46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C752AB7469400F28C46 /* ContentView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		864A39B02AC9664E00F5EDFD /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		866B0C702AB7469400F28C46 /* DadokDadok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadokDadok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866B0C732AB7469400F28C46 /* DadokDadokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadokDadokApp.swift; sourceTree = "<group>"; };
@@ -64,6 +66,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8603637C2AF6311100FC5480 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				869374202AF29F7C005684FF /* Book.swift */,
+				866B0C852AB7484800F28C46 /* BookReview.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8603637D2AF6321100FC5480 /* New Review */ = {
+			isa = PBXGroup;
+			children = (
+				8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */,
+				864A39B02AC9664E00F5EDFD /* NewReviewView.swift */,
+				8693742D2AF37F86005684FF /* BookSearch */,
+			);
+			path = "New Review";
+			sourceTree = "<group>";
+		};
+		8603637E2AF6351200FC5480 /* Review List */ = {
+			isa = PBXGroup;
+			children = (
+				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
+				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
+			);
+			path = "Review List";
+			sourceTree = "<group>";
+		};
 		866B0C672AB7469400F28C46 = {
 			isa = PBXGroup;
 			children = (
@@ -87,13 +117,11 @@
 				866B0C752AB7469400F28C46 /* ContentView.swift */,
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				866B0C892AB75DD700F28C46 /* BookView.swift */,
-				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
-				864A39B02AC9664E00F5EDFD /* NewReviewView.swift */,
-				8693742D2AF37F86005684FF /* BookSearch */,
-				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
+				8603637E2AF6351200FC5480 /* Review List */,
+				8603637D2AF6321100FC5480 /* New Review */,
 				86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */,
 				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
-				866B0C852AB7484800F28C46 /* BookReview.swift */,
+				8603637C2AF6311100FC5480 /* Model */,
 				866B0C772AB7469500F28C46 /* Assets.xcassets */,
 				866B0C792AB7469500F28C46 /* Preview Content */,
 			);
@@ -113,7 +141,6 @@
 			children = (
 				869374182AF1EA29005684FF /* BookSearchView.swift */,
 				8693742B2AF37EC9005684FF /* BookSearchRowView.swift */,
-				869374202AF29F7C005684FF /* Book.swift */,
 				869374302AF38091005684FF /* URLImage.swift */,
 				869374292AF2A072005684FF /* RequestAPI.swift */,
 				869374242AF29FE7005684FF /* HTTPMethod.swift */,
@@ -201,6 +228,7 @@
 			files = (
 				869374192AF1EA29005684FF /* BookSearchView.swift in Sources */,
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
+				8603637B2AF62A3700FC5480 /* ReviewViewModel.swift in Sources */,
 				86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				866B0C762AB7469400F28C46 /* ContentView.swift in Sources */,
