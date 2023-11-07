@@ -13,12 +13,14 @@ struct BookSearchView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                ForEach(requestAPI.bookList, id: \.self) { book in
-                    BookSearchRowView(book: book)
-                }
-                .searchable(text: $searchKeyword, prompt: "도서명/저자/출판사를 입력해주세요")
+            List(requestAPI.bookList, id: \.self) { book in
+                BookSearchRowView(book: book)
+                    .listRowSeparator(.hidden)
             }
+            .listStyle(.plain)
+            .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "도서명/저자/출판사를 입력해주세요")
+            .navigationTitle("도서 검색")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onSubmit(of: .search) {
             requestAPI.requestSearchBookList(query: searchKeyword)
