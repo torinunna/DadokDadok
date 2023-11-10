@@ -24,7 +24,6 @@
 		869374282AF2A057005684FF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 869374272AF2A057005684FF /* Alamofire */; };
 		8693742A2AF2A072005684FF /* RequestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374292AF2A072005684FF /* RequestAPI.swift */; };
 		8693742C2AF37EC9005684FF /* BookSearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693742B2AF37EC9005684FF /* BookSearchRowView.swift */; };
-		869374312AF38091005684FF /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869374302AF38091005684FF /* URLImage.swift */; };
 		86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */; };
 		86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */; };
 		86D179302AF54727004DF299 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1792F2AF54727004DF299 /* Storage.swift */; };
@@ -48,7 +47,6 @@
 		869374242AF29FE7005684FF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		869374292AF2A072005684FF /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
 		8693742B2AF37EC9005684FF /* BookSearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchRowView.swift; sourceTree = "<group>"; };
-		869374302AF38091005684FF /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailView.swift; sourceTree = "<group>"; };
 		86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditView.swift; sourceTree = "<group>"; };
 		86D1792F2AF54727004DF299 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			children = (
 				869374182AF1EA29005684FF /* BookSearchView.swift */,
 				8693742B2AF37EC9005684FF /* BookSearchRowView.swift */,
-				869374302AF38091005684FF /* URLImage.swift */,
 				869374292AF2A072005684FF /* RequestAPI.swift */,
 				869374242AF29FE7005684FF /* HTTPMethod.swift */,
 				86D1792F2AF54727004DF299 /* Storage.swift */,
@@ -234,7 +231,6 @@
 				866B0C762AB7469400F28C46 /* ContentView.swift in Sources */,
 				8693742C2AF37EC9005684FF /* BookSearchRowView.swift in Sources */,
 				866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */,
-				869374312AF38091005684FF /* URLImage.swift in Sources */,
 				869374252AF29FE7005684FF /* HTTPMethod.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */,

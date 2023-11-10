@@ -11,8 +11,8 @@ struct BookSearchRowView: View {
     var book: Book
     
     var body: some View {
-        HStack(alignment: .center) {
-            URLImage(urlString: book.image)
+        HStack(alignment: .center, spacing: 15) {
+            fetchImage(url: book.image)
             
             VStack(alignment: .leading, spacing: 3) {
                 Text(book.title)
@@ -24,10 +24,16 @@ struct BookSearchRowView: View {
                     .font(.system(size: 11))
             }
             .padding(.vertical)
-            
-            Spacer()
         }
         .frame(alignment: .leading)
-        .padding(.horizontal, 5)
+    }
+    
+    func fetchImage(url: String) -> some View {
+        AsyncImage(url: URL(string: url)) { image in
+            image.resizable()
+        } placeholder: {
+            ProgressView()
+        }
+        .frame(width: 70, height: 90)
     }
 }
