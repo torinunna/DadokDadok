@@ -26,7 +26,7 @@
 		8693742C2AF37EC9005684FF /* BookSearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693742B2AF37EC9005684FF /* BookSearchRowView.swift */; };
 		86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */; };
 		86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */; };
-		86D179302AF54727004DF299 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1792F2AF54727004DF299 /* Storage.swift */; };
+		86D179302AF54727004DF299 /* Hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1792F2AF54727004DF299 /* Hide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +49,7 @@
 		8693742B2AF37EC9005684FF /* BookSearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchRowView.swift; sourceTree = "<group>"; };
 		86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailView.swift; sourceTree = "<group>"; };
 		86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditView.swift; sourceTree = "<group>"; };
-		86D1792F2AF54727004DF299 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		86D1792F2AF54727004DF299 /* Hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +141,7 @@
 				8693742B2AF37EC9005684FF /* BookSearchRowView.swift */,
 				869374292AF2A072005684FF /* RequestAPI.swift */,
 				869374242AF29FE7005684FF /* HTTPMethod.swift */,
-				86D1792F2AF54727004DF299 /* Storage.swift */,
+				86D1792F2AF54727004DF299 /* Hide.swift */,
 			);
 			path = BookSearch;
 			sourceTree = "<group>";
@@ -238,7 +238,7 @@
 				866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */,
 				869374212AF29F7C005684FF /* Book.swift in Sources */,
 				8693742A2AF2A072005684FF /* RequestAPI.swift in Sources */,
-				86D179302AF54727004DF299 /* Storage.swift in Sources */,
+				86D179302AF54727004DF299 /* Hide.swift in Sources */,
 				864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

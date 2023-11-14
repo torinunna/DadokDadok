@@ -19,8 +19,8 @@ class RequestAPI: ObservableObject {
         let baseURL = "https://openapi.naver.com/v1/search/book.json"
         
         let headers: HTTPHeaders = [
-            "X-Naver-Client-Id": Storage().naverClientID,
-            "X-Naver-Client-Secret": Storage().naverClientSecret,
+            "X-Naver-Client-Id": Hide().naverClientID,
+            "X-Naver-Client-Secret": Hide().naverClientSecret,
         ]
         
         let parameters: Parameters = [
