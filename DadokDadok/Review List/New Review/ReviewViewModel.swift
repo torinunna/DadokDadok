@@ -67,7 +67,7 @@ final class ReviewViewModel: ObservableObject {
     
     func update(date: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy년 M월 d일"
         self.bookReview.date = formatter.string(from: date)
     }
     
