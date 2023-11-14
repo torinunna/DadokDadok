@@ -10,12 +10,18 @@ import SwiftUI
 struct BookSearchView: View {
     @StateObject private var requestAPI = RequestAPI.shared
     @State private var searchKeyword = ""
+    @Binding var isPresentingBookSearchView: Bool
+    @Binding var selectedBook: Book?
     
     var body: some View {
         NavigationStack {
             List(requestAPI.bookList, id: \.self) { book in
                 BookSearchRowView(book: book)
                     .listRowSeparator(.hidden)
+                    .onTapGesture {
+                        selectedBook = book
+                        isPresentingBookSearchView = false
+                    }
             }
             .listStyle(.plain)
             .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "도서명/저자/출판사를 입력해주세요")
@@ -30,6 +36,6 @@ struct BookSearchView: View {
 
 struct BookSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        BookSearchView()
+        BookSearchView(isPresentingBookSearchView: .constant(true), selectedBook: .constant(nil))
     }
 }

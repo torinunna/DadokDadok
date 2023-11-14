@@ -16,25 +16,29 @@ struct ReviewDetailView: View {
     @State private var isPresentingEditView = false
     
     var body: some View {
-        VStack(spacing: 15) {
-            Image(systemName: review.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 100)
+        VStack(alignment: .center, spacing: 5) {
+            fetchImage(url: review.imageName)
             
             Text(review.title)
-                .font(.system(size: 18, weight: .semibold))
-                .padding(.top, 10)
+                .font(.system(size: 16, weight: .semibold))
+                .padding(.top, 15)
+            
+            Text(review.author)
+                .font(.system(size: 13, weight: .medium))
+                .padding(.top, 6)
+            Text(review.publisher)
+                .font(.system(size: 13, weight: .medium))
             
             Divider()
+                .padding(.vertical, 10)
             
             Text(review.date)
-                .font(.system(size: 15, weight: .medium))
+                .font(.system(size: 13, weight: .medium))
             
             ScrollView {
                 VStack(alignment: .leading) {
                     Text(review.review)
-                        .font(.system(size: 15, weight: .regular))
+                        .font(.system(size: 13))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -97,6 +101,15 @@ struct ReviewDetailView: View {
         $reviews.wrappedValue = $reviews.wrappedValue.filter { $0.id != review.id }
         presentationMode.wrappedValue.dismiss()
         print(reviews)
+    }
+    
+    func fetchImage(url: String) -> some View {
+        AsyncImage(url: URL(string: url)) { image in
+            image.resizable()
+        } placeholder: {
+            Image(systemName: "book")
+        }
+        .frame(width: 100, height: 120)
     }
 }
 

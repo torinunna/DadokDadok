@@ -78,6 +78,7 @@
 			children = (
 				8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */,
 				864A39B02AC9664E00F5EDFD /* NewReviewView.swift */,
+				86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */,
 				8693742D2AF37F86005684FF /* BookSearch */,
 			);
 			path = "New Review";
@@ -88,6 +89,8 @@
 			children = (
 				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
 				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
+				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
+				8603637D2AF6321100FC5480 /* New Review */,
 			);
 			path = "Review List";
 			sourceTree = "<group>";
@@ -116,9 +119,6 @@
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				866B0C892AB75DD700F28C46 /* BookView.swift */,
 				8603637E2AF6351200FC5480 /* Review List */,
-				8603637D2AF6321100FC5480 /* New Review */,
-				86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */,
-				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
 				8603637C2AF6311100FC5480 /* Model */,
 				866B0C772AB7469500F28C46 /* Assets.xcassets */,
 				866B0C792AB7469500F28C46 /* Preview Content */,
