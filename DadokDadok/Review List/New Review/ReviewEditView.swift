@@ -25,11 +25,7 @@ struct ReviewEditView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 20) {
-                Image(systemName: review.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 100)
-                
+                fetchImage(url: review.imageName)
                 Text(review.title)
             }
             .padding()
@@ -45,6 +41,15 @@ struct ReviewEditView: View {
         .onChange(of: selectedDate, perform: { newDate in
             review.date = Self.dateFormatter.string(from: newDate)
         })
+    }
+    
+    func fetchImage(url: String) -> some View {
+        AsyncImage(url: URL(string: url)) { image in
+            image.resizable()
+        } placeholder: {
+            Image(systemName: "book")
+        }
+        .frame(width: 80, height: 100)
     }
 }
 
