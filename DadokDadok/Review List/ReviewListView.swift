@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct ReviewListView: View {
-    @Binding var reviews: [BookReview]
+    @StateObject var vm: ReviewListViewModel
     @State private var isPresentingNewReviewView = false
     
     var body: some View {
-        List($reviews) { $review in
-            NavigationLink(destination: ReviewDetailView(review: $review, reviews: $reviews)) {
+        List(vm.list) { review in
+            NavigationLink {
+                let vm = ReviewDetailViewModel(reviewList: $vm.list, review: review)
+                ReviewDetailView(vm: vm)
+            } label: {
                 ReviewCard(review: review)
             }
         }
+        
         .toolbar {
             Button(action: {
                 isPresentingNewReviewView = true
@@ -25,14 +29,17 @@ struct ReviewListView: View {
             }
         }
         .sheet(isPresented: $isPresentingNewReviewView) {
-            let vm = ReviewViewModel(reviewList: $reviews)
+            let vm = ReviewViewModel(reviewList: $vm.list)
             NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
+        }
+        .onAppear {
+            vm.fetch()
         }
     }
 }
 
 struct ReviewListView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewListView(reviews: .constant(BookReview.sampleData))
+        ReviewListView(vm: ReviewListViewModel(storage: BookReviewStorage()))
     }
 }

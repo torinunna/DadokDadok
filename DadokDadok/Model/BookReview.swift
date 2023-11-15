@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct BookReview: Identifiable {
-    let id: UUID = UUID()
+struct BookReview: Identifiable, Codable {
+    var id: UUID = UUID()
     var title: String
     var imageName: String
     var author: String

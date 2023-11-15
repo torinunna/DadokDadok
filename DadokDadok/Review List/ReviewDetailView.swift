@@ -8,36 +8,36 @@
 import SwiftUI
 
 struct ReviewDetailView: View {
-    @Binding var review: BookReview
-    @Binding var reviews: [BookReview]
-    @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject var vm: ReviewDetailViewModel
     
     @State var editingReview = BookReview.emptyReview
     @State private var isPresentingEditView = false
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            fetchImage(url: review.imageName)
+            fetchImage(url: vm.review.imageName)
             
-            Text(review.title)
+            Text(vm.review.title)
                 .font(.system(size: 16, weight: .semibold))
                 .padding(.top, 15)
             
-            Text(review.author)
+            Text(vm.review.author)
                 .font(.system(size: 13, weight: .medium))
                 .padding(.top, 6)
-            Text(review.publisher)
+            Text(vm.review.publisher)
                 .font(.system(size: 13, weight: .medium))
             
             Divider()
                 .padding(.vertical, 10)
             
-            Text(review.date)
+            Text(vm.review.date)
                 .font(.system(size: 13, weight: .medium))
             
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text(review.review)
+                    Text(vm.review.review)
                         .font(.system(size: 13))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -48,7 +48,8 @@ struct ReviewDetailView: View {
                 Spacer()
                 
                 Button {
-                    deleteReview()
+                    vm.delete()
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("삭제하기")
                         .frame(width: 120, height: 40)
@@ -61,7 +62,7 @@ struct ReviewDetailView: View {
                 
                 Button {
                     isPresentingEditView = true
-                    editingReview = review
+                    editingReview = vm.review
                 } label: {
                     Text("수정하기")
                         .frame(width: 120, height: 40)
@@ -81,26 +82,20 @@ struct ReviewDetailView: View {
                                 ToolbarItem(placement: .confirmationAction) {
                                     Button("저장") {
                                         isPresentingEditView = false
-                                        review = editingReview
+                                        vm.review = editingReview
                                     }
                                 }
                             }
                     }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    private func deleteReview() {
-        $reviews.wrappedValue = $reviews.wrappedValue.filter { $0.id != review.id }
-        presentationMode.wrappedValue.dismiss()
-        print(reviews)
     }
     
     func fetchImage(url: String) -> some View {
@@ -115,6 +110,7 @@ struct ReviewDetailView: View {
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewDetailView(review: .constant(BookReview.sampleData[0]), reviews: .constant(BookReview.sampleData))
+        let vm = ReviewDetailViewModel(reviewList: .constant(BookReview.sampleData), review: BookReview.sampleData.first!)
+        ReviewDetailView(vm: vm)
     }
 }

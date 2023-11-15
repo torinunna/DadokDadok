@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LibraryView: View {
-    @Binding var reviews: [BookReview]
+    
+    @StateObject var vm: ReviewListViewModel
     
     let layout: [GridItem] = [
         GridItem(.flexible()),
@@ -19,16 +20,19 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: layout) {
-                ForEach($reviews) { $review in
+                ForEach(vm.list) { review in
                     BookView(review: review)
                 }
             }
+        }
+        .onAppear {
+            vm.fetch()
         }
     }
 }
 
 struct LibraryView_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryView(reviews: .constant(BookReview.sampleData))
+        LibraryView(vm: ReviewListViewModel(storage: BookReviewStorage()))
     }
 }
