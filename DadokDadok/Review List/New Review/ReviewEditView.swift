@@ -26,9 +26,15 @@ struct ReviewEditView: View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 20) {
                 fetchImage(url: review.imageName)
-                Text(review.title)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(review.title)
+                        .font(.system(size: 15, weight: .semibold))
+                    Text("\(review.author) | \(review.publisher)")
+                        .font(.system(size: 12))
+                }
             }
-            .padding()
+            .padding(.horizontal)
             
             DatePicker("읽은 날짜", selection: $selectedDate, displayedComponents: .date)
                 .environment(\.locale, Locale.init(identifier: "ko-KR"))
@@ -36,7 +42,7 @@ struct ReviewEditView: View {
             TextEditor(text: $review.review)
                 .border(.gray.opacity(0.2), width: 3)
         }
-        .padding()
+        .padding(.horizontal)
         
         .onChange(of: selectedDate, perform: { newDate in
             review.date = Self.dateFormatter.string(from: newDate)
