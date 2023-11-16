@@ -1,5 +1,5 @@
 //
-//  ReviewViewModel.swift
+//  NewReviewViewModel.swift
 //  DadokDadok
 //
 //  Created by YUJIN KWON on 2023/11/04.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-final class ReviewViewModel: ObservableObject {
+final class NewReviewViewModel: ObservableObject {
     
     @Published var reviewList: Binding<[BookReview]>
     @Published var bookReview: BookReview = BookReview.emptyReview

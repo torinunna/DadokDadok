@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewReviewView: View {
-    @StateObject var vm: ReviewViewModel
+    @StateObject var vm: NewReviewViewModel
     @Binding var isPresentingNewReviewView: Bool
     @State private var isPresentingBookSearchView = false
     @State private var selectedBook: Book?
@@ -92,7 +92,7 @@ struct NewReviewView: View {
 
 struct NewReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = ReviewViewModel(reviewList: .constant(BookReview.sampleData))
+        let vm = NewReviewViewModel(reviewList: .constant(BookReview.sampleData))
         NewReviewView(vm: vm, isPresentingNewReviewView: .constant(true))
     }
 }

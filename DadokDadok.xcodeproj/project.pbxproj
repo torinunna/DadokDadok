@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8603637B2AF62A3700FC5480 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */; };
+		8603637B2AF62A3700FC5480 /* NewReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */; };
 		864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A39B02AC9664E00F5EDFD /* NewReviewView.swift */; };
 		866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C732AB7469400F28C46 /* DadokDadokApp.swift */; };
 		866B0C762AB7469400F28C46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C752AB7469400F28C46 /* ContentView.swift */; };
@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewViewModel.swift; sourceTree = "<group>"; };
 		864A39B02AC9664E00F5EDFD /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		866B0C702AB7469400F28C46 /* DadokDadok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadokDadok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866B0C732AB7469400F28C46 /* DadokDadokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadokDadokApp.swift; sourceTree = "<group>"; };
@@ -84,8 +84,8 @@
 		8603637D2AF6321100FC5480 /* New Review */ = {
 			isa = PBXGroup;
 			children = (
-				8603637A2AF62A3700FC5480 /* ReviewViewModel.swift */,
 				864A39B02AC9664E00F5EDFD /* NewReviewView.swift */,
+				8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */,
 				86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */,
 				8693742D2AF37F86005684FF /* BookSearch */,
 			);
@@ -246,7 +246,7 @@
 				869350AF2B049BD90021A098 /* BookReviewStorage.swift in Sources */,
 				869374192AF1EA29005684FF /* BookSearchView.swift in Sources */,
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
-				8603637B2AF62A3700FC5480 /* ReviewViewModel.swift in Sources */,
+				8603637B2AF62A3700FC5480 /* NewReviewViewModel.swift in Sources */,
 				86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				869350AD2B049BA00021A098 /* Storage.swift in Sources */,
