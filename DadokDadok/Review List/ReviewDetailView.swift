@@ -17,27 +17,27 @@ struct ReviewDetailView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            fetchImage(url: vm.review.imageName)
+            fetchImage(url: vm.bookReview.imageName)
             
-            Text(vm.review.title)
+            Text(vm.bookReview.title)
                 .font(.system(size: 16, weight: .semibold))
                 .padding(.top, 15)
             
-            Text(vm.review.author)
+            Text(vm.bookReview.author)
                 .font(.system(size: 13, weight: .medium))
                 .padding(.top, 6)
-            Text(vm.review.publisher)
+            Text(vm.bookReview.publisher)
                 .font(.system(size: 13, weight: .medium))
             
             Divider()
                 .padding(.vertical, 10)
             
-            Text(vm.review.date)
+            Text(vm.bookReview.date)
                 .font(.system(size: 13, weight: .medium))
             
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text(vm.review.review)
+                    Text(vm.bookReview.review)
                         .font(.system(size: 13))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -62,7 +62,7 @@ struct ReviewDetailView: View {
                 
                 Button {
                     isPresentingEditView = true
-                    editingReview = vm.review
+                    editingReview = vm.bookReview
                 } label: {
                     Text("수정하기")
                         .frame(width: 120, height: 40)
@@ -72,7 +72,7 @@ struct ReviewDetailView: View {
                 }
                 .sheet(isPresented: $isPresentingEditView) {
                     NavigationStack {
-                        ReviewEditView(review: $editingReview)
+                        ReviewEditView(bookReview: $editingReview)
                             .toolbar {
                                 ToolbarItem(placement: .cancellationAction) {
                                     Button("취소") {
@@ -82,7 +82,7 @@ struct ReviewDetailView: View {
                                 ToolbarItem(placement: .confirmationAction) {
                                     Button("저장") {
                                         isPresentingEditView = false
-                                        vm.review = editingReview
+                                        vm.bookReview = editingReview
                                     }
                                 }
                             }
@@ -110,7 +110,7 @@ struct ReviewDetailView: View {
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = ReviewDetailViewModel(reviewList: .constant(BookReview.sampleData), review: BookReview.sampleData.first!)
+        let vm = ReviewDetailViewModel(reviewList: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
         ReviewDetailView(vm: vm)
     }
 }

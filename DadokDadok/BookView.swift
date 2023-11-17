@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct BookView: View {
-    var review: BookReview
+    var bookReview: BookReview
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            fetchImage(url: review.imageName)
+            fetchImage(url: bookReview.imageName)
             
-            Text(review.title)
+            Text(bookReview.title)
                 .font(.system(size: 13.0, weight: .semibold))
         }
         .padding()
@@ -31,9 +31,9 @@ struct BookView: View {
 }
 
 struct BookView_Previews: PreviewProvider {
-    static var book = BookReview.sampleData[0]
+    static var bookReview = BookReview.sampleData[0]
     
     static var previews: some View {
-        BookView(review: book)
+        BookView(bookReview: bookReview)
     }
 }

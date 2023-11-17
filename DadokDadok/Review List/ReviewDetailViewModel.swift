@@ -10,14 +10,14 @@ import SwiftUI
 
 final class ReviewDetailViewModel: ObservableObject {
     @Published var reviewList: Binding<[BookReview]>
-    @Published var review: BookReview
+    @Published var bookReview: BookReview
     
-    init(reviewList: Binding<[BookReview]>, review: BookReview) {
+    init(reviewList: Binding<[BookReview]>, bookReview: BookReview) {
         self.reviewList = reviewList
-        self.review = review
+        self.bookReview = bookReview
     }
     
     func delete() {
-        reviewList.wrappedValue = reviewList.wrappedValue.filter { $0.id != review.id }
+        reviewList.wrappedValue = reviewList.wrappedValue.filter { $0.id != bookReview.id }
     }
 }

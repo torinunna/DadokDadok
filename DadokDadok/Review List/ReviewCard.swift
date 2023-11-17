@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ReviewCard: View {
-    var review: BookReview
+    var bookReview: BookReview
 
     var body: some View {
         HStack(spacing: 15) {
-            fetchImage(url: review.imageName)
+            fetchImage(url: bookReview.imageName)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(review.date)
+                Text(bookReview.date)
                     .font(.system(size: 11))
-                Text(review.title)
+                Text(bookReview.title)
                     .font(.system(size: 14, weight: .semibold))
-                Text("\(review.author) | \(review.publisher)")
+                Text("\(bookReview.author) | \(bookReview.publisher)")
                     .font(.system(size: 12))
             }
         }
@@ -39,6 +39,6 @@ struct ReviewCard_Previews: PreviewProvider {
     static var review = BookReview.sampleData[0]
     
     static var previews: some View {
-        ReviewCard(review: review)
+        ReviewCard(bookReview: review)
     }
 }

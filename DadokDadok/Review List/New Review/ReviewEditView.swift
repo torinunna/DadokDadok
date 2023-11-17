@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ReviewEditView: View {
-    @Binding var review: BookReview
+    @Binding var bookReview: BookReview
     @State private var selectedDate = Date()
     
-    init(review: Binding<BookReview>) {
-        _review = review
-        _selectedDate = State(initialValue: Self.dateFormatter.date(from: review.wrappedValue.date) ?? Date())
+    init(bookReview: Binding<BookReview>) {
+        _bookReview = bookReview
+        _selectedDate = State(initialValue: Self.dateFormatter.date(from: bookReview.wrappedValue.date) ?? Date())
     }
     
     static let dateFormatter: DateFormatter = {
@@ -25,12 +25,12 @@ struct ReviewEditView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 20) {
-                fetchImage(url: review.imageName)
+                fetchImage(url: bookReview.imageName)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(review.title)
+                    Text(bookReview.title)
                         .font(.system(size: 15, weight: .semibold))
-                    Text("\(review.author) | \(review.publisher)")
+                    Text("\(bookReview.author) | \(bookReview.publisher)")
                         .font(.system(size: 12))
                 }
             }
@@ -39,13 +39,13 @@ struct ReviewEditView: View {
             DatePicker("읽은 날짜", selection: $selectedDate, displayedComponents: .date)
                 .environment(\.locale, Locale.init(identifier: "ko-KR"))
             
-            TextEditor(text: $review.review)
+            TextEditor(text: $bookReview.review)
                 .border(.gray.opacity(0.2), width: 3)
         }
         .padding(.horizontal)
         
         .onChange(of: selectedDate, perform: { newDate in
-            review.date = Self.dateFormatter.string(from: newDate)
+            bookReview.date = Self.dateFormatter.string(from: newDate)
         })
     }
     
@@ -61,6 +61,6 @@ struct ReviewEditView: View {
 
 struct ReviewEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewEditView(review: .constant(BookReview.sampleData[0]))
+        ReviewEditView(bookReview: .constant(BookReview.sampleData[0]))
     }
 }

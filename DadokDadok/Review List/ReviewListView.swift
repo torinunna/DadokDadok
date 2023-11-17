@@ -12,12 +12,12 @@ struct ReviewListView: View {
     @State private var isPresentingNewReviewView = false
     
     var body: some View {
-        List(vm.list) { review in
+        List(vm.list) { bookReview in
             NavigationLink {
-                let vm = ReviewDetailViewModel(reviewList: $vm.list, review: review)
+                let vm = ReviewDetailViewModel(reviewList: $vm.list, bookReview: bookReview)
                 ReviewDetailView(vm: vm)
             } label: {
-                ReviewCard(review: review)
+                ReviewCard(bookReview: bookReview)
             }
         }
         
