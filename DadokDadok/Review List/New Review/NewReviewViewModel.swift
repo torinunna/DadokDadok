@@ -10,7 +10,7 @@ import Combine
 
 final class NewReviewViewModel: ObservableObject {
     
-    @Published var reviewList: Binding<[BookReview]>
+    @Published var bookReviews: Binding<[BookReview]>
     @Published var bookReview: BookReview = BookReview.emptyReview
     @Published var title: String = ""
     @Published var imageName: String = ""
@@ -21,8 +21,8 @@ final class NewReviewViewModel: ObservableObject {
     
     var subscriptions = Set<AnyCancellable>()
     
-    init(reviewList: Binding<[BookReview]>) {
-        self.reviewList = reviewList
+    init(bookReviews: Binding<[BookReview]>) {
+        self.bookReviews = bookReviews
         
         $title.sink { title in
             self.update(title: title)
@@ -77,7 +77,7 @@ final class NewReviewViewModel: ObservableObject {
     
     func completed() {
         guard bookReview.date.isEmpty == false else { return }
-        reviewList.wrappedValue.append(bookReview)
+        bookReviews.wrappedValue.append(bookReview)
         print(bookReview)
     }
 }

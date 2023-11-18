@@ -9,8 +9,8 @@ import Foundation
 
 final class BookReviewStorage {
     
-    func persist(_ reviews: [BookReview]) {
-        Storage.store(reviews, to: .documents, as: "review_list.json")
+    func persist(_ bookReviews: [BookReview]) {
+        Storage.store(bookReviews, to: .documents, as: "review_list.json")
     }
     
     func fetch() -> [BookReview] {

@@ -12,7 +12,7 @@ final class ReviewListViewModel: ObservableObject {
     
     let storage: BookReviewStorage
     
-    @Published var list: [BookReview] = []
+    @Published var bookReviews: [BookReview] = []
     
     var subscriptions = Set<AnyCancellable>()
     
@@ -22,17 +22,17 @@ final class ReviewListViewModel: ObservableObject {
     }
     
     private func bind() {
-        $list.sink { reviews in
-            self.persist(reviews: reviews)
+        $bookReviews.sink { bookReviews in
+            self.persist(bookReviews: bookReviews)
         }.store(in: &subscriptions)
     }
     
-    func persist(reviews: [BookReview]) {
-        guard reviews.isEmpty == false else { return }
-        self.storage.persist(reviews)
+    func persist(bookReviews: [BookReview]) {
+        guard bookReviews.isEmpty == false else { return }
+        self.storage.persist(bookReviews)
     }
     
     func fetch() {
-        self.list = storage.fetch()
+        self.bookReviews = storage.fetch()
     }
 }

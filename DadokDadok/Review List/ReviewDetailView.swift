@@ -110,7 +110,7 @@ struct ReviewDetailView: View {
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = ReviewDetailViewModel(reviewList: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
+        let vm = ReviewDetailViewModel(bookReviews: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
         ReviewDetailView(vm: vm)
     }
 }

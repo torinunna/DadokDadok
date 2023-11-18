@@ -20,8 +20,8 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: layout) {
-                ForEach(vm.list) { review in
-                    BookView(bookReview: review)
+                ForEach(vm.bookReviews) { bookReview in
+                    BookView(bookReview: bookReview)
                 }
             }
         }

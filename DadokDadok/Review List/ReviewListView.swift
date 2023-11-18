@@ -12,9 +12,9 @@ struct ReviewListView: View {
     @State private var isPresentingNewReviewView = false
     
     var body: some View {
-        List(vm.list) { bookReview in
+        List(vm.bookReviews) { bookReview in
             NavigationLink {
-                let vm = ReviewDetailViewModel(reviewList: $vm.list, bookReview: bookReview)
+                let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
                 ReviewDetailView(vm: vm)
             } label: {
                 ReviewCard(bookReview: bookReview)
@@ -29,7 +29,7 @@ struct ReviewListView: View {
             }
         }
         .sheet(isPresented: $isPresentingNewReviewView) {
-            let vm = NewReviewViewModel(reviewList: $vm.list)
+            let vm = NewReviewViewModel(bookReviews: $vm.bookReviews)
             NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
         }
         .onAppear {
