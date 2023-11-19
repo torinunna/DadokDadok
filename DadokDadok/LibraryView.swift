@@ -21,7 +21,12 @@ struct LibraryView: View {
         ScrollView {
             LazyVGrid(columns: layout) {
                 ForEach(vm.bookReviews) { bookReview in
-                    BookView(bookReview: bookReview)
+                    NavigationLink {
+                        let vm = LibraryDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
+                        LibraryDetailView(vm: vm)
+                    } label: {
+                        BookView(bookReview: bookReview)
+                    }
                 }
             }
         }

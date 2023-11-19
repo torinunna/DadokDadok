@@ -19,6 +19,8 @@
 		866B0C882AB74C7D00F28C46 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C872AB74C7D00F28C46 /* ReviewCard.swift */; };
 		866B0C8A2AB75DD700F28C46 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C892AB75DD700F28C46 /* BookView.swift */; };
 		86883D752B09F35200905882 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86883D742B09F35200905882 /* LibraryViewModel.swift */; };
+		86883D772B0A424200905882 /* LibraryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86883D762B0A424200905882 /* LibraryDetailView.swift */; };
+		86883D792B0A447000905882 /* LibraryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86883D782B0A447000905882 /* LibraryDetailViewModel.swift */; };
 		869350AD2B049BA00021A098 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869350AC2B049BA00021A098 /* Storage.swift */; };
 		869350AF2B049BD90021A098 /* BookReviewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869350AE2B049BD90021A098 /* BookReviewStorage.swift */; };
 		869350B22B049CC30021A098 /* ReviewListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869350B12B049CC30021A098 /* ReviewListViewModel.swift */; };
@@ -48,6 +50,8 @@
 		866B0C872AB74C7D00F28C46 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		866B0C892AB75DD700F28C46 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		86883D742B09F35200905882 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		86883D762B0A424200905882 /* LibraryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDetailView.swift; sourceTree = "<group>"; };
+		86883D782B0A447000905882 /* LibraryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDetailViewModel.swift; sourceTree = "<group>"; };
 		869350AC2B049BA00021A098 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		869350AE2B049BD90021A098 /* BookReviewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReviewStorage.swift; sourceTree = "<group>"; };
 		869350B12B049CC30021A098 /* ReviewListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListViewModel.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				866B0C752AB7469400F28C46 /* ContentView.swift */,
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				86883D742B09F35200905882 /* LibraryViewModel.swift */,
+				86883D762B0A424200905882 /* LibraryDetailView.swift */,
+				86883D782B0A447000905882 /* LibraryDetailViewModel.swift */,
 				866B0C892AB75DD700F28C46 /* BookView.swift */,
 				8603637E2AF6351200FC5480 /* Review List */,
 				8603637C2AF6311100FC5480 /* Model */,
@@ -249,6 +255,7 @@
 				869350AF2B049BD90021A098 /* BookReviewStorage.swift in Sources */,
 				869374192AF1EA29005684FF /* BookSearchView.swift in Sources */,
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
+				86883D792B0A447000905882 /* LibraryDetailViewModel.swift in Sources */,
 				8603637B2AF62A3700FC5480 /* NewReviewViewModel.swift in Sources */,
 				86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
@@ -259,6 +266,7 @@
 				869374252AF29FE7005684FF /* HTTPMethod.swift in Sources */,
 				869350B42B049FBE0021A098 /* ReviewDetailViewModel.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
+				86883D772B0A424200905882 /* LibraryDetailView.swift in Sources */,
 				86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */,
 				866B0C8A2AB75DD700F28C46 /* BookView.swift in Sources */,
 				869350B22B049CC30021A098 /* ReviewListViewModel.swift in Sources */,
