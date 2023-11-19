@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    let vm = ReviewListViewModel(storage: BookReviewStorage())
     
     var body: some View {
         TabView {
             NavigationStack {
-                LibraryView(vm: vm)
+                LibraryView(vm: LibraryViewModel(storage: BookReviewStorage()))
                     .navigationTitle("나의 서재")
             }
             .tabItem {
@@ -22,7 +21,7 @@ struct ContentView: View {
             }
             
             NavigationStack {
-                ReviewListView(vm: vm)
+                ReviewListView(vm: ReviewListViewModel(storage: BookReviewStorage()))
                     .navigationTitle("나의 서평")
             }
             .tabItem {

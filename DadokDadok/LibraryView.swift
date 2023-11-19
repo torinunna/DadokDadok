@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LibraryView: View {
     
-    @StateObject var vm: ReviewListViewModel
+    @StateObject var vm: LibraryViewModel
     
     let layout: [GridItem] = [
         GridItem(.flexible()),
@@ -33,6 +33,6 @@ struct LibraryView: View {
 
 struct LibraryView_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryView(vm: ReviewListViewModel(storage: BookReviewStorage()))
+        LibraryView(vm: LibraryViewModel(storage: BookReviewStorage()))
     }
 }
