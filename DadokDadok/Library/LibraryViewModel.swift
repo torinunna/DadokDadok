@@ -13,7 +13,6 @@ final class LibraryViewModel: ObservableObject {
     let storage: BookReviewStorage
     
     @Published var bookReviews: [BookReview] = []
-    
  
     init(storage: BookReviewStorage) {
         self.storage = storage

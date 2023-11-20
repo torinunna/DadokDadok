@@ -25,7 +25,7 @@ struct LibraryView: View {
                         let vm = LibraryDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
                         LibraryDetailView(vm: vm)
                     } label: {
-                        BookView(bookReview: bookReview)
+                        BookCard(bookReview: bookReview)
                     }
                 }
             }

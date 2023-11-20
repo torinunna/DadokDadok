@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BookView: View {
+struct BookCard: View {
     var bookReview: BookReview
     
     var body: some View {
@@ -34,6 +34,6 @@ struct BookView_Previews: PreviewProvider {
     static var bookReview = BookReview.sampleData[0]
     
     static var previews: some View {
-        BookView(bookReview: bookReview)
+        BookCard(bookReview: bookReview)
     }
 }
