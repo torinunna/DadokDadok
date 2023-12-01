@@ -10,16 +10,15 @@ import SwiftUI
 
 final class LibraryDetailViewModel: ObservableObject {
     
-    @Published var bookReviews: Binding<[BookReview]>
+    @Published var bookReviews: [BookReview] = []
     @Published var bookReview: BookReview
     
-    init(bookReviews: Binding<[BookReview]>, bookReview: BookReview) {
+    init(bookReviews: [BookReview], bookReview: BookReview) {
         self.bookReviews = bookReviews
         self.bookReview = bookReview
     }
     
-    func delete() {
-        bookReviews.wrappedValue = bookReviews.wrappedValue.filter { $0.id != bookReview.id }
+    func filteredReviews() -> [BookReview] {
+        return bookReviews.filter { $0.title == bookReview.title }
     }
-    
 }

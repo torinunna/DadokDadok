@@ -12,7 +12,7 @@ struct LibraryDetailView: View {
     @StateObject var vm: LibraryDetailViewModel
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 15) {
                 fetchImage(url: vm.bookReview.imageName)
                 
@@ -28,10 +28,17 @@ struct LibraryDetailView: View {
             }
             
             Text("서평 모아보기")
-                .font(.system(size: 18, weight: .semibold))
-                .padding(.vertical)
+                .font(.system(size: 16, weight: .semibold))
+                .padding(.top)
+            
+            ScrollView {
+                ForEach(vm.filteredReviews()) { bookReview in
+                    DetailCard(bookReview: bookReview)
+                }
+            }
         }
-     
+        .padding(.horizontal)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func fetchImage(url: String) -> some View {
@@ -46,7 +53,7 @@ struct LibraryDetailView: View {
 
 struct LibraryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = LibraryDetailViewModel(bookReviews: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
+        let vm = LibraryDetailViewModel(bookReviews: BookReview.sampleData, bookReview: BookReview.sampleData.first!)
         LibraryDetailView(vm: vm)
     }
 }

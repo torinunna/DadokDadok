@@ -22,7 +22,7 @@ struct LibraryView: View {
             LazyVGrid(columns: layout) {
                 ForEach(vm.bookReviews) { bookReview in
                     NavigationLink {
-                        let vm = LibraryDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
+                        let vm = LibraryDetailViewModel(bookReviews: vm.bookReviews, bookReview: bookReview)
                         LibraryDetailView(vm: vm)
                     } label: {
                         BookCard(bookReview: bookReview)
