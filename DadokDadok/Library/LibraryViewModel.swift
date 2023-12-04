@@ -12,6 +12,7 @@ final class LibraryViewModel: ObservableObject {
     
     let storage: BookReviewStorage
     
+    @Published var uniqueBookTitles: Set<String> = []
     @Published var bookReviews: [BookReview] = []
  
     init(storage: BookReviewStorage) {
@@ -20,5 +21,10 @@ final class LibraryViewModel: ObservableObject {
 
     func fetch() {
         self.bookReviews = storage.fetch()
+        updateUniqueBookTitles()
+    }
+    
+    private func updateUniqueBookTitles() {
+        uniqueBookTitles = Set(bookReviews.map { $0.title })
     }
 }
