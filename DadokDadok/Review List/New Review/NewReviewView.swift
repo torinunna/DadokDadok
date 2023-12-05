@@ -21,17 +21,21 @@ struct NewReviewView: View {
                         
                         fetchImage(url: selectedBook.image)
                         
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 3) {
                             Text(selectedBook.title)
                                 .font(.system(size: 14, weight: .semibold))
+                                .padding(.bottom, 3)
                             Text("\(selectedBook.author) | \(selectedBook.publisher)")
                                 .font(.system(size: 13))
+                            Text(selectedBook.isbn)
+                                .font(.system(size: 12))
                         }
                         .onAppear {
                             vm.update(title: selectedBook.title)
                             vm.update(imageName: selectedBook.image)
                             vm.update(author: selectedBook.author)
                             vm.update(publisher: selectedBook.publisher)
+                            vm.update(isbn: selectedBook.isbn)
                         }
                     } else {
                         Image(systemName: "book")

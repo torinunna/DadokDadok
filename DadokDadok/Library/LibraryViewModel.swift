@@ -21,10 +21,10 @@ final class LibraryViewModel: ObservableObject {
 
     func fetch() {
         self.bookReviews = storage.fetch()
-        updateUniqueBookTitles()
+        updateUniqueBook()
     }
     
-    private func updateUniqueBookTitles() {
-        uniqueBookTitles = Set(bookReviews.map { $0.title })
+    private func updateUniqueBook() {
+        uniqueBookTitles = Set(bookReviews.map { $0.isbn })
     }
 }

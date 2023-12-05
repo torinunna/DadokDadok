@@ -21,6 +21,8 @@ struct ReviewCard: View {
                     .font(.system(size: 14, weight: .semibold))
                 Text("\(bookReview.author) | \(bookReview.publisher)")
                     .font(.system(size: 12))
+                Text(bookReview.isbn)
+                    .font(.system(size: 12))
             }
         }
     }

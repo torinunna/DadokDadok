@@ -24,6 +24,9 @@ struct LibraryDetailView: View {
                         .font(.system(size: 13))
                     Text(vm.bookReview.publisher)
                         .font(.system(size: 13))
+                    Text(vm.bookReview.isbn)
+                        .font(.system(size: 13))
+                    
                 }
             }
             

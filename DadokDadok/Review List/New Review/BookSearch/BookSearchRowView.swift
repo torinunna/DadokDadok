@@ -22,6 +22,8 @@ struct BookSearchRowView: View {
                     .font(.system(size: 11))
                 Text(book.publisher)
                     .font(.system(size: 11))
+                Text(book.isbn)
+                    .font(.system(size: 10))
             }
             .padding(.vertical)
         }

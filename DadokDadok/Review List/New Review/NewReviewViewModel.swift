@@ -16,6 +16,7 @@ final class NewReviewViewModel: ObservableObject {
     @Published var imageName: String = ""
     @Published var author: String = ""
     @Published var publisher: String = ""
+    @Published var isbn: String = ""
     @Published var date: Date = Date()
     @Published var review: String = ""
     
@@ -38,6 +39,10 @@ final class NewReviewViewModel: ObservableObject {
         
         $publisher.sink { publisher in
             self.update(publisher: publisher)
+        }.store(in: &subscriptions)
+        
+        $publisher.sink { isbn in
+            self.update(isbn: isbn)
         }.store(in: &subscriptions)
         
         $date.sink { date in
@@ -63,6 +68,10 @@ final class NewReviewViewModel: ObservableObject {
     
     func update(publisher: String) {
         self.bookReview.publisher = publisher
+    }
+    
+    func update(isbn: String) {
+        self.bookReview.isbn = isbn
     }
     
     func update(date: Date) {

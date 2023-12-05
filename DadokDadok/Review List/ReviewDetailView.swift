@@ -28,6 +28,8 @@ struct ReviewDetailView: View {
                 .padding(.top, 6)
             Text(vm.bookReview.publisher)
                 .font(.system(size: 13, weight: .medium))
+            Text(vm.bookReview.isbn)
+                .font(.system(size: 12, weight: .medium))
             
             Divider()
                 .padding(.vertical, 10)

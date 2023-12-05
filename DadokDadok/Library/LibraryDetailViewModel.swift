@@ -19,6 +19,6 @@ final class LibraryDetailViewModel: ObservableObject {
     }
     
     func filteredReviews() -> [BookReview] {
-        return bookReviews.filter { $0.title == bookReview.title }
+        return bookReviews.filter { $0.isbn == bookReview.isbn }
     }
 }
