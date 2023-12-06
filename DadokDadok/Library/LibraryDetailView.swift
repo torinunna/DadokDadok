@@ -36,7 +36,13 @@ struct LibraryDetailView: View {
             
             ScrollView {
                 ForEach(vm.filteredReviews()) { bookReview in
-                    DetailCard(bookReview: bookReview)
+                    NavigationLink {
+                        let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
+                        ReviewDetailView(vm: vm)
+                    } label: {
+                        DetailCard(bookReview: bookReview)
+                    }
+                    
                 }
             }
         }
