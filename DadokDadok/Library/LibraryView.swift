@@ -19,7 +19,7 @@ struct LibraryView: View {
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: layout) {
+            LazyVGrid(columns: layout, spacing: 15) {
                 ForEach(vm.uniqueBookTitles.sorted(), id: \.self) { isbn in
                     if let firstReview = vm.bookReviews.first(where: { $0.isbn == isbn }) {
                         NavigationLink {
@@ -27,14 +27,18 @@ struct LibraryView: View {
                             LibraryDetailView(vm: vm)
                         } label: {
                             BookCard(bookReview: firstReview)
+                                .frame(height: 160)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
             }
         }
+        .padding(10)
         .onAppear {
             vm.fetch()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

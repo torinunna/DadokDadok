@@ -11,11 +11,12 @@ struct BookCard: View {
     var bookReview: BookReview
     
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: 12) {
             fetchImage(url: bookReview.imageName)
             
             Text(bookReview.title)
-                .font(.system(size: 13.0, weight: .semibold))
+                .font(.system(size: 13.0, weight: .medium))
+                .foregroundStyle(.black)
         }
         .padding()
     }
@@ -23,10 +24,11 @@ struct BookCard: View {
     func fetchImage(url: String) -> some View {
         AsyncImage(url: URL(string: url)) { image in
             image.resizable()
+                .aspectRatio(contentMode: .fit)
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 90, height: 120)
+        .frame(width: 100, height: 120)
     }
 }
 
