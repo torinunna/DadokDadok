@@ -10,29 +10,30 @@ import SwiftUI
 struct ReviewDetailView: View {
     
     @StateObject var vm: ReviewDetailViewModel
-    
     @State var editingReview = BookReview.emptyReview
     @State private var isPresentingEditView = false
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack(alignment: .center, spacing: 5) {
-            fetchImage(url: vm.bookReview.imageName)
-            
-            Text(vm.bookReview.title)
-                .font(.system(size: 16, weight: .semibold))
-                .padding(.top, 15)
-            
-            Text(vm.bookReview.author)
-                .font(.system(size: 13, weight: .medium))
-                .padding(.top, 6)
-            Text(vm.bookReview.publisher)
-                .font(.system(size: 13, weight: .medium))
-            Text(vm.bookReview.isbn)
-                .font(.system(size: 12, weight: .medium))
+        VStack(alignment: .center, spacing: 15) {
+            HStack(spacing: 15) {
+                fetchImage(url: vm.bookReview.imageName)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(vm.bookReview.title)
+                        .font(.system(size: 14, weight: .semibold))
+                        .padding(.bottom, 5)
+                    Text(vm.bookReview.author)
+                        .font(.system(size: 12))
+                    Text(vm.bookReview.publisher)
+                        .font(.system(size: 12))
+                    Text(vm.bookReview.isbn)
+                        .font(.system(size: 12))
+                }
+                Spacer()
+            }
             
             Divider()
-                .padding(.vertical, 10)
+                .padding(10)
             
             Text(vm.bookReview.date)
                 .font(.system(size: 13, weight: .medium))
@@ -48,7 +49,6 @@ struct ReviewDetailView: View {
             
             HStack {
                 Spacer()
-                
                 Button {
                     vm.delete()
                     presentationMode.wrappedValue.dismiss()
@@ -59,9 +59,7 @@ struct ReviewDetailView: View {
                         .background(Color.red)
                         .cornerRadius(10)
                 }
-                
                 Spacer()
-                
                 Button {
                     isPresentingEditView = true
                     editingReview = vm.bookReview
@@ -89,24 +87,24 @@ struct ReviewDetailView: View {
                                 }
                             }
                     }
-                    
-                    Spacer()
                 }
-                .padding(.horizontal)
+                Spacer()
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.vertical)
         }
+        .padding()
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func fetchImage(url: String) -> some View {
         AsyncImage(url: URL(string: url)) { image in
-            image.resizable()
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 100, height: 120)
+        .frame(width: 90, height: 120)
     }
 }
 
