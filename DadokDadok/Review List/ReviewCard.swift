@@ -11,7 +11,7 @@ struct ReviewCard: View {
     var bookReview: BookReview
 
     var body: some View {
-        HStack(spacing: 15) {
+        HStack(alignment: .center, spacing: 15) {
             fetchImage(url: bookReview.imageName)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -19,21 +19,28 @@ struct ReviewCard: View {
                     .font(.system(size: 11))
                 Text(bookReview.title)
                     .font(.system(size: 14, weight: .semibold))
+                    .multilineTextAlignment(.leading)
                 Text("\(bookReview.author) | \(bookReview.publisher)")
                     .font(.system(size: 12))
                 Text(bookReview.isbn)
                     .font(.system(size: 12))
             }
+            .foregroundStyle(.black)
+            
+            Spacer()
         }
+        .padding(.horizontal)
+        .padding(.bottom, 8)
     }
     
     func fetchImage(url: String) -> some View {
         AsyncImage(url: URL(string: url)) { image in
             image.resizable()
+                .aspectRatio(contentMode: .fit)
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 40, height: 60)
+        .frame(width: 60, height: 80)
     }
 }
 

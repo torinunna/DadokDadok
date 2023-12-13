@@ -12,15 +12,16 @@ struct ReviewListView: View {
     @State private var isPresentingNewReviewView = false
     
     var body: some View {
-        List(vm.bookReviews) { bookReview in
-            NavigationLink {
-                let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
-                ReviewDetailView(vm: vm)
-            } label: {
-                ReviewCard(bookReview: bookReview)
+        ScrollView {
+            ForEach(vm.bookReviews) { bookReview in
+                NavigationLink {
+                    let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
+                    ReviewDetailView(vm: vm)
+                } label: {
+                    ReviewCard(bookReview: bookReview)
+                }
             }
         }
-        
         .toolbar {
             Button(action: {
                 isPresentingNewReviewView = true
@@ -35,6 +36,7 @@ struct ReviewListView: View {
         .onAppear {
             vm.fetch()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
