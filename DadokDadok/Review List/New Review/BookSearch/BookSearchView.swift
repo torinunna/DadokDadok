@@ -15,13 +15,17 @@ struct BookSearchView: View {
     
     var body: some View {
         NavigationStack {
-            List(requestAPI.bookList, id: \.self) { book in
-                BookSearchRowView(book: book)
-                    .listRowSeparator(.hidden)
-                    .onTapGesture {
-                        selectedBook = book
-                        isPresentingBookSearchView = false
+            List {
+                if !searchKeyword.isEmpty {
+                    ForEach(requestAPI.bookList, id: \.self) { book in
+                        BookSearchRowView(book: book)
+                            .listRowSeparator(.hidden)
+                            .onTapGesture {
+                                selectedBook = book
+                                isPresentingBookSearchView = false
+                            }
                     }
+                }
             }
             .listStyle(.plain)
             .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "도서명/저자/출판사를 입력해주세요")
