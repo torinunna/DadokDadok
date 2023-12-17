@@ -18,7 +18,7 @@ struct ReviewDetailView: View {
         VStack(alignment: .center, spacing: 15) {
             HStack(spacing: 15) {
                 fetchImage(url: vm.bookReview.imageName)
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 3) {
                     Text(vm.bookReview.title)
                         .font(.system(size: 14, weight: .semibold))
                         .padding(.bottom, 5)
@@ -33,19 +33,23 @@ struct ReviewDetailView: View {
             }
             
             Divider()
-                .padding(10)
+                .padding(5)
             
             Text(vm.bookReview.date)
-                .font(.system(size: 13, weight: .medium))
+                .font(.system(size: 14, weight: .medium))
             
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text(vm.bookReview.review)
-                        .font(.system(size: 13))
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.yellow)
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        Text(vm.bookReview.review)
+                            .font(.system(size: 15))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             }
-            .padding()
             
             HStack {
                 Spacer()

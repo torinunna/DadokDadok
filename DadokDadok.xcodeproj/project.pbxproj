@@ -34,7 +34,7 @@
 		8693742C2AF37EC9005684FF /* BookSearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8693742B2AF37EC9005684FF /* BookSearchRowView.swift */; };
 		86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */; };
 		86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */; };
-		86D179302AF54727004DF299 /* Hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1792F2AF54727004DF299 /* Hide.swift */; };
+		86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46F2A2B2F33B600C96FD3 /* Hide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +65,7 @@
 		8693742B2AF37EC9005684FF /* BookSearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchRowView.swift; sourceTree = "<group>"; };
 		86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailView.swift; sourceTree = "<group>"; };
 		86A0D8DE2AB8352700042B5F /* ReviewEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditView.swift; sourceTree = "<group>"; };
-		86D1792F2AF54727004DF299 /* Hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hide.swift; sourceTree = "<group>"; };
+		86B46F2A2B2F33B600C96FD3 /* Hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +168,7 @@
 				8693742B2AF37EC9005684FF /* BookSearchRowView.swift */,
 				869374292AF2A072005684FF /* RequestAPI.swift */,
 				869374242AF29FE7005684FF /* HTTPMethod.swift */,
-				86D1792F2AF54727004DF299 /* Hide.swift */,
+				86B46F2A2B2F33B600C96FD3 /* Hide.swift */,
 			);
 			path = BookSearch;
 			sourceTree = "<group>";
@@ -278,6 +278,7 @@
 				869350B42B049FBE0021A098 /* ReviewDetailViewModel.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				86883D772B0A424200905882 /* LibraryDetailView.swift in Sources */,
+				86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */,
 				86A0D8DF2AB8352700042B5F /* ReviewEditView.swift in Sources */,
 				866B0C8A2AB75DD700F28C46 /* BookCard.swift in Sources */,
 				869350B22B049CC30021A098 /* ReviewListViewModel.swift in Sources */,
@@ -285,7 +286,6 @@
 				869374212AF29F7C005684FF /* Book.swift in Sources */,
 				8677DDF32B1487C2000C9B97 /* DetailCard.swift in Sources */,
 				8693742A2AF2A072005684FF /* RequestAPI.swift in Sources */,
-				86D179302AF54727004DF299 /* Hide.swift in Sources */,
 				86883D752B09F35200905882 /* LibraryViewModel.swift in Sources */,
 				864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */,
 			);
