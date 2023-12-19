@@ -76,7 +76,7 @@ struct ReviewDetailView: View {
                 }
                 .sheet(isPresented: $isPresentingEditView) {
                     NavigationStack {
-                        ReviewEditView(bookReview: $editingReview)
+                        EditReviewView(bookReview: $editingReview)
                             .toolbar {
                                 ToolbarItem(placement: .cancellationAction) {
                                     Button("취소") {

@@ -1,5 +1,5 @@
 //
-//  ReviewEditView.swift
+//  EditReviewView.swift
 //  DadokDadok
 //
 //  Created by YUJIN KWON on 2023/09/18.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReviewEditView: View {
+struct EditReviewView: View {
     @Binding var bookReview: BookReview
     @State private var selectedDate = Date()
     
@@ -61,6 +61,6 @@ struct ReviewEditView: View {
 
 struct ReviewEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewEditView(bookReview: .constant(BookReview.sampleData[0]))
+        EditReviewView(bookReview: .constant(BookReview.sampleData[0]))
     }
 }
