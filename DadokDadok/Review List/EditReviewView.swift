@@ -24,17 +24,19 @@ struct EditReviewView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack(spacing: 20) {
+            HStack(spacing: 15) {
                 fetchImage(url: bookReview.imageName)
                 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 5) {
                     Text(bookReview.title)
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold))
                     Text("\(bookReview.author) | \(bookReview.publisher)")
+                        .font(.system(size: 13))
+                    Text(bookReview.isbn)
                         .font(.system(size: 12))
                 }
+                Spacer()
             }
-            .padding(.horizontal)
             
             DatePicker("읽은 날짜", selection: $selectedDate, displayedComponents: .date)
                 .environment(\.locale, Locale.init(identifier: "ko-KR"))

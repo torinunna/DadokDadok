@@ -104,9 +104,9 @@
 			children = (
 				866B0C832AB747B300F28C46 /* ReviewListView.swift */,
 				869350B12B049CC30021A098 /* ReviewListViewModel.swift */,
+				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
 				86A0D8DC2AB8200100042B5F /* ReviewDetailView.swift */,
 				869350B32B049FBE0021A098 /* ReviewDetailViewModel.swift */,
-				866B0C872AB74C7D00F28C46 /* ReviewCard.swift */,
 				86A0D8DE2AB8352700042B5F /* EditReviewView.swift */,
 				8603637D2AF6321100FC5480 /* New Review */,
 			);
