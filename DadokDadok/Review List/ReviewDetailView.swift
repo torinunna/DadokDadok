@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ReviewDetailView: View {
     
-    @StateObject var vm: ReviewDetailViewModel
-    @State var editingReview = BookReview.emptyReview
-    @State private var isPresentingEditView = false
+    @ObservedObject var vm: ReviewDetailViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -64,33 +62,13 @@ struct ReviewDetailView: View {
                         .cornerRadius(10)
                 }
                 Spacer()
-                Button {
-                    isPresentingEditView = true
-                    editingReview = vm.bookReview
-                } label: {
+                
+                NavigationLink(destination: EditReviewView(vm: EditReviewViewModel(bookReview: vm.bookReview))) {
                     Text("수정하기")
                         .frame(width: 120, height: 40)
                         .foregroundColor(.white)
                         .background(Color.black)
                         .cornerRadius(10)
-                }
-                .sheet(isPresented: $isPresentingEditView) {
-                    NavigationStack {
-                        EditReviewView(bookReview: $editingReview)
-                            .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button("취소") {
-                                        isPresentingEditView = false
-                                    }
-                                }
-                                ToolbarItem(placement: .confirmationAction) {
-                                    Button("저장") {
-                                        isPresentingEditView = false
-                                        vm.bookReview = editingReview
-                                    }
-                                }
-                            }
-                    }
                 }
                 Spacer()
             }
@@ -98,6 +76,9 @@ struct ReviewDetailView: View {
         }
         .padding()
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            vm.fetch()
+        }
     }
     
     func fetchImage(url: String) -> some View {

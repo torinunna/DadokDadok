@@ -8,47 +8,40 @@
 import SwiftUI
 
 struct EditReviewView: View {
-    @Binding var bookReview: BookReview
-    @State private var selectedDate = Date()
-    
-    init(bookReview: Binding<BookReview>) {
-        _bookReview = bookReview
-        _selectedDate = State(initialValue: Self.dateFormatter.date(from: bookReview.wrappedValue.date) ?? Date())
-    }
-    
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일"
-        return formatter
-    }()
+    @ObservedObject var vm: EditReviewViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 15) {
-                fetchImage(url: bookReview.imageName)
+                fetchImage(url: vm.bookReview.imageName)
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(bookReview.title)
+                    Text(vm.bookReview.title)
                         .font(.system(size: 14, weight: .semibold))
-                    Text("\(bookReview.author) | \(bookReview.publisher)")
+                    Text("\(vm.bookReview.author) | \(vm.bookReview.publisher)")
                         .font(.system(size: 13))
-                    Text(bookReview.isbn)
+                    Text(vm.bookReview.isbn)
                         .font(.system(size: 12))
                 }
                 Spacer()
             }
             
-            DatePicker("읽은 날짜", selection: $selectedDate, displayedComponents: .date)
+            DatePicker("읽은 날짜", selection: $vm.selectedDate, displayedComponents: .date)
                 .environment(\.locale, Locale.init(identifier: "ko-KR"))
             
-            TextEditor(text: $bookReview.review)
+            TextEditor(text: $vm.bookReview.review)
                 .border(.gray.opacity(0.2), width: 3)
         }
         .padding(.horizontal)
-        
-        .onChange(of: selectedDate, perform: { newDate in
-            bookReview.date = Self.dateFormatter.string(from: newDate)
-        })
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("저장") {
+                    vm.saveChanges()
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
     }
     
     func fetchImage(url: String) -> some View {
@@ -63,6 +56,7 @@ struct EditReviewView: View {
 
 struct ReviewEditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditReviewView(bookReview: .constant(BookReview.sampleData[0]))
+        let vm = EditReviewViewModel(bookReview: BookReview.sampleData[0])
+        EditReviewView(vm: vm)
     }
 }
