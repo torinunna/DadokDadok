@@ -11,15 +11,28 @@ struct DetailCard: View {
     var bookReview: BookReview
     
     var body: some View {
-        HStack(alignment: .center, spacing: 15) {
-            Text(bookReview.date)
-                .font(.system(size: 14, weight: .medium))
-            Text(bookReview.review)
-                .font(.system(size: 13))
-            Spacer()
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.yellow)
+                .frame(minHeight: 50)
+                
+            HStack(alignment: .center, spacing: 15) {
+                Text(bookReview.date)
+                    .font(.system(size: 13, weight: .medium))
+                    .padding(.leading)
+                
+                Divider()
+                    .overlay(Color.white)
+                
+                Text(bookReview.review)
+                    .font(.system(size: 13))
+                    .lineLimit(5)
+                
+                Spacer()
+            }
+            .foregroundStyle(Color.black)
+            .padding(.vertical, 10)
         }
-        .padding(.horizontal)
-        .padding(.bottom, 10)
     }
 }
 
