@@ -63,8 +63,23 @@ struct NewReviewView: View {
                     .environment(\.locale, Locale.init(identifier: "ko-KR"))
                     .padding(.horizontal)
                 
-                TextEditor(text: $vm.review)
-                    .border(.gray.opacity(0.2), width: 3)
+                ZStack(alignment: .topLeading) {
+                    let placeholder = "서평을 남겨주세요!"
+                    
+                    TextEditor(text: $vm.review)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.black.opacity(0.25), lineWidth: 1)
+                        )
+                    
+                    if vm.review.isEmpty {
+                        Text(placeholder)
+                            .foregroundStyle(Color.primary.opacity(0.25))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 12)
+                    }
+                }
+                .padding(.top, 10)
             }
             .padding(.horizontal)
             
