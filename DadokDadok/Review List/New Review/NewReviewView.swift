@@ -15,16 +15,16 @@ struct NewReviewView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 10) {
-                HStack(spacing: 20) {
-                    if let selectedBook = selectedBook {
-                        
+            VStack(spacing: 15) {
+                if let selectedBook = selectedBook {
+                    HStack(alignment: .center, spacing: 20) {
                         fetchImage(url: selectedBook.image)
                         
                         VStack(alignment: .leading, spacing: 3) {
                             Text(selectedBook.title)
                                 .font(.system(size: 14, weight: .semibold))
                                 .padding(.bottom, 3)
+                                .lineLimit(3)
                             Text("\(selectedBook.author) | \(selectedBook.publisher)")
                                 .font(.system(size: 13))
                             Text(selectedBook.isbn)
@@ -37,31 +37,43 @@ struct NewReviewView: View {
                             vm.update(publisher: selectedBook.publisher)
                             vm.update(isbn: selectedBook.isbn)
                         }
-                    } else {
+                        
+                        Spacer()
+                        
+                        Button {
+                            isPresentingBookSearchView = true
+                        } label: {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundStyle(Color.secondary)
+                        }
+                    }
+                    
+                } else {
+                    HStack(alignment: .center, spacing: 20) {
                         Image(systemName: "book")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 100)
+                            .frame(width: 60, height: 80)
+                            .padding(.horizontal)
                         
-                        TextField("도서명", text: $vm.title)
+                        Button {
+                            isPresentingBookSearchView = true
+                        } label: {
+                            HStack {
+                                Text("도서 검색")
+                                Spacer()
+                                Image(systemName: "magnifyingglass")
+                            }
+                            .foregroundStyle(Color.secondary)
+                        }
                     }
                     
-                    Spacer()
-                    
-                    Button("검색") {
-                        isPresentingBookSearchView = true
-                    }
-                    .frame(alignment: .trailing)
-                    .sheet(isPresented: $isPresentingBookSearchView) {
-                        BookSearchView(isPresentingBookSearchView: $isPresentingBookSearchView, selectedBook: $selectedBook)
-                    }
                 }
-                .padding(.horizontal)
                 
                 DatePicker("읽은 날짜", selection: $vm.date, displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .environment(\.locale, Locale.init(identifier: "ko-KR"))
-                    .padding(.horizontal)
+                    
                 
                 ZStack(alignment: .topLeading) {
                     let placeholder = "서평을 남겨주세요!"
@@ -79,10 +91,11 @@ struct NewReviewView: View {
                             .padding(.vertical, 12)
                     }
                 }
-                .padding(.top, 10)
             }
-            .padding(.horizontal)
-            
+            .padding(.horizontal, 20)
+            .sheet(isPresented: $isPresentingBookSearchView) {
+                BookSearchView(isPresentingBookSearchView: $isPresentingBookSearchView, selectedBook: $selectedBook)
+            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("취소") {
@@ -94,6 +107,7 @@ struct NewReviewView: View {
                         vm.completed()
                         isPresentingNewReviewView = false
                     }
+                    .disabled(selectedBook == nil || vm.review.isEmpty)
                 }
             }
         }
@@ -106,12 +120,5 @@ struct NewReviewView: View {
             ProgressView()
         }
         .frame(width: 60, height: 80)
-    }
-}
-
-struct NewReviewView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = NewReviewViewModel(bookReviews: .constant(BookReview.sampleData))
-        NewReviewView(vm: vm, isPresentingNewReviewView: .constant(true))
     }
 }
