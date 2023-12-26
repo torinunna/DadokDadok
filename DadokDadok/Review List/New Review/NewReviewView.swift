@@ -96,6 +96,8 @@ struct NewReviewView: View {
             .sheet(isPresented: $isPresentingBookSearchView) {
                 BookSearchView(isPresentingBookSearchView: $isPresentingBookSearchView, selectedBook: $selectedBook)
             }
+            .navigationTitle("서평 추가하기")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("취소") {
