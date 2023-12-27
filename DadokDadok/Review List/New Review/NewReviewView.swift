@@ -17,19 +17,7 @@ struct NewReviewView: View {
         NavigationStack {
             VStack(spacing: 15) {
                 if let selectedBook = selectedBook {
-                    HStack(alignment: .center, spacing: 20) {
-                        fetchImage(url: selectedBook.image)
-                        
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(selectedBook.title)
-                                .font(.system(size: 14, weight: .semibold))
-                                .padding(.bottom, 3)
-                                .lineLimit(3)
-                            Text("\(selectedBook.author) | \(selectedBook.publisher)")
-                                .font(.system(size: 13))
-                            Text(selectedBook.isbn)
-                                .font(.system(size: 12))
-                        }
+                    BookInfoView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
                         .onAppear {
                             vm.update(title: selectedBook.title)
                             vm.update(imageName: selectedBook.image)
@@ -37,19 +25,8 @@ struct NewReviewView: View {
                             vm.update(publisher: selectedBook.publisher)
                             vm.update(isbn: selectedBook.isbn)
                         }
-                        
-                        Spacer()
-                        
-                        Button {
-                            isPresentingBookSearchView = true
-                        } label: {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundStyle(Color.secondary)
-                        }
-                    }
-                    
-                } else {
-                    HStack(alignment: .center, spacing: 20) {
+            } else {
+                HStack(alignment: .center, spacing: 20) {
                         Image(systemName: "book")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -67,30 +44,13 @@ struct NewReviewView: View {
                             .foregroundStyle(Color.secondary)
                         }
                     }
-                    
                 }
                 
                 DatePicker("읽은 날짜", selection: $vm.date, displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .environment(\.locale, Locale.init(identifier: "ko-KR"))
-                    
                 
-                ZStack(alignment: .topLeading) {
-                    let placeholder = "서평을 남겨주세요!"
-                    
-                    TextEditor(text: $vm.review)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.black.opacity(0.25), lineWidth: 1)
-                        )
-                    
-                    if vm.review.isEmpty {
-                        Text(placeholder)
-                            .foregroundStyle(Color.primary.opacity(0.25))
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 12)
-                    }
-                }
+                ReviewInputView(text: $vm.review)
             }
             .padding(.horizontal, 20)
             .sheet(isPresented: $isPresentingBookSearchView) {
@@ -114,6 +74,39 @@ struct NewReviewView: View {
             }
         }
     }
+}
+
+// MARK: - Book Info View
+
+struct BookInfoView: View {
+    let book: Book
+    @Binding var isPresentingBookSearchView: Bool
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 20) {
+            fetchImage(url: book.image)
+            
+            VStack(alignment: .leading, spacing: 3) {
+                Text(book.title)
+                    .font(.system(size: 14, weight: .semibold))
+                    .padding(.bottom, 3)
+                    .lineLimit(3)
+                Text("\(book.author) | \(book.publisher)")
+                    .font(.system(size: 13))
+                Text(book.isbn)
+                    .font(.system(size: 12))
+            }
+            
+            Spacer()
+            
+            Button {
+                isPresentingBookSearchView = true
+            } label: {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(Color.secondary)
+            }
+        }
+    }
     
     func fetchImage(url: String) -> some View {
         AsyncImage(url: URL(string: url)) { image in
@@ -124,3 +117,31 @@ struct NewReviewView: View {
         .frame(width: 60, height: 80)
     }
 }
+
+
+// MARK: - Review Input View
+
+struct ReviewInputView: View {
+    @Binding var text: String
+    
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            let placeholder = "서평을 남겨주세요!"
+            
+            TextEditor(text: $text)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.black.opacity(0.25), lineWidth: 1)
+                )
+            
+            if text.isEmpty {
+                Text(placeholder)
+                    .foregroundStyle(Color.primary.opacity(0.25))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 12)
+            }
+        }
+    }
+}
+
+
