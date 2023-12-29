@@ -23,6 +23,9 @@ struct ReviewListView: View {
             }
         }
         .toolbar {
+            Button(action: vm.sortOrder) {
+                Image(systemName: "arrow.up.arrow.down.circle")
+            }
             Button(action: {
                 isPresentingNewReviewView = true
             }) {

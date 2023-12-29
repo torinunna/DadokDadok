@@ -8,11 +8,16 @@
 import Foundation
 import Combine
 
+enum SortingOrder {
+    case ascending, descending
+}
+
 final class ReviewListViewModel: ObservableObject {
     
     let storage: BookReviewStorage
     
     @Published var bookReviews: [BookReview] = []
+    @Published var sortingOrder: SortingOrder = .descending
     
     var subscriptions = Set<AnyCancellable>()
     
@@ -34,5 +39,19 @@ final class ReviewListViewModel: ObservableObject {
     
     func fetch() {
         self.bookReviews = storage.fetch()
+    }
+    
+    func sortOrder() {
+        sortingOrder = (sortingOrder == .ascending) ? .descending : .ascending
+        sortBookReviews()
+    }
+    
+    private func sortBookReviews() {
+        switch sortingOrder {
+        case .ascending:
+            bookReviews.sort { $0.date < $1.date }
+        case .descending:
+            bookReviews.sort { $0.date > $1.date }
+        }
     }
 }
