@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                LibraryView(vm: LibraryViewModel(storage: BookReviewStorage()))
+                LibraryView()
                     .navigationTitle("나의 서재")
             }
             .tabItem {

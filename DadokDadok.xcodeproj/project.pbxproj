@@ -36,6 +36,8 @@
 		86A0D8DF2AB8352700042B5F /* EditReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A0D8DE2AB8352700042B5F /* EditReviewView.swift */; };
 		86A288E22B341D0F000CE8F3 /* EditReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A288E12B341D0F000CE8F3 /* EditReviewViewModel.swift */; };
 		86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46F2A2B2F33B600C96FD3 /* Hide.swift */; };
+		86EFFD8C2B413BA900FAB5FB /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFFD8B2B413BA900FAB5FB /* Wish.swift */; };
+		86EFFD8E2B413F5E00FAB5FB /* WishCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFFD8D2B413F5E00FAB5FB /* WishCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		86A0D8DE2AB8352700042B5F /* EditReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReviewView.swift; sourceTree = "<group>"; };
 		86A288E12B341D0F000CE8F3 /* EditReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReviewViewModel.swift; sourceTree = "<group>"; };
 		86B46F2A2B2F33B600C96FD3 /* Hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hide.swift; sourceTree = "<group>"; };
+		86EFFD8B2B413BA900FAB5FB /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
+		86EFFD8D2B413F5E00FAB5FB /* WishCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			children = (
 				869374202AF29F7C005684FF /* Book.swift */,
 				866B0C852AB7484800F28C46 /* BookReview.swift */,
+				86EFFD8B2B413BA900FAB5FB /* Wish.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				866B0C812AB7470900F28C46 /* LibraryView.swift */,
 				86883D742B09F35200905882 /* LibraryViewModel.swift */,
 				866B0C892AB75DD700F28C46 /* BookCard.swift */,
+				86EFFD8D2B413F5E00FAB5FB /* WishCard.swift */,
 				86883D762B0A424200905882 /* LibraryDetailView.swift */,
 				86883D782B0A447000905882 /* LibraryDetailViewModel.swift */,
 				8677DDF22B1487C2000C9B97 /* DetailCard.swift */,
@@ -270,7 +276,9 @@
 				869374192AF1EA29005684FF /* BookSearchView.swift in Sources */,
 				866B0C862AB7484800F28C46 /* BookReview.swift in Sources */,
 				86883D792B0A447000905882 /* LibraryDetailViewModel.swift in Sources */,
+				86EFFD8C2B413BA900FAB5FB /* Wish.swift in Sources */,
 				8603637B2AF62A3700FC5480 /* NewReviewViewModel.swift in Sources */,
+				86EFFD8E2B413F5E00FAB5FB /* WishCard.swift in Sources */,
 				86A0D8DD2AB8200100042B5F /* ReviewDetailView.swift in Sources */,
 				866B0C842AB747B300F28C46 /* ReviewListView.swift in Sources */,
 				869350AD2B049BA00021A098 /* Storage.swift in Sources */,

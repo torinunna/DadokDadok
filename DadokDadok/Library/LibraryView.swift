@@ -9,13 +9,43 @@ import SwiftUI
 
 struct LibraryView: View {
     
-    @StateObject var vm: LibraryViewModel
+    @State private var selectedView: Views = .read
     
+    enum Views {
+        case read
+        case wishlist
+    }
+    
+    var body: some View {
+        VStack {
+            Picker("Select View", selection: $selectedView) {
+                Text("읽은 책").tag(Views.read)
+                Text("읽고 싶은 책").tag(Views.wishlist)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .padding(.top)
+            
+            if selectedView == .read {
+                ReadBooksView(vm: LibraryViewModel(storage: BookReviewStorage()))
+            } else {
+                WishlistView()
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// MARK: - Read Books View
+
+struct ReadBooksView : View {
     let layout: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
+    @StateObject var vm: LibraryViewModel
     
     var body: some View {
         ScrollView {
@@ -38,12 +68,32 @@ struct LibraryView: View {
         .onAppear {
             vm.fetch()
         }
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
-struct LibraryView_Previews: PreviewProvider {
-    static var previews: some View {
-        LibraryView(vm: LibraryViewModel(storage: BookReviewStorage()))
+// MARK: - Wishlist View
+
+struct WishlistView: View {
+    var wishlist: [Wish] = Wish.sampleData
+    
+    var body: some View {
+        
+        if wishlist.isEmpty {
+            VStack {
+                Spacer()
+                Text("읽고 싶은 책을 추가해주세요!")
+                    .font(.system(.headline))
+                Spacer()
+            }
+        } else {
+            ScrollView {
+                VStack {
+                    ForEach(wishlist) { wish in
+                        WishCard(wish: wish)
+                    }
+                }
+            }
+        }
+       
     }
 }
