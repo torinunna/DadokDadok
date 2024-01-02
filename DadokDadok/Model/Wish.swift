@@ -9,12 +9,12 @@ import Foundation
 
 struct Wish: Identifiable, Codable {
     var id: UUID = UUID()
-    let title: String
-    let imageName: String
-    let author: String
-    let publisher: String
-    let isbn: String
-    let link: String
+    var title: String
+    var imageName: String
+    var author: String
+    var publisher: String
+    var isbn: String
+    var link: String
     
     init(title: String, imageName: String, author: String, publisher: String, isbn: String, link: String) {
         self.title = title
