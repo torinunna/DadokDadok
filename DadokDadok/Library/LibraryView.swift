@@ -10,6 +10,8 @@ import SwiftUI
 struct LibraryView: View {
     
     @State private var selectedView: Views = .read
+    @State private var isPresentingNewWishView = false
+    @State private var wishlist: [Wish] = Wish.sampleData
     
     enum Views {
         case read
@@ -29,10 +31,20 @@ struct LibraryView: View {
             if selectedView == .read {
                 ReadBooksView(vm: LibraryViewModel(storage: BookReviewStorage()))
             } else {
-                WishlistView()
+                WishlistView(wishlist: $wishlist)
+                    .toolbar {
+                        Button {
+                            isPresentingNewWishView = true
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isPresentingNewWishView) {
+         NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishList: $wishlist)
+        }
     }
 }
 
@@ -74,7 +86,7 @@ struct ReadBooksView : View {
 // MARK: - Wishlist View
 
 struct WishlistView: View {
-    var wishlist: [Wish] = Wish.sampleData
+    @Binding var wishlist: [Wish]
     
     var body: some View {
         

@@ -38,6 +38,7 @@
 		86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46F2A2B2F33B600C96FD3 /* Hide.swift */; };
 		86EFFD8C2B413BA900FAB5FB /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFFD8B2B413BA900FAB5FB /* Wish.swift */; };
 		86EFFD8E2B413F5E00FAB5FB /* WishCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFFD8D2B413F5E00FAB5FB /* WishCard.swift */; };
+		86EFFD942B4150BB00FAB5FB /* NewWishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFFD932B4150BB00FAB5FB /* NewWishView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		86B46F2A2B2F33B600C96FD3 /* Hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hide.swift; sourceTree = "<group>"; };
 		86EFFD8B2B413BA900FAB5FB /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
 		86EFFD8D2B413F5E00FAB5FB /* WishCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCard.swift; sourceTree = "<group>"; };
+		86EFFD932B4150BB00FAB5FB /* NewWishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWishView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				86883D742B09F35200905882 /* LibraryViewModel.swift */,
 				866B0C892AB75DD700F28C46 /* BookCard.swift */,
 				86EFFD8D2B413F5E00FAB5FB /* WishCard.swift */,
+				86EFFD932B4150BB00FAB5FB /* NewWishView.swift */,
 				86883D762B0A424200905882 /* LibraryDetailView.swift */,
 				86883D782B0A447000905882 /* LibraryDetailViewModel.swift */,
 				8677DDF22B1487C2000C9B97 /* DetailCard.swift */,
@@ -290,6 +293,7 @@
 				869350B42B049FBE0021A098 /* ReviewDetailViewModel.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				86883D772B0A424200905882 /* LibraryDetailView.swift in Sources */,
+				86EFFD942B4150BB00FAB5FB /* NewWishView.swift in Sources */,
 				86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */,
 				86A0D8DF2AB8352700042B5F /* EditReviewView.swift in Sources */,
 				866B0C8A2AB75DD700F28C46 /* BookCard.swift in Sources */,

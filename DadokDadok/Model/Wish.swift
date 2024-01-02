@@ -24,6 +24,10 @@ struct Wish: Identifiable, Codable {
         self.isbn = isbn
         self.link = link
     }
+    
+    static var emptyWish: Wish {
+        Wish(title: "", imageName: "", author: "", publisher: "", isbn: "", link: "")
+    }
 }
 
 extension Wish {
