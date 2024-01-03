@@ -39,12 +39,12 @@ struct NewWishView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Dismiss") {
+                    Button("취소") {
                         isPresentingNewWishView = false
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Add") {
+                    Button("추가하기") {
                         wishList.append(newWish)
                         isPresentingNewWishView = false
                     }
