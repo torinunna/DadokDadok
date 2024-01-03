@@ -20,4 +20,5 @@ struct Book: Codable, Hashable {
     let author: String
     let publisher: String
     let isbn: String
+    let link: String
 }

@@ -13,6 +13,7 @@ struct NewWishView: View {
     @Binding var wishList: [Wish]
     @State private var isPresentingBookSearchView = false
     @State private var selectedView: Views = .searchBookView
+    @State private var selectedBook: Book?
     
     enum Views {
         case searchBookView
@@ -28,10 +29,10 @@ struct NewWishView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
-                .padding(.top)
+                .padding(.vertical, 10)
                 
                 if selectedView == .searchBookView {
-                    SearchView()
+                    SearchView(selectedBook: $selectedBook)
                 } else {
                     UserInputView()
                 }
@@ -57,9 +58,42 @@ struct NewWishView: View {
 // MARK: - Search View
 
 struct SearchView: View {
+    @State private var searchKeyword = ""
+    @ObservedObject var requestAPI = RequestAPI.shared
+    @Binding var selectedBook: Book?
+    
     var body: some View {
-        Text("Search Book View")
-        
+        ScrollView {
+            VStack(alignment: .leading) {
+                HStack {
+                    Button {
+                        requestAPI.requestSearchBookList(query: searchKeyword)
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundStyle(Color.secondary)
+                    }
+                    
+                    TextField("도서명/저자/출판사를 입력해주세요.", text: $searchKeyword)
+                        .foregroundStyle(Color.primary)
+                }
+                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+                .foregroundColor(.secondary)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(10.0)
+                
+                ForEach(requestAPI.bookList, id: \.self) { book in
+                    HStack(alignment: .center, spacing: 10) {
+                        Image(systemName: selectedBook == book ? "checkmark.square.fill" : "checkmark.square")
+                        BookSearchRowView(book: book)
+                    }
+                    .onTapGesture {
+                        selectedBook = book
+                        print("Book selected: \(book.title)")
+                    }
+                }
+            }
+            .padding(.horizontal, 15)
+        }
     }
 }
 
