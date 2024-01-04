@@ -50,6 +50,7 @@ struct NewWishView: View {
                     }
                 }
             }
+            .navigationTitle("읽고 싶은 책")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
