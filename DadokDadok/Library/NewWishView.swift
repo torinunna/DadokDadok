@@ -101,8 +101,45 @@ struct SearchView: View {
 // MARK: - User Input
 
 struct UserInputView: View {
+    @State private var title = ""
+    @State private var author = ""
+    @State private var publisher = ""
+    
     var body: some View {
-        Text("User Input View")
-        
+        VStack(spacing: 15) {
+            ZStack(alignment: .center) {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundStyle(Color.secondary.opacity(0.2))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 200)
+                Image(systemName: "camera")
+                    .foregroundStyle(Color.white)
+            }
+            .padding(.bottom)
+            .padding(.horizontal)
+            
+            TextField("도서 제목", text: $title)
+                .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            TextField("저자", text: $author)
+                .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            TextField("출판사", text: $publisher)
+                .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
     }
 }
