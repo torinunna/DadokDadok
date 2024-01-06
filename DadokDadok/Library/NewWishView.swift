@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewWishView: View {
     @State private var newWish = Wish.emptyWish
@@ -102,6 +103,8 @@ struct SearchView: View {
 // MARK: - User Input
 
 struct UserInputView: View {
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: Image?
     @State private var title = ""
     @State private var author = ""
     @State private var publisher = ""
@@ -113,8 +116,21 @@ struct UserInputView: View {
                     .foregroundStyle(Color.secondary.opacity(0.2))
                     .frame(maxWidth: .infinity)
                     .frame(height: 200)
-                Image(systemName: "camera")
-                    .foregroundStyle(Color.white)
+                
+                PhotosPicker(selection: $selectedItem) {
+                    Label("Photos", systemImage: "camera")
+                }
+                .onChange(of: selectedItem) { newItem in
+                    Task {
+                        selectedImage = try? await newItem?.loadTransferable(type: Image.self)
+                    }
+                }
+                
+                if let image = selectedImage {
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
             }
             .padding(.bottom)
             .padding(.horizontal)
