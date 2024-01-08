@@ -68,20 +68,21 @@ struct SearchView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack {
+                    TextField("도서명/저자/출판사를 입력해주세요.", text: $searchKeyword) {
+                        requestAPI.requestSearchBookList(query: searchKeyword)
+                    }
+                    .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+                    .foregroundColor(.primary)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(10.0)
+                    
                     Button {
                         requestAPI.requestSearchBookList(query: searchKeyword)
                     } label: {
                         Image(systemName: "magnifyingglass")
                             .foregroundStyle(Color.secondary)
                     }
-                    
-                    TextField("도서명/저자/출판사를 입력해주세요.", text: $searchKeyword)
-                        .foregroundStyle(Color.primary)
                 }
-                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
-                .foregroundColor(.secondary)
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(10.0)
                 
                 ForEach(requestAPI.bookList, id: \.self) { book in
                     HStack(alignment: .center, spacing: 10) {
