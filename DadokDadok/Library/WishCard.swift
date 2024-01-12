@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WishCard: View {
     var wish: Wish
+    @Environment(\.openURL) private var openURL
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
@@ -27,6 +28,13 @@ struct WishCard: View {
             }
             
             Spacer()
+            
+            Button {
+                openURL(URL(string: wish.link)!)
+            } label: {
+                Image(systemName: "info.circle")
+            }
+            
             Image(systemName: "star.fill")
         }
         .padding(.horizontal)
