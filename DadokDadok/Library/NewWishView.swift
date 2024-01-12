@@ -46,8 +46,18 @@ struct NewWishView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("추가하기") {
-                        wishList.append(newWish)
-                        isPresentingNewWishView = false
+                        if let selectedBook = selectedBook {
+                            let newWish = Wish(
+                                title: selectedBook.title,
+                                imageName: selectedBook.image,
+                                author: selectedBook.author,
+                                publisher: selectedBook.publisher,
+                                isbn: selectedBook.isbn,
+                                link: selectedBook.link
+                            )
+                            wishList.append(newWish)
+                            isPresentingNewWishView = false
+                        }
                     }
                 }
             }

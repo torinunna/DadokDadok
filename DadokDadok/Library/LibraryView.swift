@@ -11,7 +11,7 @@ struct LibraryView: View {
     
     @State private var selectedView: Views = .read
     @State private var isPresentingNewWishView = false
-    @State private var wishlist: [Wish] = Wish.sampleData
+    @State private var wishlist: [Wish] = []
     
     enum Views {
         case read
