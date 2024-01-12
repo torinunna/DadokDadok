@@ -99,13 +99,11 @@ struct WishlistView: View {
             }
         } else {
             ScrollView {
-                VStack {
-                    ForEach(wishlist) { wish in
-                        WishCard(wish: wish)
-                    }
+                ForEach(wishlist) { wish in
+                    WishCard(wish: wish)
                 }
             }
+            .padding(.vertical)
         }
-       
     }
 }

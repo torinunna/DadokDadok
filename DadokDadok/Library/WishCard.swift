@@ -14,15 +14,16 @@ struct WishCard: View {
         HStack(alignment: .center, spacing: 15) {
             fetchImage(url: wish.imageName)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(wish.title)
                     .font(.system(size: 14.0, weight: .semibold))
                     .lineLimit(5)
                     .multilineTextAlignment(.leading)
+                    .padding(.vertical, 3)
                 Text(wish.author)
-                    .font(.system(size: 13.0, weight: .medium))
+                    .font(.system(size: 12.0, weight: .medium))
                 Text(wish.publisher)
-                    .font(.system(size: 13.0, weight: .medium))
+                    .font(.system(size: 12.0, weight: .medium))
             }
             
             Spacer()
