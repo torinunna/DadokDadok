@@ -14,20 +14,17 @@ struct LibraryDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack(spacing: 15) {
+            HStack(alignment: .center, spacing: 15) {
                 fetchImage(url: vm.bookReview.book.image)
                 
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 3) {
                     Text(vm.bookReview.book.title)
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(.vertical)
+                        .font(.system(size: 14, weight: .semibold))
+                        .padding(.vertical, 5)
                     Text(vm.bookReview.book.author)
-                        .font(.system(size: 13))
+                        .font(.system(size: 12))
                     Text(vm.bookReview.book.publisher)
-                        .font(.system(size: 13))
-                    Text(vm.bookReview.book.isbn)
-                        .font(.system(size: 13))
-                    
+                        .font(.system(size: 12))
                 }
             }
             
@@ -47,7 +44,7 @@ struct LibraryDetailView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -66,7 +63,7 @@ struct LibraryDetailView: View {
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 100, height: 130)
+        .frame(width: 80, height: 100)
     }
 }
 
