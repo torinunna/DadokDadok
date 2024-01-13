@@ -9,31 +9,23 @@ import Foundation
 
 struct Wish: Identifiable, Codable {
     var id: UUID = UUID()
-    var title: String
-    var imageName: String
-    var author: String
-    var publisher: String
-    var isbn: String
-    var link: String
+    var book: Book
+    var isFavorite: Bool = false
     
-    init(title: String, imageName: String, author: String, publisher: String, isbn: String, link: String) {
-        self.title = title
-        self.imageName = imageName
-        self.author = author
-        self.publisher = publisher
-        self.isbn = isbn
-        self.link = link
+    init(book: Book, isFavorite: Bool = false) {
+        self.book = book
+        self.isFavorite = isFavorite
     }
     
     static var emptyWish: Wish {
-        Wish(title: "", imageName: "", author: "", publisher: "", isbn: "", link: "")
+        Wish(book: Book(title: "", image: "", author: "", publisher: "", isbn: "", link: ""), isFavorite: false)
     }
 }
 
 extension Wish {
     static let sampleData: [Wish] = [
-        Wish(title: "titletitletitletitletitletitletitletitle", imageName: "book", author: "author", publisher: "any", isbn: "548654365", link: "ㄴㅇㄱ"),
-        Wish(title: "title2", imageName: "heart", author: "author2", publisher: "any", isbn: "548654365", link: "ㄴㅇㄱ"),
-        Wish(title: "title3", imageName: "pen", author: "author3", publisher: "any", isbn: "548654365", link: "ㄴㅇㄱ")
+        Wish(book: Book(title: "book1", image: "book", author: "who1", publisher: "pub1", isbn: "12431236", link: "aaa.aaa"), isFavorite: false),
+        Wish(book: Book(title: "book2", image: "heart", author: "who2", publisher: "pub2", isbn: "4358798", link: "bbb.aaa"), isFavorite: false),
+        Wish(book: Book(title: "book3", image: "pen", author: "who3", publisher: "pub3", isbn: "12456346", link: "ccc.aaa"), isFavorite: true)
     ]
 }

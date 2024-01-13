@@ -13,24 +13,24 @@ struct WishCard: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
-            fetchImage(url: wish.imageName)
+            fetchImage(url: wish.book.image)
             
             VStack(alignment: .leading, spacing: 2) {
-                Text(wish.title)
+                Text(wish.book.title)
                     .font(.system(size: 14.0, weight: .semibold))
                     .lineLimit(5)
                     .multilineTextAlignment(.leading)
                     .padding(.vertical, 3)
-                Text(wish.author)
+                Text(wish.book.author)
                     .font(.system(size: 12.0, weight: .medium))
-                Text(wish.publisher)
+                Text(wish.book.publisher)
                     .font(.system(size: 12.0, weight: .medium))
             }
             
             Spacer()
             
             Button {
-                openURL(URL(string: wish.link)!)
+                openURL(URL(string: wish.book.link)!)
             } label: {
                 Image(systemName: "info.circle")
             }
