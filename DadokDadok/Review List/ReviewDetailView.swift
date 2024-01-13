@@ -11,6 +11,7 @@ struct ReviewDetailView: View {
     
     @ObservedObject var vm: ReviewDetailViewModel
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.openURL) private var openURL
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
@@ -75,6 +76,15 @@ struct ReviewDetailView: View {
             .padding(.vertical)
         }
         .padding()
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    openURL(URL(string: vm.bookReview.book.link)!)
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             vm.fetch()

@@ -10,6 +10,7 @@ import SwiftUI
 struct LibraryDetailView: View {
     
     @StateObject var vm: LibraryDetailViewModel
+    @Environment(\.openURL) private var openURL
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -47,6 +48,15 @@ struct LibraryDetailView: View {
             }
         }
         .padding(.horizontal)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    openURL(URL(string: vm.bookReview.book.link)!)
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
         .navigationBarTitleDisplayMode(.inline)
     }
     
