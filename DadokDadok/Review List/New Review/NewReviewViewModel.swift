@@ -12,11 +12,7 @@ final class NewReviewViewModel: ObservableObject {
     
     @Published var bookReviews: Binding<[BookReview]>
     @Published var bookReview: BookReview = BookReview.emptyReview
-    @Published var title: String = ""
-    @Published var imageName: String = ""
-    @Published var author: String = ""
-    @Published var publisher: String = ""
-    @Published var isbn: String = ""
+    @Published var book: Book = Book(title: "", image: "", author: "", publisher: "", isbn: "", link: "")
     @Published var date: Date = Date()
     @Published var review: String = ""
     
@@ -25,26 +21,10 @@ final class NewReviewViewModel: ObservableObject {
     init(bookReviews: Binding<[BookReview]>) {
         self.bookReviews = bookReviews
         
-        $title.sink { title in
-            self.update(title: title)
+        $book.sink { book in
+            self.update(book: book)
         }.store(in: &subscriptions)
        
-        $imageName.sink { imageName in
-            self.update(imageName: imageName)
-        }.store(in: &subscriptions)
-        
-        $author.sink { author in
-            self.update(author: author)
-        }.store(in: &subscriptions)
-        
-        $publisher.sink { publisher in
-            self.update(publisher: publisher)
-        }.store(in: &subscriptions)
-        
-        $publisher.sink { isbn in
-            self.update(isbn: isbn)
-        }.store(in: &subscriptions)
-        
         $date.sink { date in
             self.update(date: date)
         }.store(in: &subscriptions)
@@ -54,24 +34,8 @@ final class NewReviewViewModel: ObservableObject {
         }.store(in: &subscriptions)
     }
     
-    func update(title: String) {
-        self.bookReview.title = title
-    }
-    
-    func update(imageName: String) {
-        self.bookReview.imageName = imageName
-    }
-    
-    func update(author: String) {
-        self.bookReview.author = author
-    }
-    
-    func update(publisher: String) {
-        self.bookReview.publisher = publisher
-    }
-    
-    func update(isbn: String) {
-        self.bookReview.isbn = isbn
+    func update(book: Book) {
+        self.bookReview.book = book
     }
     
     func update(date: Date) {

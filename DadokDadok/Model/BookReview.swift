@@ -9,34 +9,26 @@ import Foundation
 
 struct BookReview: Identifiable, Codable {
     var id: UUID = UUID()
-    var title: String
-    var imageName: String
-    var author: String
-    var publisher: String
-    var isbn: String
+    var book: Book
     var date: String
     var review: String
     
-    init(title: String, imageName: String, author: String, publisher: String, isbn: String, date: String, review: String) {
-        self.title = title
-        self.imageName = imageName
-        self.author = author
-        self.publisher = publisher
-        self.isbn = isbn
+    init(book: Book, date: String, review: String) {
+        self.book = book
         self.date = date
         self.review = review
     }
     
     static var emptyReview: BookReview {
-        BookReview(title: "", imageName: "", author: "", publisher: "", isbn: "", date: "", review: "")
+        BookReview(book: Book(title: "", image: "", author: "", publisher: "", isbn: "", link: ""), date: "", review: "")
     }
 }
 
 extension BookReview {
     static let sampleData: [BookReview] = [
-        BookReview(title: "code", imageName: "book", author: "who", publisher: "any", isbn: "548654365", date: "2023-04-23", review: "this is amazing"),
-        BookReview(title: "heart", imageName: "heart", author: "who", publisher: "any", isbn: "345627534", date: "2023-05-23", review: "I love it"),
-        BookReview(title: "pen", imageName: "pencil", author: "who", publisher: "any", isbn: "3423463457", date: "2023-09-15", review: "I want to write")
+        BookReview(book: Book(title: "book1", image: "book", author: "who1", publisher: "pub1", isbn: "2423236", link: "sadfasd.asdf"), date: "2023-04-23", review: "this is amazing"),
+        BookReview(book: Book(title: "book2", image: "heart", author: "who2", publisher: "pub2", isbn: "2423236", link: "sadfasd.asdf"), date: "2023-05-23", review: "I love it"),
+        BookReview(book: Book(title: "book3", image: "pencil", author: "who3", publisher: "pub3", isbn: "2423236", link: "sadfasd.asdf"), date: "2023-09-15", review: "I want to write")
     ]
 }
 

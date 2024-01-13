@@ -14,17 +14,17 @@ struct LibraryDetailView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 15) {
-                fetchImage(url: vm.bookReview.imageName)
+                fetchImage(url: vm.bookReview.book.image)
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(vm.bookReview.title)
+                    Text(vm.bookReview.book.title)
                         .font(.system(size: 16, weight: .bold))
                         .padding(.vertical)
-                    Text(vm.bookReview.author)
+                    Text(vm.bookReview.book.author)
                         .font(.system(size: 13))
-                    Text(vm.bookReview.publisher)
+                    Text(vm.bookReview.book.publisher)
                         .font(.system(size: 13))
-                    Text(vm.bookReview.isbn)
+                    Text(vm.bookReview.book.isbn)
                         .font(.system(size: 13))
                     
                 }
@@ -60,9 +60,3 @@ struct LibraryDetailView: View {
     }
 }
 
-struct LibraryDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = LibraryDetailViewModel(bookReviews: BookReview.sampleData, bookReview: BookReview.sampleData.first!)
-        LibraryDetailView(vm: vm)
-    }
-}

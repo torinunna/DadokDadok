@@ -25,6 +25,6 @@ final class LibraryViewModel: ObservableObject {
     }
     
     private func updateUniqueBook() {
-        uniqueBookTitles = Set(bookReviews.map { $0.isbn })
+        uniqueBookTitles = Set(bookReviews.map { $0.book.isbn })
     }
 }

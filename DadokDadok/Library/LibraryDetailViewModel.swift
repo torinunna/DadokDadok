@@ -20,7 +20,7 @@ final class LibraryDetailViewModel: ObservableObject {
     
     func filteredReviews() -> [BookReview] {
         return bookReviews
-            .filter { $0.isbn == bookReview.isbn }
+            .filter { $0.book.isbn == bookReview.book.isbn }
             .sorted { $0.date < $1.date }
     }
 }

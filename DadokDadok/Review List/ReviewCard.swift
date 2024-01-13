@@ -12,16 +12,16 @@ struct ReviewCard: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
-            fetchImage(url: bookReview.imageName)
+            fetchImage(url: bookReview.book.image)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(bookReview.date)
                     .font(.system(size: 11))
-                Text(bookReview.title)
+                Text(bookReview.book.title)
                     .font(.system(size: 14, weight: .semibold))
                     .multilineTextAlignment(.leading)
                     .padding(.vertical, 2)
-                Text("\(bookReview.author) | \(bookReview.publisher)")
+                Text("\(bookReview.book.author) | \(bookReview.book.publisher)")
                     .font(.system(size: 12))
             }
             .foregroundStyle(.black)

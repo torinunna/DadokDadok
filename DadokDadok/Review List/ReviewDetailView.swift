@@ -15,16 +15,16 @@ struct ReviewDetailView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
             HStack(spacing: 15) {
-                fetchImage(url: vm.bookReview.imageName)
+                fetchImage(url: vm.bookReview.book.image)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(vm.bookReview.title)
+                    Text(vm.bookReview.book.title)
                         .font(.system(size: 14, weight: .semibold))
                         .padding(.bottom, 5)
-                    Text(vm.bookReview.author)
+                    Text(vm.bookReview.book.author)
                         .font(.system(size: 12))
-                    Text(vm.bookReview.publisher)
+                    Text(vm.bookReview.book.publisher)
                         .font(.system(size: 12))
-                    Text(vm.bookReview.isbn)
+                    Text(vm.bookReview.book.isbn)
                         .font(.system(size: 12))
                 }
                 Spacer()

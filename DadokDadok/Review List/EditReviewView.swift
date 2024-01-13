@@ -14,14 +14,14 @@ struct EditReviewView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 15) {
-                fetchImage(url: vm.bookReview.imageName)
+                fetchImage(url: vm.bookReview.book.image)
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(vm.bookReview.title)
+                    Text(vm.bookReview.book.title)
                         .font(.system(size: 14, weight: .semibold))
-                    Text("\(vm.bookReview.author) | \(vm.bookReview.publisher)")
+                    Text("\(vm.bookReview.book.author) | \(vm.bookReview.book.publisher)")
                         .font(.system(size: 13))
-                    Text(vm.bookReview.isbn)
+                    Text(vm.bookReview.book.isbn)
                         .font(.system(size: 12))
                 }
                 Spacer()
@@ -54,9 +54,3 @@ struct EditReviewView: View {
     }
 }
 
-struct ReviewEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = EditReviewViewModel(bookReview: BookReview.sampleData[0])
-        EditReviewView(vm: vm)
-    }
-}

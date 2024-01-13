@@ -19,11 +19,7 @@ struct NewReviewView: View {
                 if let selectedBook = selectedBook {
                     BookInfoView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
                         .onAppear {
-                            vm.update(title: selectedBook.title)
-                            vm.update(imageName: selectedBook.image)
-                            vm.update(author: selectedBook.author)
-                            vm.update(publisher: selectedBook.publisher)
-                            vm.update(isbn: selectedBook.isbn)
+                            vm.update(book: selectedBook)
                         }
             } else {
                 HStack(alignment: .center, spacing: 20) {

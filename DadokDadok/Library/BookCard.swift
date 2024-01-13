@@ -12,9 +12,9 @@ struct BookCard: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
-            fetchImage(url: bookReview.imageName)
+            fetchImage(url: bookReview.book.image)
             
-            Text(bookReview.title)
+            Text(bookReview.book.title)
                 .font(.system(size: 13.0, weight: .medium))
                 .foregroundStyle(.black)
         }
@@ -29,13 +29,5 @@ struct BookCard: View {
             Image(systemName: "book")
         }
         .frame(width: 100, height: 120)
-    }
-}
-
-struct BookView_Previews: PreviewProvider {
-    static var bookReview = BookReview.sampleData[0]
-    
-    static var previews: some View {
-        BookCard(bookReview: bookReview)
     }
 }
