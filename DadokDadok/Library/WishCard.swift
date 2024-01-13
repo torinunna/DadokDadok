@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WishCard: View {
-    var wish: Wish
+    @Binding var wish: Wish
     @Environment(\.openURL) private var openURL
     
     var body: some View {
@@ -35,7 +35,13 @@ struct WishCard: View {
                 Image(systemName: "info.circle")
             }
             
-            Image(systemName: "star.fill")
+            Button {
+                wish.isFavorite.toggle()
+                print(wish.isFavorite)
+            } label: {
+                wish.isFavorite ? Image(systemName: "star.fill") : Image(systemName: "star")
+            }
+            .foregroundStyle(Color.yellow)
         }
         .padding(.horizontal)
     }
@@ -52,5 +58,5 @@ struct WishCard: View {
 }
 
 #Preview {
-    WishCard(wish: Wish.sampleData[0])
+    WishCard(wish: .constant(Wish.sampleData[0]))
 }

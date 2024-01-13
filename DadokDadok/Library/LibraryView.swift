@@ -99,7 +99,7 @@ struct WishlistView: View {
             }
         } else {
             ScrollView {
-                ForEach(wishlist) { wish in
+                ForEach($wishlist) { wish in
                     WishCard(wish: wish)
                 }
             }
