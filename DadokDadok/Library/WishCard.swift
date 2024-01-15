@@ -29,10 +29,12 @@ struct WishCard: View {
             
             Spacer()
             
-            Button {
-                openURL(URL(string: wish.book.link)!)
-            } label: {
-                Image(systemName: "info.circle")
+            if !wish.book.link.isEmpty {
+                Button {
+                    openURL(URL(string: wish.book.link)!)
+                } label: {
+                    Image(systemName: "info.circle")
+                }
             }
             
             Button {

@@ -77,11 +77,13 @@ struct ReviewDetailView: View {
         }
         .padding()
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    openURL(URL(string: vm.bookReview.book.link)!)
-                } label: {
-                    Image(systemName: "info.circle")
+            if !vm.bookReview.book.link.isEmpty {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        openURL(URL(string: vm.bookReview.book.link)!)
+                    } label: {
+                        Image(systemName: "info.circle")
+                    }
                 }
             }
         }
