@@ -13,7 +13,15 @@ struct WishCard: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
-            fetchImage(url: wish.book.image)
+            if let data = Data(base64Encoded: wish.book.image, options: .ignoreUnknownCharacters){
+                let image = UIImage(data: data)
+                Image(uiImage: image ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 60, height: 80)
+            } else {
+                fetchImage(url: wish.book.image)
+            }
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(wish.book.title)

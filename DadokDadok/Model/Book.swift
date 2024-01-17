@@ -15,10 +15,10 @@ struct BookList: Codable {
 }
 
 struct Book: Codable, Hashable {
-    let title: String
-    let image: String
-    let author: String
-    let publisher: String
-    let isbn: String
-    let link: String
+    var title: String
+    var image: String
+    var author: String
+    var publisher: String
+    var isbn: String
+    var link: String
 }

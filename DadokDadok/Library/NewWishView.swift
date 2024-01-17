@@ -35,7 +35,7 @@ struct NewWishView: View {
                 if selectedView == .searchBookView {
                     SearchView(selectedBook: $selectedBook)
                 } else {
-                    UserInputView()
+                    UserInputView(newWish: $newWish)
                 }
             }
             .toolbar {
@@ -48,6 +48,9 @@ struct NewWishView: View {
                     Button("추가하기") {
                         if let selectedBook = selectedBook {
                             let newWish = Wish(book: selectedBook, isFavorite: false)
+                            wishList.append(newWish)
+                            isPresentingNewWishView = false
+                        } else {
                             wishList.append(newWish)
                             isPresentingNewWishView = false
                         }
@@ -109,9 +112,7 @@ struct SearchView: View {
 struct UserInputView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: Image?
-    @State private var title = ""
-    @State private var author = ""
-    @State private var publisher = ""
+    @Binding var newWish: Wish
     
     var body: some View {
         VStack(spacing: 15) {
@@ -126,7 +127,11 @@ struct UserInputView: View {
                 }
                 .onChange(of: selectedItem) { newItem in
                     Task {
-                        selectedImage = try? await newItem?.loadTransferable(type: Image.self)
+                        if let imageData = try? await newItem?.loadTransferable(type: Data.self) {
+                            selectedImage = Image(uiImage: UIImage(data: imageData)!)
+                            let base64String = imageData.base64EncodedString()
+                            newWish.book.image = base64String
+                        }
                     }
                 }
                 
@@ -139,19 +144,21 @@ struct UserInputView: View {
             .padding(.bottom)
             .padding(.horizontal)
             
-            TextField("도서 제목", text: $title)
+            TextField("도서 제목", text: $newWish.book.title)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
                         .stroke(Color.gray, lineWidth: 1)
                 )
-            TextField("저자", text: $author)
+            
+            TextField("저자", text: $newWish.book.author)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
                         .stroke(Color.gray, lineWidth: 1)
                 )
-            TextField("출판사", text: $publisher)
+            
+            TextField("출판사", text: $newWish.book.publisher)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
