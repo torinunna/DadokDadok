@@ -119,11 +119,15 @@ struct UserInputView: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundStyle(Color.secondary.opacity(0.2))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 200)
+                    .frame(width: 180, height: 240)
                 
                 PhotosPicker(selection: $selectedItem) {
-                    Label("Photos", systemImage: "camera")
+                    VStack(spacing: 15) {
+                        Image(systemName: "camera")
+                        Text("사진을 선택해주세요.")
+                            .font(.caption)
+                    }
+                    .foregroundStyle(Color.primary.opacity(0.4))
                 }
                 .onChange(of: selectedItem) { newItem in
                     Task {
@@ -139,6 +143,7 @@ struct UserInputView: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .frame(width: 180, height: 240)
                 }
             }
             .padding(.bottom)
