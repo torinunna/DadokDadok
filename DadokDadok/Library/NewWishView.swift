@@ -55,6 +55,7 @@ struct NewWishView: View {
                             isPresentingNewWishView = false
                         }
                     }
+                    .disabled(selectedView == .searchBookView && selectedBook == nil || selectedView == .userInputView && newWish.book.title.isEmpty)
                 }
             }
             .navigationTitle("읽고 싶은 책")
@@ -149,12 +150,16 @@ struct UserInputView: View {
             .padding(.bottom)
             .padding(.horizontal)
             
-            TextField("도서 제목", text: $newWish.book.title)
-                .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10.0)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
+            VStack(alignment: .leading, spacing: 2) {
+                Text("* 필수")
+                    .font(.caption2)
+                TextField("도서 제목", text: $newWish.book.title)
+                    .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(Color.gray, lineWidth: 1.5)
+                    )
+            }
             
             TextField("저자", text: $newWish.book.author)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))

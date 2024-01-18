@@ -23,16 +23,22 @@ struct WishCard: View {
                 fetchImage(url: wish.book.image)
             }
             
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 3) {
                 Text(wish.book.title)
                     .font(.system(size: 14.0, weight: .semibold))
                     .lineLimit(5)
                     .multilineTextAlignment(.leading)
                     .padding(.vertical, 3)
-                Text(wish.book.author)
-                    .font(.system(size: 12.0, weight: .medium))
-                Text(wish.book.publisher)
-                    .font(.system(size: 12.0, weight: .medium))
+                
+                if !wish.book.author.isEmpty {
+                    Text(wish.book.author)
+                        .font(.system(size: 12.0, weight: .medium))
+                }
+                
+                if !wish.book.publisher.isEmpty {
+                    Text(wish.book.publisher)
+                        .font(.system(size: 12.0, weight: .medium))
+                }
             }
             
             Spacer()
