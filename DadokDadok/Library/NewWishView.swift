@@ -34,6 +34,9 @@ struct NewWishView: View {
                 
                 if selectedView == .searchBookView {
                     SearchView(selectedBook: $selectedBook)
+                        .onDisappear {
+                            selectedBook = nil
+                        }
                 } else {
                     UserInputView(newWish: $newWish)
                 }
@@ -97,8 +100,12 @@ struct SearchView: View {
                         BookSearchRowView(book: book)
                     }
                     .onTapGesture {
-                        selectedBook = book
-                        print("Book selected: \(book.title)")
+                        if selectedBook == book {
+                            selectedBook = nil
+                        } else {
+                            selectedBook = book
+                            print("Book selected: \(book.title)")
+                        }
                     }
                 }
             }
