@@ -10,18 +10,15 @@ import SwiftUI
 struct WishCard: View {
     @Binding var wish: Wish
     @Environment(\.openURL) private var openURL
+    @State private var isImageMagnified: Bool = false
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
-            if let data = Data(base64Encoded: wish.book.image, options: .ignoreUnknownCharacters){
-                let image = UIImage(data: data)
-                Image(uiImage: image ?? UIImage())
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 60, height: 80)
-            } else {
-                fetchImage(url: wish.book.image)
-            }
+            BookImageView(wish: wish)
+                .frame(width: 60, height: 80)
+                .onTapGesture {
+                    isImageMagnified = true
+                }
             
             VStack(alignment: .leading, spacing: 3) {
                 Text(wish.book.title)
@@ -60,6 +57,29 @@ struct WishCard: View {
             .foregroundStyle(Color.yellow)
         }
         .padding(.horizontal)
+        .popover(isPresented: $isImageMagnified) {
+            BookImageView(wish: wish)
+                .frame(width: 250, height: 250)
+                .presentationCompactAdaptation(.popover)
+        }
+    }
+}
+
+
+// MARK: - book image view
+
+struct BookImageView: View {
+    var wish: Wish
+    
+    var body: some View {
+        if let data = Data(base64Encoded: wish.book.image, options: .ignoreUnknownCharacters){
+            let image = UIImage(data: data)
+            Image(uiImage: image ?? UIImage())
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        } else {
+            fetchImage(url: wish.book.image)
+        }
     }
     
     func fetchImage(url: String) -> some View {
@@ -69,10 +89,5 @@ struct WishCard: View {
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 60, height: 80)
     }
-}
-
-#Preview {
-    WishCard(wish: .constant(Wish.sampleData[0]))
 }
