@@ -45,6 +45,7 @@ struct LibraryDetailView: View {
             }
         }
         .padding()
+        .background(ColorManager.backgroundColor)
         .toolbar {
             if !vm.bookReview.book.link.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {

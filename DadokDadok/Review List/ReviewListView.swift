@@ -22,6 +22,7 @@ struct ReviewListView: View {
                 }
             }
         }
+        .background(ColorManager.backgroundColor)
         .toolbar {
             Button(action: vm.sortOrder) {
                 Image(systemName: "arrow.up.arrow.down.circle")

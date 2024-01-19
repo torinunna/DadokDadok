@@ -39,7 +39,7 @@ struct ReviewDetailView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.yellow)
+                    .fill(ColorManager.cardColor.opacity(0.7))
                 ScrollView {
                     VStack(alignment: .leading) {
                         Text(vm.bookReview.review)
@@ -59,7 +59,7 @@ struct ReviewDetailView: View {
                     Text("삭제하기")
                         .frame(width: 120, height: 40)
                         .foregroundColor(.white)
-                        .background(Color.red)
+                        .background(ColorManager.redColor)
                         .cornerRadius(10)
                 }
                 Spacer()
@@ -68,7 +68,7 @@ struct ReviewDetailView: View {
                     Text("수정하기")
                         .frame(width: 120, height: 40)
                         .foregroundColor(.white)
-                        .background(Color.black)
+                        .background(ColorManager.accentColor)
                         .cornerRadius(10)
                 }
                 Spacer()
@@ -76,6 +76,7 @@ struct ReviewDetailView: View {
             .padding(.vertical)
         }
         .padding()
+        .background(ColorManager.backgroundColor)
         .toolbar {
             if !vm.bookReview.book.link.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {
