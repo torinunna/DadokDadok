@@ -14,28 +14,34 @@ struct ReviewDetailView: View {
     @Environment(\.openURL) private var openURL
     
     var body: some View {
-        VStack(alignment: .center, spacing: 15) {
+        VStack(alignment: .leading, spacing: 15) {
             HStack(spacing: 15) {
                 fetchImage(url: vm.bookReview.book.image)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(vm.bookReview.book.title)
-                        .font(.system(size: 14, weight: .semibold))
-                        .padding(.bottom, 5)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .padding(.vertical, 5)
                     Text(vm.bookReview.book.author)
-                        .font(.system(size: 12))
+                        .font(.footnote)
+                        .padding(.bottom, 2)
                     Text(vm.bookReview.book.publisher)
-                        .font(.system(size: 12))
+                        .font(.caption)
                     Text(vm.bookReview.book.isbn)
-                        .font(.system(size: 12))
+                        .font(.caption2)
                 }
-                Spacer()
             }
             
             Divider()
                 .padding(5)
             
-            Text(vm.bookReview.date)
-                .font(.system(size: 14, weight: .medium))
+            HStack {
+                Spacer()
+                Text("읽은 날짜 : \(vm.bookReview.date)")
+                    .font(.footnote)
+                    .fontWeight(.medium)
+                Spacer()
+            }
             
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
@@ -73,7 +79,6 @@ struct ReviewDetailView: View {
                 }
                 Spacer()
             }
-            .padding(.vertical)
         }
         .padding()
         .background(ColorManager.backgroundColor)
@@ -102,7 +107,8 @@ struct ReviewDetailView: View {
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 90, height: 120)
+        .frame(maxWidth: 80, maxHeight: 100)
+        .shadow(radius: 5)
     }
 }
 
