@@ -70,8 +70,6 @@ struct ReadBooksView : View {
                             LibraryDetailView(vm: vm)
                         } label: {
                             BookCard(bookReview: firstReview)
-                                .frame(height: 160)
-                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }

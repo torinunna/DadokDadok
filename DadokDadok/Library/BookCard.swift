@@ -11,23 +11,33 @@ struct BookCard: View {
     var bookReview: BookReview
     
     var body: some View {
-        VStack(alignment: .center, spacing: 12) {
-            fetchImage(url: bookReview.book.image)
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(ColorManager.cardColor.opacity(0.1))
             
-            Text(bookReview.book.title)
-                .font(.system(size: 13.0, weight: .medium))
-                .foregroundStyle(.black)
+            VStack(alignment: .center, spacing: 15) {
+                fetchImage(url: bookReview.book.image)
+                
+                Text(bookReview.book.title)
+                    .font(.system(size: 12.0, weight: .bold))
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(ColorManager.accentColor)
+            }
+            .padding(.vertical, 12)
+            .padding(.horizontal, 8)
         }
-        .padding()
     }
     
     func fetchImage(url: String) -> some View {
         AsyncImage(url: URL(string: url)) { image in
-            image.resizable()
+            image
+                .resizable()
                 .aspectRatio(contentMode: .fit)
+                .shadow(radius: 5)
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(width: 100, height: 120)
+        .frame(height: 90)
     }
 }
