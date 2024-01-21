@@ -11,7 +11,7 @@ import PhotosUI
 struct NewWishView: View {
     @State private var newWish = Wish.emptyWish
     @Binding var isPresentingNewWishView: Bool
-    @Binding var wishList: [Wish]
+    @Binding var wishlist: [Wish]
     @State private var isPresentingBookSearchView = false
     @State private var selectedView: Views = .searchBookView
     @State private var selectedBook: Book?
@@ -51,10 +51,10 @@ struct NewWishView: View {
                     Button("추가하기") {
                         if let selectedBook = selectedBook {
                             let newWish = Wish(book: selectedBook, isFavorite: false)
-                            wishList.append(newWish)
+                            wishlist.append(newWish)
                             isPresentingNewWishView = false
                         } else {
-                            wishList.append(newWish)
+                            wishlist.append(newWish)
                             isPresentingNewWishView = false
                         }
                     }

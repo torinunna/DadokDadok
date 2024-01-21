@@ -44,7 +44,7 @@ struct LibraryView: View {
         .background(ColorManager.backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isPresentingNewWishView) {
-         NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishList: $wishlist)
+         NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishlist: $wishlist)
         }
     }
 }
