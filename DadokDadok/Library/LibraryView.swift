@@ -90,12 +90,13 @@ struct WishlistView: View {
     var body: some View {
         
         if wishlist.isEmpty {
-            VStack {
+            VStack(alignment: .center, spacing: 5) {
                 Spacer()
+                Text("+ 버튼을 눌러")
                 Text("읽고 싶은 책을 추가해주세요!")
-                    .font(.system(.headline))
                 Spacer()
             }
+            .font(.subheadline)
         } else {
             ScrollView {
                 ForEach($wishlist) { wish in
