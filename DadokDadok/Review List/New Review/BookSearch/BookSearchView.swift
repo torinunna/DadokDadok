@@ -35,6 +35,9 @@ struct BookSearchView: View {
         .onSubmit(of: .search) {
             requestAPI.requestSearchBookList(query: searchKeyword)
         }
+        .onDisappear {
+            requestAPI.bookList = []
+        }
     }
 }
 

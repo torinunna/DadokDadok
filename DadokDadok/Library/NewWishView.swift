@@ -108,6 +108,9 @@ struct SearchView: View {
                         }
                     }
                 }
+                .onDisappear {
+                    requestAPI.bookList = []
+                }
             }
             .padding(.horizontal, 15)
         }
