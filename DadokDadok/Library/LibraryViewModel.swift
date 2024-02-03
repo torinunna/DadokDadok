@@ -14,6 +14,7 @@ final class LibraryViewModel: ObservableObject {
     
     @Published var uniqueBookTitles: Set<String> = []
     @Published var bookReviews: [BookReview] = []
+    @Published var wishlist: [Wish] = []
  
     init(storage: BookReviewStorage) {
         self.storage = storage

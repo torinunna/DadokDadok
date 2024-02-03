@@ -9,9 +9,9 @@ import SwiftUI
 
 struct LibraryView: View {
     
+    @StateObject var vm: LibraryViewModel
     @State private var selectedView: Views = .read
     @State private var isPresentingNewWishView = false
-    @State private var wishlist: [Wish] = []
     
     enum Views {
         case read
@@ -31,7 +31,7 @@ struct LibraryView: View {
             if selectedView == .read {
                 ReadBooksView(vm: LibraryViewModel(storage: BookReviewStorage()))
             } else {
-                WishlistView(wishlist: $wishlist)
+                WishlistView(vm: vm)
                     .toolbar {
                         Button {
                             isPresentingNewWishView = true
@@ -44,7 +44,7 @@ struct LibraryView: View {
         .background(ColorManager.backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isPresentingNewWishView) {
-         NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishlist: $wishlist)
+            NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishlist: $vm.wishlist)
         }
     }
 }
@@ -85,11 +85,10 @@ struct ReadBooksView : View {
 // MARK: - Wishlist View
 
 struct WishlistView: View {
-    @Binding var wishlist: [Wish]
+    @StateObject var vm: LibraryViewModel
     
     var body: some View {
-        
-        if wishlist.isEmpty {
+        if vm.wishlist.isEmpty {
             VStack(alignment: .center, spacing: 5) {
                 Spacer()
                 Text("+ 버튼을 눌러")
@@ -99,7 +98,7 @@ struct WishlistView: View {
             .font(.subheadline)
         } else {
             ScrollView {
-                ForEach($wishlist) { wish in
+                ForEach($vm.wishlist) { wish in
                     WishCard(wish: wish)
                 }
             }
