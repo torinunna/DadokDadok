@@ -10,16 +10,23 @@ import Combine
 
 final class NewReviewViewModel: ObservableObject {
     
-    @Published var bookReviews: Binding<[BookReview]>
+    @Published var bookReviews: [BookReview]
     @Published var bookReview: BookReview = BookReview.emptyReview
     @Published var book: Book = Book(title: "", image: "", author: "", publisher: "", isbn: "", link: "")
     @Published var date: Date = Date()
     @Published var review: String = ""
     
+    let storage: BookReviewStorage
+    
     var subscriptions = Set<AnyCancellable>()
     
-    init(bookReviews: Binding<[BookReview]>) {
+    init(bookReviews: [BookReview], storage: BookReviewStorage) {
         self.bookReviews = bookReviews
+        self.storage = storage
+        
+        $bookReviews.sink { bookReviews in
+            self.persist(bookReviews: bookReviews)
+        }.store(in: &subscriptions)
         
         $book.sink { book in
             self.update(book: book)
@@ -47,10 +54,14 @@ final class NewReviewViewModel: ObservableObject {
     func update(review: String) {
         self.bookReview.review = review
     }
+
+    func persist(bookReviews: [BookReview]) {
+        guard bookReviews.isEmpty == false else { return }
+        self.storage.persist(bookReviews)
+    }
     
     func completed() {
-        guard bookReview.date.isEmpty == false else { return }
-        bookReviews.wrappedValue.append(bookReview)
+        bookReviews.append(bookReview)
         print(bookReview)
     }
 }

@@ -19,22 +19,8 @@ final class ReviewListViewModel: ObservableObject {
     @Published var bookReviews: [BookReview] = []
     @Published var sortingOrder: SortingOrder = .descending
     
-    var subscriptions = Set<AnyCancellable>()
-    
     init(storage: BookReviewStorage) {
         self.storage = storage
-        bind()
-    }
-    
-    private func bind() {
-        $bookReviews.sink { bookReviews in
-            self.persist(bookReviews: bookReviews)
-        }.store(in: &subscriptions)
-    }
-    
-    func persist(bookReviews: [BookReview]) {
-        guard bookReviews.isEmpty == false else { return }
-        self.storage.persist(bookReviews)
     }
     
     func fetch() {

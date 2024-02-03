@@ -34,7 +34,7 @@ struct ReviewListView: View {
             }
         }
         .sheet(isPresented: $isPresentingNewReviewView) {
-            let vm = NewReviewViewModel(bookReviews: $vm.bookReviews)
+            let vm = NewReviewViewModel(bookReviews: vm.bookReviews, storage: BookReviewStorage())
             NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
         }
         .onAppear {

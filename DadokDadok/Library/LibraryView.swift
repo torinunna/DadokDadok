@@ -12,6 +12,7 @@ struct LibraryView: View {
     @StateObject var vm: LibraryViewModel
     @State private var selectedView: Views = .read
     @State private var isPresentingNewWishView = false
+    @State private var isPresentingNewReviewView = false
     
     enum Views {
         case read
@@ -29,7 +30,14 @@ struct LibraryView: View {
             .padding(.top)
             
             if selectedView == .read {
-                ReadBooksView(vm: LibraryViewModel(storage: BookReviewStorage()))
+                ReadBooksView(vm: vm)
+                    .toolbar {
+                        Button {
+                            isPresentingNewReviewView = true
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
             } else {
                 WishlistView(vm: vm)
                     .toolbar {
@@ -43,6 +51,10 @@ struct LibraryView: View {
         }
         .background(ColorManager.backgroundColor)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isPresentingNewReviewView) {
+            let vm = NewReviewViewModel(bookReviews: vm.bookReviews, storage: BookReviewStorage())
+            NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
+        }
         .sheet(isPresented: $isPresentingNewWishView) {
             NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishlist: $vm.wishlist)
         }
