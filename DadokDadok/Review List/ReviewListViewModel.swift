@@ -25,6 +25,7 @@ final class ReviewListViewModel: ObservableObject {
     
     func fetch() {
         self.bookReviews = storage.fetch()
+        sortBookReviews()
     }
     
     func sortOrder() {
