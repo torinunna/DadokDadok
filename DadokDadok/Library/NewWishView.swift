@@ -16,6 +16,13 @@ struct NewWishView: View {
     @State private var selectedView: Views = .searchBookView
     @State private var selectedBook: Book?
     
+    let wishStorage = WishStorage()
+
+    func persist(wishlist: [Wish]) {
+        guard wishlist.isEmpty == false else { return }
+        self.wishStorage.persist(wishlist)
+    }
+
     enum Views {
         case searchBookView
         case userInputView
@@ -52,9 +59,11 @@ struct NewWishView: View {
                         if let selectedBook = selectedBook {
                             let newWish = Wish(book: selectedBook, isFavorite: false)
                             wishlist.append(newWish)
+                            persist(wishlist: wishlist)
                             isPresentingNewWishView = false
                         } else {
                             wishlist.append(newWish)
+                            persist(wishlist: wishlist)
                             isPresentingNewWishView = false
                         }
                     }

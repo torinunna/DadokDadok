@@ -11,18 +11,27 @@ import Combine
 final class LibraryViewModel: ObservableObject {
     
     let storage: BookReviewStorage
+    let wishStorage: WishStorage
     
     @Published var uniqueBookTitles: Set<String> = []
     @Published var bookReviews: [BookReview] = []
     @Published var wishlist: [Wish] = []
  
-    init(storage: BookReviewStorage) {
+    init(storage: BookReviewStorage, wishStorage: WishStorage) {
         self.storage = storage
+        self.wishStorage = wishStorage
+        
+        fetch()
+        fetchWish()
     }
 
     func fetch() {
         self.bookReviews = storage.fetch()
         updateUniqueBook()
+    }
+    
+    func fetchWish() {
+        self.wishlist = wishStorage.fetch()
     }
     
     private func updateUniqueBook() {

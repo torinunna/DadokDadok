@@ -115,6 +115,9 @@ struct WishlistView: View {
                 }
             }
             .padding(.vertical)
+            .onAppear {
+                vm.fetchWish()
+            }
         }
     }
 }
