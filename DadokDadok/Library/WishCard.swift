@@ -46,17 +46,17 @@ struct WishCard: View {
                 } label: {
                     Image(systemName: "info.circle")
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             
             Button {
                 wish.isFavorite.toggle()
-                print(wish.isFavorite)
             } label: {
                 wish.isFavorite ? Image(systemName: "star.fill") : Image(systemName: "star")
             }
             .foregroundStyle(Color.yellow)
+            .buttonStyle(PlainButtonStyle())
         }
-        .padding(.horizontal)
         .popover(isPresented: $isImageMagnified) {
             BookImageView(wish: wish)
                 .frame(width: 250, height: 250)

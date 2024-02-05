@@ -109,12 +109,11 @@ struct WishlistView: View {
             }
             .font(.subheadline)
         } else {
-            ScrollView {
-                ForEach($vm.wishlist) { wish in
-                    WishCard(wish: wish)
-                }
+            List($vm.wishlist) { wish in
+                WishCard(wish: wish)
+                    .listRowSeparator(.hidden)
             }
-            .padding(.vertical)
+            .listStyle(.plain)
             .onAppear {
                 vm.fetchWish()
             }
