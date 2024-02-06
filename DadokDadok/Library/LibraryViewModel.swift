@@ -38,6 +38,13 @@ final class LibraryViewModel: ObservableObject {
         wishlist = wishStorage.delete(wishlist, atOffsets: offsets)
     }
     
+    func toggleFavorite(wish: Wish) {
+        if let index = wishlist.firstIndex(where: { $0.id == wish.id }) {
+            wishlist[index].isFavorite.toggle()
+            wishStorage.persist(wishlist)
+        }
+    }
+    
     private func updateUniqueBook() {
         uniqueBookTitles = Set(bookReviews.map { $0.book.isbn })
     }

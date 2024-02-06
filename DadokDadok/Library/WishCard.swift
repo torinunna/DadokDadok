@@ -11,6 +11,7 @@ struct WishCard: View {
     @Binding var wish: Wish
     @Environment(\.openURL) private var openURL
     @State private var isImageMagnified: Bool = false
+    var toggleFavorite: () -> Void
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
@@ -50,7 +51,7 @@ struct WishCard: View {
             }
             
             Button {
-                wish.isFavorite.toggle()
+                toggleFavorite()
             } label: {
                 wish.isFavorite ? Image(systemName: "star.fill") : Image(systemName: "star")
             }

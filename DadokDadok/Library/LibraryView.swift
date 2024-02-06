@@ -111,7 +111,9 @@ struct WishlistView: View {
         } else {
             List {
                 ForEach($vm.wishlist) { $wish in
-                    WishCard(wish: $wish)
+                    WishCard(wish: $wish, toggleFavorite: {
+                        vm.toggleFavorite(wish: wish)
+                    })
                 }
                 .onDelete(perform: vm.deleteWish)
                 .listRowSeparator(.hidden)
