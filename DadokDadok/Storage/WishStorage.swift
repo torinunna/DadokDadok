@@ -17,4 +17,11 @@ final class WishStorage {
         let list = Storage.retrive("wishlist.json", from: .documents, as: [Wish].self) ?? []
         return list
     }
+    
+    func delete(_ wishlist: [Wish], atOffsets offsets: IndexSet) -> [Wish] {
+        var updatedWishlist = wishlist
+        updatedWishlist.remove(atOffsets: offsets)
+        persist(updatedWishlist)
+        return updatedWishlist
+    }
 }

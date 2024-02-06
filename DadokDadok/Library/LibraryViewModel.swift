@@ -34,6 +34,10 @@ final class LibraryViewModel: ObservableObject {
         self.wishlist = wishStorage.fetch()
     }
     
+    func deleteWish(offsets: IndexSet) {
+        wishlist = wishStorage.delete(wishlist, atOffsets: offsets)
+    }
+    
     private func updateUniqueBook() {
         uniqueBookTitles = Set(bookReviews.map { $0.book.isbn })
     }

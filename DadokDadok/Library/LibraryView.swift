@@ -109,9 +109,12 @@ struct WishlistView: View {
             }
             .font(.subheadline)
         } else {
-            List($vm.wishlist) { wish in
-                WishCard(wish: wish)
-                    .listRowSeparator(.hidden)
+            List {
+                ForEach($vm.wishlist) { $wish in
+                    WishCard(wish: $wish)
+                }
+                .onDelete(perform: vm.deleteWish)
+                .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
             .onAppear {
