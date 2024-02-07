@@ -13,7 +13,7 @@ struct DetailCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(ColorManager.cardColor.opacity(0.8))
+                .fill(ColorManager.cardColor.opacity(0.6))
                 .frame(minHeight: 50)
                 
             HStack(alignment: .center, spacing: 15) {

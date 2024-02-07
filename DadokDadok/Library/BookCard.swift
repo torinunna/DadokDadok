@@ -13,7 +13,7 @@ struct BookCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(ColorManager.cardColor.opacity(0.1))
+                .fill(ColorManager.cardColor.opacity(0.2))
             
             VStack(alignment: .center, spacing: 15) {
                 fetchImage(url: bookReview.book.image)

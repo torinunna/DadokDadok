@@ -45,7 +45,7 @@ struct ReviewDetailView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(ColorManager.cardColor.opacity(0.7))
+                    .fill(ColorManager.cardColor.opacity(0.6))
                 ScrollView {
                     VStack(alignment: .leading) {
                         Text(vm.bookReview.review)
