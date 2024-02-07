@@ -106,6 +106,7 @@ struct SearchView: View {
                 ForEach(requestAPI.bookList, id: \.self) { book in
                     HStack(alignment: .center, spacing: 10) {
                         Image(systemName: selectedBook == book ? "checkmark.square.fill" : "checkmark.square")
+                            .foregroundStyle(ColorManager.accentColor)
                         BookSearchRowView(book: book)
                     }
                     .onTapGesture {
