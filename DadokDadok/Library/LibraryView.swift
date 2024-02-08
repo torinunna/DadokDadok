@@ -114,6 +114,7 @@ struct WishlistView: View {
                     WishCard(wish: $wish, toggleFavorite: {
                         vm.toggleFavorite(wish: wish)
                     })
+                    .listRowBackground(ColorManager.backgroundColor)
                 }
                 .onDelete(perform: vm.deleteWish)
                 .listRowSeparator(.hidden)

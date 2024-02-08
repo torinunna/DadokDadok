@@ -55,9 +55,10 @@ struct WishCard: View {
             } label: {
                 wish.isFavorite ? Image(systemName: "star.fill") : Image(systemName: "star")
             }
-            .foregroundStyle(Color.yellow)
+            .foregroundStyle(ColorManager.accentColor)
             .buttonStyle(PlainButtonStyle())
         }
+        .background(ColorManager.backgroundColor)
         .popover(isPresented: $isImageMagnified) {
             BookImageView(wish: wish)
                 .frame(width: 250, height: 250)
