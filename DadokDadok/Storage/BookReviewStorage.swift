@@ -17,11 +17,4 @@ final class BookReviewStorage {
         let list = Storage.retrive("review_list.json", from: .documents, as: [BookReview].self) ?? []
         return list
     }
-    
-    func delete(_ bookReviews: [BookReview], atOffsets offsets: IndexSet) -> [BookReview] {
-        var updatedBookReviews = bookReviews
-        updatedBookReviews.remove(atOffsets: offsets)
-        persist(updatedBookReviews)
-        return updatedBookReviews
-    }
 }

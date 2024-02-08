@@ -33,5 +33,6 @@ final class ReviewDetailViewModel: ObservableObject {
     
     func delete() {
         bookReviews.wrappedValue = bookReviews.wrappedValue.filter { $0.id != bookReview.id }
+        Storage.store(bookReviews.wrappedValue, to: .documents, as: "review_list.json")
     }
 }
