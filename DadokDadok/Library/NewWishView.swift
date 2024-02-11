@@ -92,14 +92,14 @@ struct SearchView: View {
                     }
                     .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
                     .foregroundColor(.primary)
-                    .background(Color(.secondarySystemBackground))
+                    .background(ColorManager.cardColor.opacity(0.2))
                     .cornerRadius(10.0)
                     
                     Button {
                         requestAPI.requestSearchBookList(query: searchKeyword)
                     } label: {
                         Image(systemName: "magnifyingglass")
-                            .foregroundStyle(Color.secondary)
+                            .foregroundStyle(ColorManager.accentColor)
                     }
                 }
                 
@@ -139,8 +139,9 @@ struct UserInputView: View {
         VStack(spacing: 15) {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 15)
-                    .foregroundStyle(Color.secondary.opacity(0.2))
-                    .frame(width: 180, height: 240)
+                    .foregroundStyle(ColorManager.cardColor.opacity(0.2))
+                    .frame(height: 300)
+                    .frame(maxWidth: .infinity)
                 
                 PhotosPicker(selection: $selectedItem) {
                     VStack(spacing: 15) {
@@ -164,10 +165,10 @@ struct UserInputView: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 180, height: 240)
+                        .frame(height: 280)
+                        .frame(maxWidth: .infinity)
                 }
             }
-            .padding(.bottom)
             .padding(.horizontal)
             
             VStack(alignment: .leading, spacing: 2) {
@@ -177,7 +178,7 @@ struct UserInputView: View {
                     .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10.0)
-                            .stroke(Color.gray, lineWidth: 1.5)
+                            .stroke(ColorManager.accentColor, lineWidth: 1)
                     )
             }
             
@@ -185,14 +186,14 @@ struct UserInputView: View {
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(ColorManager.accentColor, lineWidth: 1)
                 )
             
             TextField("출판사", text: $newWish.book.publisher)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(ColorManager.accentColor, lineWidth: 1)
                 )
             
             Spacer()
