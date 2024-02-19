@@ -31,7 +31,7 @@ final class LibraryViewModel: ObservableObject {
     }
     
     func fetchWish() {
-        self.wishlist = wishStorage.fetch()
+        self.wishlist = wishStorage.fetch().sorted { $0.book.title < $1.book.title }
     }
     
     func deleteWish(offsets: IndexSet) {
