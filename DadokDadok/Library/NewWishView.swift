@@ -132,7 +132,7 @@ struct SearchView: View {
 
 struct UserInputView: View {
     @State private var selectedItem: PhotosPickerItem?
-    @State private var selectedImage: Image?
+    @State private var selectedImage: UIImage?
     @Binding var newWish: Wish
     
     var body: some View {
@@ -143,30 +143,33 @@ struct UserInputView: View {
                     .frame(height: 300)
                     .frame(maxWidth: .infinity)
                 
-                PhotosPicker(selection: $selectedItem) {
-                    VStack(spacing: 15) {
-                        Image(systemName: "camera")
-                        Text("사진을 선택해주세요.")
-                            .font(.caption)
-                    }
-                    .foregroundStyle(Color.primary.opacity(0.4))
-                }
-                .onChange(of: selectedItem) { newItem in
-                    Task {
-                        if let imageData = try? await newItem?.loadTransferable(type: Data.self) {
-                            selectedImage = Image(uiImage: UIImage(data: imageData)!)
-                            let base64String = imageData.base64EncodedString()
-                            newWish.book.image = base64String
-                        }
-                    }
-                }
-                
-                if let image = selectedImage {
-                    image
+                if let selectedImage {
+                    Image(uiImage: selectedImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 280)
                         .frame(maxWidth: .infinity)
+                } else {
+                    PhotosPicker(selection: $selectedItem) {
+                        VStack(spacing: 15) {
+                            Image(systemName: "camera")
+                            Text("사진을 선택해주세요.")
+                                .font(.caption)
+                        }
+                        .foregroundStyle(Color.primary.opacity(0.4))
+                    }
+                    .onChange(of: selectedItem) { _ in
+                        Task {
+                            if let selectedItem,
+                               let data = try? await selectedItem.loadTransferable(type: Data.self) {
+                                if let image = UIImage(data: data) {
+                                    selectedImage = image
+                                    let imageString = data.base64EncodedString()
+                                    newWish.book.image = imageString
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .padding(.horizontal)
