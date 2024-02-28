@@ -56,7 +56,8 @@ struct LibraryView: View {
             NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
         }
         .sheet(isPresented: $isPresentingNewWishView) {
-            NewWishView(isPresentingNewWishView: $isPresentingNewWishView, wishlist: $vm.wishlist)
+            let vm = NewWishViewModel(wishlist: vm.wishlist, storage: WishStorage())
+            NewWishView(vm: vm, isPresentingNewWishView: $isPresentingNewWishView)
         }
     }
 }

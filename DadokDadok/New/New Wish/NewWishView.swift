@@ -9,29 +9,14 @@ import SwiftUI
 import PhotosUI
 
 struct NewWishView: View {
-    @State private var newWish = Wish.emptyWish
+    @StateObject var vm: NewWishViewModel
     @Binding var isPresentingNewWishView: Bool
-    @Binding var wishlist: [Wish]
-    @State private var isPresentingBookSearchView = false
-    @State private var selectedView: Views = .searchBookView
     @State private var selectedBook: Book?
-    
-    let wishStorage = WishStorage()
 
-    func persist(wishlist: [Wish]) {
-        guard wishlist.isEmpty == false else { return }
-        self.wishStorage.persist(wishlist)
-    }
-
-    enum Views {
-        case searchBookView
-        case userInputView
-    }
-    
     var body: some View {
         NavigationStack {
             VStack {
-                Picker("select view", selection: $selectedView) {
+                Picker("select view", selection: $vm.selectedView) { 
                     Text("책 검색하기").tag(Views.searchBookView)
                     Text("직접 입력하기").tag(Views.userInputView)
                 }
@@ -39,13 +24,13 @@ struct NewWishView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 10)
                 
-                if selectedView == .searchBookView {
+                if vm.selectedView == .searchBookView {
                     SearchView(selectedBook: $selectedBook)
                         .onDisappear {
                             selectedBook = nil
                         }
                 } else {
-                    UserInputView(newWish: $newWish)
+                    UserInputView(imageString: $vm.book.image, title: $vm.book.title, author: $vm.book.author, publisher: $vm.book.publisher)
                 }
             }
             .toolbar {
@@ -56,18 +41,16 @@ struct NewWishView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("추가하기") {
-                        if let selectedBook = selectedBook {
-                            let newWish = Wish(book: selectedBook, isFavorite: false)
-                            wishlist.append(newWish)
-                            persist(wishlist: wishlist)
+                        if let selectedBook {
+                            vm.update(book: selectedBook)
+                            vm.completed()
                             isPresentingNewWishView = false
                         } else {
-                            wishlist.append(newWish)
-                            persist(wishlist: wishlist)
+                            vm.completed()
                             isPresentingNewWishView = false
                         }
                     }
-                    .disabled(selectedView == .searchBookView && selectedBook == nil || selectedView == .userInputView && newWish.book.title.isEmpty)
+                    .disabled(vm.selectedView == .searchBookView && selectedBook == nil || vm.selectedView == .userInputView && vm.wish.book.title.isEmpty)
                 }
             }
             .navigationTitle("읽고 싶은 책")
@@ -133,7 +116,10 @@ struct SearchView: View {
 struct UserInputView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
-    @Binding var newWish: Wish
+    @Binding var imageString: String
+    @Binding var title: String
+    @Binding var author: String
+    @Binding var publisher: String
     
     var body: some View {
         VStack(spacing: 15) {
@@ -164,8 +150,7 @@ struct UserInputView: View {
                                let data = try? await selectedItem.loadTransferable(type: Data.self) {
                                 if let image = UIImage(data: data) {
                                     selectedImage = image
-                                    let imageString = data.base64EncodedString()
-                                    newWish.book.image = imageString
+                                    imageString = data.base64EncodedString()
                                 }
                             }
                         }
@@ -177,7 +162,7 @@ struct UserInputView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("* 필수")
                     .font(.caption2)
-                TextField("도서 제목", text: $newWish.book.title)
+                TextField("도서 제목", text: $title)
                     .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10.0)
@@ -185,14 +170,14 @@ struct UserInputView: View {
                     )
             }
             
-            TextField("저자", text: $newWish.book.author)
+            TextField("저자", text: $author)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
                         .stroke(ColorManager.accentColor, lineWidth: 1)
                 )
             
-            TextField("출판사", text: $newWish.book.publisher)
+            TextField("출판사", text: $publisher)
                 .padding(EdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
