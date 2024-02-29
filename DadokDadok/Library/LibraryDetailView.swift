@@ -70,3 +70,31 @@ struct LibraryDetailView: View {
     }
 }
 
+struct DetailCard: View {
+    var bookReview: BookReview
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(ColorManager.cardColor.opacity(0.6))
+                .frame(minHeight: 50)
+            
+            HStack(alignment: .center, spacing: 15) {
+                Text(bookReview.date)
+                    .font(.system(size: 13, weight: .medium))
+                    .padding(.leading)
+                
+                Divider()
+                    .overlay(Color.white)
+                
+                Text(bookReview.review)
+                    .font(.system(size: 13))
+                    .lineLimit(5)
+                
+                Spacer()
+            }
+            .foregroundStyle(Color.black)
+            .padding(.vertical, 10)
+        }
+    }
+}
