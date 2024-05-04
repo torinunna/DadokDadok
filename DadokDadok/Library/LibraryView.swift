@@ -23,7 +23,7 @@ struct LibraryView: View {
         VStack {
             Picker("Select View", selection: $selectedView) {
                 Text("읽은 책").tag(Views.read)
-                Text("읽고 싶은 책").tag(Views.wishlist)
+                Text("읽을 책").tag(Views.wishlist)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
