@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8603637B2AF62A3700FC5480 /* NewReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */; };
 		864113392B6FDB930068E75E /* WishStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864113382B6FDB930068E75E /* WishStorage.swift */; };
+		864488E22BF51C6500599951 /* BookCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864488E12BF51C6500599951 /* BookCover.swift */; };
 		864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A39B02AC9664E00F5EDFD /* NewReviewView.swift */; };
 		866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C732AB7469400F28C46 /* DadokDadokApp.swift */; };
 		866B0C762AB7469400F28C46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C752AB7469400F28C46 /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewViewModel.swift; sourceTree = "<group>"; };
 		864113382B6FDB930068E75E /* WishStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishStorage.swift; sourceTree = "<group>"; };
+		864488E12BF51C6500599951 /* BookCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCover.swift; sourceTree = "<group>"; };
 		864A39B02AC9664E00F5EDFD /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		866B0C702AB7469400F28C46 /* DadokDadok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadokDadok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866B0C732AB7469400F28C46 /* DadokDadokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadokDadokApp.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 			path = "Review List";
 			sourceTree = "<group>";
 		};
+		864488DE2BF518BD00599951 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				864488E12BF51C6500599951 /* BookCover.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		866B0C672AB7469400F28C46 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 			children = (
 				866B0C732AB7469400F28C46 /* DadokDadokApp.swift */,
 				866B0C752AB7469400F28C46 /* ContentView.swift */,
+				864488DE2BF518BD00599951 /* General */,
 				86D6AE9D2B0B4B9500D1E805 /* Library */,
 				8603637E2AF6351200FC5480 /* Review List */,
 				8603637C2AF6311100FC5480 /* Model */,
@@ -317,6 +328,7 @@
 				869350B42B049FBE0021A098 /* ReviewDetailViewModel.swift in Sources */,
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				86883D772B0A424200905882 /* LibraryDetailView.swift in Sources */,
+				864488E22BF51C6500599951 /* BookCover.swift in Sources */,
 				86EFFD942B4150BB00FAB5FB /* NewWishView.swift in Sources */,
 				86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */,
 				86A0D8DF2AB8352700042B5F /* EditReviewView.swift in Sources */,
@@ -466,8 +478,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,8 +506,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

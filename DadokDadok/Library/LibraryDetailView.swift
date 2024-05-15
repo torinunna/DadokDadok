@@ -14,23 +14,12 @@ struct LibraryDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack(alignment: .center, spacing: 15) {
-                fetchImage(url: vm.bookReview.book.image)
-                
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(vm.bookReview.book.title)
-                        .font(.system(size: 14, weight: .semibold))
-                        .padding(.vertical, 5)
-                    Text(vm.bookReview.book.author)
-                        .font(.system(size: 12))
-                    Text(vm.bookReview.book.publisher)
-                        .font(.system(size: 12))
-                }
-            }
+            BookCover(bookReview: vm.bookReview)
             
             Text("서평 모아보기")
-                .font(.system(size: 16, weight: .semibold))
-                .padding(.top)
+                .font(.system(size: 15, weight: .medium))
+                .padding(.top, 15)
+                .padding(.leading, 15)
             
             ScrollView {
                 ForEach(vm.filteredReviews()) { bookReview in
@@ -58,15 +47,6 @@ struct LibraryDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    func fetchImage(url: String) -> some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image.resizable()
-        } placeholder: {
-            Image(systemName: "book")
-        }
-        .frame(width: 80, height: 100)
     }
 }
 

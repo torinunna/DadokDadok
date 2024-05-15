@@ -15,22 +15,7 @@ struct ReviewDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack(spacing: 15) {
-                fetchImage(url: vm.bookReview.book.image)
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(vm.bookReview.book.title)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .padding(.vertical, 5)
-                    Text(vm.bookReview.book.author)
-                        .font(.footnote)
-                        .padding(.bottom, 2)
-                    Text(vm.bookReview.book.publisher)
-                        .font(.caption)
-                    Text(vm.bookReview.book.isbn)
-                        .font(.caption2)
-                }
-            }
+            BookCover(bookReview: vm.bookReview)
             
             Divider()
                 .padding(5)
@@ -97,18 +82,6 @@ struct ReviewDetailView: View {
         .onAppear {
             vm.fetch()
         }
-    }
-    
-    func fetchImage(url: String) -> some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        } placeholder: {
-            Image(systemName: "book")
-        }
-        .frame(maxWidth: 80, maxHeight: 100)
-        .shadow(radius: 5)
     }
 }
 
