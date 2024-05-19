@@ -53,7 +53,7 @@ struct NewWishView: View {
                     .disabled(vm.selectedView == .searchBookView && selectedBook == nil || vm.selectedView == .userInputView && vm.wish.book.title.isEmpty)
                 }
             }
-            .navigationTitle("읽고 싶은 책")
+            .navigationTitle("읽을 책")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
