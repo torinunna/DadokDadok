@@ -19,6 +19,7 @@ struct ReviewCard: View {
                     .font(.system(size: 11))
                 Text(bookReview.book.title)
                     .font(.system(size: 14, weight: .semibold))
+                    .lineLimit(3)
                     .multilineTextAlignment(.leading)
                     .padding(.vertical, 2)
                 Text("\(bookReview.book.author) | \(bookReview.book.publisher)")
