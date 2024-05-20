@@ -19,22 +19,25 @@ struct LibraryView: View {
     ]
     
     var body: some View {
-        booksReadView
-            .toolbar {
-                Button {
-                    isPresentingNewReviewView = true
-                } label: {
-                    Image(systemName: "plus")
+        NavigationStack {
+            booksReadView
+                .toolbar {
+                    Button {
+                        isPresentingNewReviewView = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-            }
-            .background(ColorManager.backgroundColor)
-            .onAppear {
-                vm.fetch()
-            }
-            .sheet(isPresented: $isPresentingNewReviewView) {
-                let vm = NewReviewViewModel(bookReviews: vm.bookReviews, storage: BookReviewStorage())
-                NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
-            }
+                .background(ColorManager.backgroundColor)
+                .onAppear {
+                    vm.fetch()
+                }
+                .sheet(isPresented: $isPresentingNewReviewView) {
+                    let vm = NewReviewViewModel(bookReviews: vm.bookReviews, storage: BookReviewStorage())
+                    NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
+                }
+                .navigationTitle("나의 서재")
+        }
     }
     
     var booksReadView: some View {
