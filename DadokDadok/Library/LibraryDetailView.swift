@@ -16,10 +16,20 @@ struct LibraryDetailView: View {
         VStack(alignment: .leading, spacing: 15) {
             BookCover(bookReview: vm.bookReview)
             
-            Text("서평 모아보기")
-                .font(.system(size: 15, weight: .medium))
-                .padding(.top, 15)
-                .padding(.leading, 15)
+            Divider()
+                .padding(.vertical, 5)
+            
+            HStack(alignment: .center) {
+                Text("나의 서평")
+                    .font(.system(size: 15, weight: .medium))
+                
+                Spacer()
+                
+                Button(action: vm.sortOrder) {
+                    Image(systemName: "arrow.up.arrow.down.circle")
+                }
+            }
+            .padding(.horizontal)
             
             ScrollView {
                 ForEach(vm.filteredReviews()) { bookReview in
@@ -29,7 +39,6 @@ struct LibraryDetailView: View {
                     } label: {
                         DetailCard(bookReview: bookReview)
                     }
-                    
                 }
             }
         }

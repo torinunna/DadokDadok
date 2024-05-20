@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                LibraryView(vm: LibraryViewModel(storage: BookReviewStorage(), wishStorage: WishStorage()))
+                LibraryView(vm: LibraryViewModel(storage: BookReviewStorage()))
                     .navigationTitle("나의 서재")
             }
             .tabItem {
@@ -21,12 +21,12 @@ struct ContentView: View {
             }
             
             NavigationStack {
-                ReviewListView(vm: ReviewListViewModel(storage: BookReviewStorage()))
-                    .navigationTitle("나의 서평")
+               WishView(vm: WishViewModel(wishStorage: WishStorage()))
+                    .navigationTitle("나의 위시")
             }
             .tabItem {
-                Image(systemName: "book.closed")
-                Text("나의 서평")
+                Image(systemName: "heart")
+                Text("나의 위시")
             }
         }
     }

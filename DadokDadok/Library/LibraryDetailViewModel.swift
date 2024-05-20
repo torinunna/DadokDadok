@@ -10,8 +10,13 @@ import SwiftUI
 
 final class LibraryDetailViewModel: ObservableObject {
     
+    enum SortingOrder {
+        case ascending, descending
+    }
+    
     @Published var bookReviews: [BookReview] = []
     @Published var bookReview: BookReview
+    @Published var sortingOrder: SortingOrder = .descending
     
     init(bookReviews: [BookReview], bookReview: BookReview) {
         self.bookReviews = bookReviews
@@ -21,6 +26,19 @@ final class LibraryDetailViewModel: ObservableObject {
     func filteredReviews() -> [BookReview] {
         return bookReviews
             .filter { $0.book.isbn == bookReview.book.isbn }
-            .sorted { $0.date < $1.date }
+    }
+    
+    func sortOrder() {
+        sortingOrder = (sortingOrder == .ascending) ? .descending : .ascending
+        sortBookReviews()
+    }
+    
+    private func sortBookReviews() {
+        switch sortingOrder {
+        case .ascending:
+            bookReviews.sort { $0.date < $1.date }
+        case .descending:
+            bookReviews.sort { $0.date > $1.date }
+        }
     }
 }
