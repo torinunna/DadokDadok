@@ -15,11 +15,11 @@ class WishViewModel: ObservableObject {
     init(wishStorage: WishStorage) {
         self.wishStorage = wishStorage
         
-        fetchWish()
+        fetch()
     }
     
-    func fetchWish() {
-        self.wishlist = wishStorage.fetch().sorted { $0.book.title < $1.book.title }
+    func fetch() {
+        self.wishlist = wishStorage.fetch()
     }
     
     func deleteWish(offsets: IndexSet) {

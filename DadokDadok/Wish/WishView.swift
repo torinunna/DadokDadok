@@ -35,7 +35,7 @@ struct WishView: View {
                     }
                     .listStyle(.plain)
                     .onAppear {
-                        vm.fetchWish()
+                        vm.fetch()
                     }
                 }
             }
