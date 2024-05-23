@@ -43,15 +43,16 @@ struct LibraryView: View {
     var booksReadView: some View {
         ScrollView {
             LazyVGrid(columns: layout, spacing: 15) {
-                ForEach(vm.uniqueBookTitles.sorted(), id: \.self) { isbn in
-                    if let firstReview = vm.bookReviews.first(where: { $0.book.isbn == isbn }) {
+//                ForEach(vm.uniqueBookTitles.sorted(), id: \.self) { isbn in
+                ForEach(vm.bookReviews) {  book in
+//                    if let firstReview = vm.bookReviews.first(where: { $0.book.isbn == isbn }) {
                         NavigationLink {
-                            let vm = LibraryDetailViewModel(bookReviews: vm.bookReviews, bookReview: firstReview)
+                            let vm = LibraryDetailViewModel(bookReviews: vm.bookReviews, bookReview: book)
                             LibraryDetailView(vm: vm)
                         } label: {
-                            BookCard(bookReview: firstReview)
+                            BookCard(bookReview: book)
                         }
-                    }
+//                    }
                 }
             }
         }

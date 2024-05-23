@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewReviewView: View {
     @StateObject var vm: NewReviewViewModel
@@ -16,30 +17,43 @@ struct NewReviewView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 15) {
-                if let selectedBook = selectedBook {
-                    BookInfoView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
-                        .onAppear {
-                            vm.update(book: selectedBook)
-                        }
-            } else {
-                HStack(alignment: .center, spacing: 20) {
-                        Image(systemName: "book")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 60, height: 80)
-                            .padding(.horizontal)
-                        
-                        Button {
-                            isPresentingBookSearchView = true
-                        } label: {
-                            HStack {
-                                Text("도서 검색")
-                                Spacer()
-                                Image(systemName: "magnifyingglass")
+                Picker("select view", selection: $vm.selectedView) {
+                    Text("책 검색하기")
+                        .tag(Views.searchBookView)
+                    Text("직접 입력하기")
+                        .tag(Views.userInputView)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
+                
+                if vm.selectedView == .searchBookView {
+                    if let selectedBook = selectedBook {
+                        BookInfoView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
+                            .onAppear {
+                                vm.update(book: selectedBook)
                             }
-                            .foregroundStyle(Color.secondary)
+                    } else {
+                        HStack(alignment: .center, spacing: 20) {
+                            Image(systemName: "book")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 60, height: 80)
+                                .padding(.horizontal)
+                            
+                            Button {
+                                isPresentingBookSearchView = true
+                            } label: {
+                                HStack {
+                                    Text("도서 검색")
+                                    Spacer()
+                                    Image(systemName: "magnifyingglass")
+                                }
+                                .foregroundStyle(Color.secondary)
+                            }
                         }
                     }
+                } else {
+                    UserBookInputView(imageString: $vm.book.image, title: $vm.book.title, author: $vm.book.author, publisher: $vm.book.publisher)
                 }
                 
                 DatePicker("읽은 날짜", selection: $vm.date, displayedComponents: .date)
@@ -65,7 +79,7 @@ struct NewReviewView: View {
                         vm.completed()
                         isPresentingNewReviewView = false
                     }
-                    .disabled(selectedBook == nil || vm.review.isEmpty)
+                    .disabled(vm.selectedView == .searchBookView && selectedBook == nil || vm.selectedView == .userInputView && vm.book.title.isEmpty || vm.bookReview.review.isEmpty)
                 }
             }
         }
@@ -140,4 +154,72 @@ struct ReviewInputView: View {
     }
 }
 
-
+struct UserBookInputView: View {
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: UIImage?
+    @Binding var imageString: String
+    @Binding var title: String
+    @Binding var author: String
+    @Binding var publisher: String
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 15) {
+            ZStack(alignment: .center) {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundStyle(ColorManager.cardColor.opacity(0.2))
+                    .frame(width: 100, height: 120)
+                
+                if let selectedImage {
+                    Image(uiImage: selectedImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
+                } else {
+                    PhotosPicker(selection: $selectedItem) {
+                        VStack(spacing: 15) {
+                            Image(systemName: "camera")
+                            Text("사진을 선택해주세요.")
+                                .font(.system(size: 10))
+                        }
+                        .foregroundStyle(Color.primary.opacity(0.4))
+                    }
+                    .onChange(of: selectedItem) { _ in
+                        Task {
+                            if let selectedItem,
+                               let data = try? await selectedItem.loadTransferable(type: Data.self) {
+                                if let image = UIImage(data: data) {
+                                    selectedImage = image
+                                    imageString = data.base64EncodedString()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            VStack {
+                TextField("도서명", text: $title)
+                    .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(ColorManager.accentColor, lineWidth: 0.5)
+                    )
+                
+                TextField("저자", text: $author)
+                    .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(ColorManager.accentColor, lineWidth: 0.5)
+                    )
+                
+                TextField("출판사", text: $publisher)
+                    .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(ColorManager.accentColor, lineWidth: 0.5)
+                    )
+            }
+        }
+        .frame(height: 120)
+    }
+}

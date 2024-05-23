@@ -205,9 +205,9 @@
 		86BE32F72B8F773600066316 /* New */ = {
 			isa = PBXGroup;
 			children = (
+				86BE32F62B8F771300066316 /* New Wish */,
 				8603637D2AF6321100FC5480 /* New Review */,
 				8693742D2AF37F86005684FF /* BookSearch */,
-				86BE32F62B8F771300066316 /* New Wish */,
 			);
 			path = New;
 			sourceTree = "<group>";

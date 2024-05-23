@@ -15,6 +15,7 @@ final class NewReviewViewModel: ObservableObject {
     @Published var book: Book = Book(title: "", image: "", author: "", publisher: "", isbn: "", link: "")
     @Published var date: Date = Date()
     @Published var review: String = ""
+    @Published var selectedView: Views = .searchBookView
     
     let storage: BookReviewStorage
     
