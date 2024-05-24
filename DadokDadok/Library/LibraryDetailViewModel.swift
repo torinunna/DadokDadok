@@ -24,8 +24,11 @@ final class LibraryDetailViewModel: ObservableObject {
     }
     
     func filteredReviews() -> [BookReview] {
-        return bookReviews
-            .filter { $0.book.isbn == bookReview.book.isbn }
+        let identifier = bookReview.book.isbn.isEmpty ? bookReview.book.title : bookReview.book.isbn
+        return bookReviews.filter { review in
+            let reviewIdentifier = review.book.isbn.isEmpty ? review.book.title : review.book.isbn
+            return reviewIdentifier == identifier
+        }
     }
     
     func sortOrder() {
