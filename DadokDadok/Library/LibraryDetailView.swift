@@ -11,6 +11,7 @@ struct LibraryDetailView: View {
     
     @StateObject var vm: LibraryDetailViewModel
     @Environment(\.openURL) private var openURL
+    @State private var isPresentingDetailView: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -33,12 +34,10 @@ struct LibraryDetailView: View {
             
             ScrollView {
                 ForEach(vm.filteredReviews()) { bookReview in
-                    NavigationLink {
-                        let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: bookReview)
-                        ReviewDetailView(vm: vm)
-                    } label: {
-                        DetailCard(bookReview: bookReview)
-                    }
+                    DetailCard(bookReview: bookReview)
+                        .onTapGesture {
+                            isPresentingDetailView = true
+                        }
                 }
             }
         }
@@ -54,6 +53,10 @@ struct LibraryDetailView: View {
                     }
                 }
             }
+        }
+        .sheet(isPresented: $isPresentingDetailView) {
+            let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: vm.bookReview)
+            ReviewDetailView(vm: vm)
         }
         .navigationBarTitleDisplayMode(.inline)
     }
