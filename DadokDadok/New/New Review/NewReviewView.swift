@@ -84,6 +84,8 @@ struct NewReviewView: View {
             }
         }
     }
+    
+    
 }
 
 // MARK: - Book Info View
@@ -154,6 +156,9 @@ struct ReviewInputView: View {
     }
 }
 
+
+// MARK: - User Book Input View
+
 struct UserBookInputView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
@@ -173,7 +178,7 @@ struct UserBookInputView: View {
                     Image(uiImage: selectedImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    
+                        .frame(width: 100, height: 120)
                 } else {
                     PhotosPicker(selection: $selectedItem) {
                         VStack(spacing: 15) {

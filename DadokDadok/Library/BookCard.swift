@@ -16,7 +16,15 @@ struct BookCard: View {
                 .fill(ColorManager.cardColor.opacity(0.2))
             
             VStack(alignment: .center, spacing: 15) {
-                fetchImage(url: bookReview.book.image)
+                if let data = Data(base64Encoded: bookReview.book.image, options: .ignoreUnknownCharacters){
+                    let image = UIImage(data: data)
+                    Image(uiImage: image ?? UIImage())
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 90)
+                } else {
+                    fetchImage(url: bookReview.book.image)
+                }
                 
                 Text(bookReview.book.title)
                     .font(.system(size: 12.0, weight: .bold))

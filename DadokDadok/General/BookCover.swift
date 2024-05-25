@@ -12,7 +12,15 @@ struct BookCover: View {
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 20) {
-            fetchImage(url: bookReview.book.image)
+            if let data = Data(base64Encoded: bookReview.book.image, options: .ignoreUnknownCharacters){
+                let image = UIImage(data: data)
+                Image(uiImage: image ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 70, height: 100)
+            } else {
+                fetchImage(url: bookReview.book.image)
+            }
             
             VStack(alignment: .leading, spacing: 3) {
                 Text(bookReview.book.title)
@@ -40,7 +48,7 @@ struct BookCover: View {
         } placeholder: {
             Image(systemName: "book")
         }
-        .frame(maxWidth: 70, maxHeight: 100)
+        .frame(width: 70, height: 100)
         .shadow(radius: 5)
     }
 }
