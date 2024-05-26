@@ -1,14 +1,18 @@
 //
-//  BookReviewStorage.swift
+//  ReviewStorageService.swift
 //  DadokDadok
 //
-//  Created by YUJIN KWON on 2023/11/15.
+//  Created by YUJIN KWON on 5/26/24.
 //
 
 import Foundation
 
-final class BookReviewStorage {
-    
+protocol ReviewStorageServiceType {
+    func persist(_ bookReviews: [BookReview])
+    func fetch() -> [BookReview]
+}
+
+class ReviewStorageService: ReviewStorageServiceType {
     func persist(_ bookReviews: [BookReview]) {
         Storage.store(bookReviews, to: .documents, as: "review_list.json")
     }

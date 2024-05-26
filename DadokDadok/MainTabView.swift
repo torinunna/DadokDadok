@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject var container: DIContainer
+    
     var body: some View {
         TabView {
-            LibraryView(vm: LibraryViewModel(storage: BookReviewStorage()))
+            LibraryView(vm: .init(container: container))
                 .tabItem {
                     Image(systemName: "books.vertical")
                     Text("나의 서재")
                 }
             
-            WishView(vm: WishViewModel(wishStorage: WishStorage()))
+            WishView(vm: .init(container: container))
                 .tabItem {
                     Image(systemName: "heart")
                     Text("나의 위시")

@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct DadokDadokApp: App {
+    @StateObject var container: DIContainer = .init(services: Services())
     
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(container)
         }
     }
 }

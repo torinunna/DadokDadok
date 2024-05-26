@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LibraryView: View {
-    
+    @EnvironmentObject var container: DIContainer
     @StateObject var vm: LibraryViewModel
     @State private var isPresentingNewReviewView = false
     
@@ -30,11 +30,10 @@ struct LibraryView: View {
                 }
                 .background(ColorManager.backgroundColor)
                 .onAppear {
-                    vm.fetch()
+                    vm.send(action: .fetch)
                 }
                 .sheet(isPresented: $isPresentingNewReviewView) {
-                    let vm = NewReviewViewModel(bookReviews: vm.bookReviews, storage: BookReviewStorage())
-                    NewReviewView(vm: vm, isPresentingNewReviewView: $isPresentingNewReviewView)
+                    NewReviewView(vm: .init(bookReviews: vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView)
                 }
                 .navigationTitle("나의 서재")
         }

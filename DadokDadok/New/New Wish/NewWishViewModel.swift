@@ -20,13 +20,12 @@ final class NewWishViewModel: ObservableObject {
     @Published var book: Book = Book(title: "", image: "", author: "", publisher: "", isbn: "", link: "")
     @Published var selectedBook: Book?
     
-    var subscriptions = Set<AnyCancellable>()
+    private var container: DIContainer
+    private var subscriptions = Set<AnyCancellable>()
     
-    let storage: WishStorage
-    
-    init(wishlist: [Wish], storage: WishStorage) {
+    init(wishlist: [Wish], container: DIContainer) {
         self.wishlist = wishlist
-        self.storage = storage
+        self.container = container
         
         $wishlist.sink { wishlist in
             self.persist(wishlist: wishlist)
@@ -43,7 +42,7 @@ final class NewWishViewModel: ObservableObject {
 
     func persist(wishlist: [Wish]) {
         guard wishlist.isEmpty == false else { return }
-        self.storage.persist(wishlist)
+        container.services.wishStorageService.persist(wishlist)
     }
     
     func completed() {

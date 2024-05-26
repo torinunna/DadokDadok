@@ -17,13 +17,12 @@ final class NewReviewViewModel: ObservableObject {
     @Published var review: String = ""
     @Published var selectedView: Views = .searchBookView
     
-    let storage: BookReviewStorage
+    private var container: DIContainer
+    private var subscriptions = Set<AnyCancellable>()
     
-    var subscriptions = Set<AnyCancellable>()
-    
-    init(bookReviews: [BookReview], storage: BookReviewStorage) {
+    init(bookReviews: [BookReview], container: DIContainer) {
         self.bookReviews = bookReviews
-        self.storage = storage
+        self.container = container
         
         $bookReviews.sink { bookReviews in
             self.persist(bookReviews: bookReviews)
@@ -58,7 +57,7 @@ final class NewReviewViewModel: ObservableObject {
 
     func persist(bookReviews: [BookReview]) {
         guard bookReviews.isEmpty == false else { return }
-        self.storage.persist(bookReviews)
+        container.services.reviewStorageService.persist(bookReviews)
     }
     
     func completed() {

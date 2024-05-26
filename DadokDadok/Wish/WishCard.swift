@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct WishCard: View {
-    @Binding var wish: Wish
+    var wish: Wish
     @Environment(\.openURL) private var openURL
+    @EnvironmentObject var vm: WishViewModel
     @State private var isImageMagnified: Bool = false
-    var toggleFavorite: () -> Void
+    
     
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
@@ -51,7 +52,7 @@ struct WishCard: View {
             }
             
             Button {
-                toggleFavorite()
+                vm.send(action: .toggleFavorite(wish))
             } label: {
                 wish.isFavorite ? Image(systemName: "star.fill") : Image(systemName: "star")
             }

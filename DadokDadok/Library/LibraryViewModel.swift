@@ -9,14 +9,17 @@ import Foundation
 import Combine
 
 final class LibraryViewModel: ObservableObject {
-    
-    let storage: BookReviewStorage
+    enum Action {
+        case fetch
+        case persist
+    }
     
     @Published var bookReviews: [BookReview] = []
+    
+    private var container: DIContainer
  
-    init(storage: BookReviewStorage) {
-        self.storage = storage
-        fetch()
+    init(container: DIContainer) {
+        self.container = container
     }
     
     var uniqueBookReviews: [BookReview] {
@@ -32,8 +35,14 @@ final class LibraryViewModel: ObservableObject {
             }
         }
     }
-
-    func fetch() {
-        self.bookReviews = storage.fetch()
+    
+    func send(action: Action) {
+        switch action {
+        case .fetch:
+            bookReviews = container.services.reviewStorageService.fetch()
+            
+        case .persist:
+            container.services.reviewStorageService.persist(bookReviews)
+        }
     }
 }

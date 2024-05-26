@@ -8,28 +8,38 @@
 import Foundation
 
 class WishViewModel: ObservableObject {
-    let wishStorage: WishStorage
+    enum Action {
+        case fetch
+        case persist
+        case delete(IndexSet)
+        case toggleFavorite(Wish)
+    }
     
     @Published var wishlist: [Wish] = []
     
-    init(wishStorage: WishStorage) {
-        self.wishStorage = wishStorage
-        
-        fetch()
-    }
+    private var container: DIContainer
     
-    func fetch() {
-        self.wishlist = wishStorage.fetch()
+    init(container: DIContainer) {
+        self.container = container
     }
-    
-    func deleteWish(offsets: IndexSet) {
-        wishlist = wishStorage.delete(wishlist, atOffsets: offsets)
-    }
-    
-    func toggleFavorite(wish: Wish) {
-        if let index = wishlist.firstIndex(where: { $0.id == wish.id }) {
-            wishlist[index].isFavorite.toggle()
-            wishStorage.persist(wishlist)
+ 
+    func send(action: Action) {
+        switch action {
+        case .fetch:
+            wishlist = container.services.wishStorageService.fetch()
+            
+        case .persist:
+            container.services.wishStorageService.persist(wishlist)
+            
+        case .delete(let indexSet):
+            wishlist.remove(atOffsets: indexSet)
+            container.services.wishStorageService.persist(wishlist)
+            
+        case .toggleFavorite(let wish):
+            if let index = wishlist.firstIndex(where: { $0.id == wish.id }) {
+                wishlist[index].isFavorite.toggle()
+                container.services.wishStorageService.persist(wishlist)
+            }
         }
     }
 }

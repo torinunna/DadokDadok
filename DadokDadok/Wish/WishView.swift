@@ -8,36 +8,37 @@
 import SwiftUI
 
 struct WishView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var vm: WishViewModel
     @State private var isPresentingNewWishView: Bool = false
     
     var body: some View {
         NavigationStack {
             Group {
-                if vm.wishlist.isEmpty {
-                    VStack(alignment: .center, spacing: 5) {
+                VStack {
+                    if vm.wishlist.isEmpty {
                         Spacer()
                         Text("+ 버튼을 눌러")
                         Text("읽고 싶은 책을 추가해주세요!")
                         Spacer()
-                    }
-                    .font(.subheadline)
-                } else {
-                    List {
-                        ForEach($vm.wishlist) { $wish in
-                            WishCard(wish: $wish, toggleFavorite: {
-                                vm.toggleFavorite(wish: wish)
-                            })
-                            .listRowBackground(ColorManager.backgroundColor)
+                    } else {
+                        List {
+                            ForEach(vm.wishlist) { wish in
+                                WishCard(wish: wish)
+                                    .environmentObject(vm)
+                                    .listRowSeparator(.hidden)
+                            }
+                            .onDelete { indexSet in
+                                vm.send(action: .delete(indexSet))
+                            }
                         }
-                        .onDelete(perform: vm.deleteWish)
-                        .listRowSeparator(.hidden)
-                    }
-                    .listStyle(.plain)
-                    .onAppear {
-                        vm.fetch()
+                        .listStyle(PlainListStyle())
                     }
                 }
+                .font(.system(size: 14))
+            }
+            .onAppear {
+                vm.send(action: .fetch)
             }
             .navigationTitle("나의 위시")
             .toolbar {
@@ -48,8 +49,7 @@ struct WishView: View {
                 }
             }
             .sheet(isPresented: $isPresentingNewWishView) {
-                let vm = NewWishViewModel(wishlist: vm.wishlist, storage: WishStorage())
-                NewWishView(vm: vm, isPresentingNewWishView: $isPresentingNewWishView)
+                NewWishView(vm: .init(wishlist: vm.wishlist, container: container), isPresentingNewWishView: $isPresentingNewWishView)
             }
         }
     }
