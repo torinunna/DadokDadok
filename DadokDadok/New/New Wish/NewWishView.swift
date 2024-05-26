@@ -16,13 +16,7 @@ struct NewWishView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Picker("select view", selection: $vm.selectedView) { 
-                    Text("책 검색하기").tag(Views.searchBookView)
-                    Text("직접 입력하기").tag(Views.userInputView)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
-                .padding(.vertical, 10)
+                ViewPicker(selectedView: $vm.selectedView)
                 
                 if vm.selectedView == .searchBookView {
                     SearchView(selectedBook: $selectedBook)

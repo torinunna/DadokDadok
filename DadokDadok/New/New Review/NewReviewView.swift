@@ -17,14 +17,7 @@ struct NewReviewView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 15) {
-                Picker("select view", selection: $vm.selectedView) {
-                    Text("책 검색하기")
-                        .tag(Views.searchBookView)
-                    Text("직접 입력하기")
-                        .tag(Views.userInputView)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
+                ViewPicker(selectedView: $vm.selectedView)
                 
                 if vm.selectedView == .searchBookView {
                     if let selectedBook {
@@ -68,6 +61,7 @@ struct NewReviewView: View {
         }
     }
 }
+
 
 struct BookInfoView: View {
     let book: Book
