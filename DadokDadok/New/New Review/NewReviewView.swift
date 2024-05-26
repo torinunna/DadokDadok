@@ -27,30 +27,13 @@ struct NewReviewView: View {
                 .padding(.horizontal)
                 
                 if vm.selectedView == .searchBookView {
-                    if let selectedBook = selectedBook {
+                    if let selectedBook {
                         BookInfoView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
                             .onAppear {
                                 vm.update(book: selectedBook)
                             }
                     } else {
-                        HStack(alignment: .center, spacing: 20) {
-                            Image(systemName: "book")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 60, height: 80)
-                                .padding(.horizontal)
-                            
-                            Button {
-                                isPresentingBookSearchView = true
-                            } label: {
-                                HStack {
-                                    Text("도서 검색")
-                                    Spacer()
-                                    Image(systemName: "magnifyingglass")
-                                }
-                                .foregroundStyle(Color.secondary)
-                            }
-                        }
+                        BookSearchButton(isPresentingBookSearchView: $isPresentingBookSearchView)
                     }
                 } else {
                     UserBookInputView(imageString: $vm.book.image, title: $vm.book.title, author: $vm.book.author, publisher: $vm.book.publisher)
@@ -84,11 +67,7 @@ struct NewReviewView: View {
             }
         }
     }
-    
-    
 }
-
-// MARK: - Book Info View
 
 struct BookInfoView: View {
     let book: Book
@@ -130,9 +109,6 @@ struct BookInfoView: View {
     }
 }
 
-
-// MARK: - Review Input View
-
 struct ReviewInputView: View {
     @Binding var text: String
     
@@ -155,9 +131,6 @@ struct ReviewInputView: View {
         }
     }
 }
-
-
-// MARK: - User Book Input View
 
 struct UserBookInputView: View {
     @State private var selectedItem: PhotosPickerItem?
@@ -228,3 +201,29 @@ struct UserBookInputView: View {
         .frame(height: 120)
     }
 }
+
+struct BookSearchButton: View {
+    @Binding var isPresentingBookSearchView: Bool
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 20) {
+            Image(systemName: "book")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 60, height: 80)
+                .padding(.horizontal)
+            
+            Button {
+                isPresentingBookSearchView = true
+            } label: {
+                HStack {
+                    Text("도서 검색")
+                    Spacer()
+                    Image(systemName: "magnifyingglass")
+                }
+                .foregroundStyle(Color.secondary)
+            }
+        }
+    }
+}
+
