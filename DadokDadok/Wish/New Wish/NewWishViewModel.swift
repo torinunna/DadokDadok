@@ -8,11 +8,6 @@
 import Combine
 import SwiftUI
 
-enum Views {
-    case searchBookView
-    case userInputView
-}
-
 final class NewWishViewModel: ObservableObject {
     @Published var wishlist: Binding<[Wish]>
     @Published var wish: Wish = Wish.emptyWish

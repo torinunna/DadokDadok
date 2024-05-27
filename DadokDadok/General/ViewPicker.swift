@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum Views {
+    case searchBookView
+    case userInputView
+}
+
 struct ViewPicker: View {
     @Binding var selectedView: Views
     
