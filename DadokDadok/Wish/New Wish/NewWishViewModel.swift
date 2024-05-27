@@ -14,8 +14,8 @@ enum Views {
 }
 
 final class NewWishViewModel: ObservableObject {
+    @Published var wishlist: Binding<[Wish]>
     @Published var wish: Wish = Wish.emptyWish
-    @Published var wishlist: [Wish]
     @Published var selectedView: Views = .searchBookView
     @Published var book: Book = Book(title: "", image: "", author: "", publisher: "", isbn: "", link: "")
     @Published var selectedBook: Book?
@@ -23,13 +23,9 @@ final class NewWishViewModel: ObservableObject {
     private var container: DIContainer
     private var subscriptions = Set<AnyCancellable>()
     
-    init(wishlist: [Wish], container: DIContainer) {
+    init(wishlist: Binding<[Wish]>, container: DIContainer) {
         self.wishlist = wishlist
         self.container = container
-        
-        $wishlist.sink { wishlist in
-            self.persist(wishlist: wishlist)
-        }.store(in: &subscriptions)
         
         $book.sink { book in
             self.update(book: book)
@@ -40,13 +36,9 @@ final class NewWishViewModel: ObservableObject {
         self.wish.book = book
     }
 
-    func persist(wishlist: [Wish]) {
-        guard wishlist.isEmpty == false else { return }
-        container.services.wishStorageService.persist(wishlist)
-    }
-    
     func completed() {
-        wishlist.append(wish)
+        wishlist.wrappedValue.append(wish)
+        container.services.wishStorageService.persist(wishlist.wrappedValue)
         print(wish)
     }
 }

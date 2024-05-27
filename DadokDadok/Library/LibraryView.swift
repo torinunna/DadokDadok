@@ -33,7 +33,7 @@ struct LibraryView: View {
                     vm.send(action: .fetch)
                 }
                 .sheet(isPresented: $isPresentingNewReviewView) {
-                    NewReviewView(vm: .init(bookReviews: vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView)
+                    NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView)
                 }
                 .navigationTitle("나의 서재")
         }

@@ -11,7 +11,6 @@ import Combine
 final class LibraryViewModel: ObservableObject {
     enum Action {
         case fetch
-        case persist
     }
     
     @Published var bookReviews: [BookReview] = []
@@ -40,9 +39,6 @@ final class LibraryViewModel: ObservableObject {
         switch action {
         case .fetch:
             bookReviews = container.services.reviewStorageService.fetch()
-            
-        case .persist:
-            container.services.reviewStorageService.persist(bookReviews)
         }
     }
 }

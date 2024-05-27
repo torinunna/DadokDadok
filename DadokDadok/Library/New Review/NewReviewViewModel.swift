@@ -9,8 +9,7 @@ import SwiftUI
 import Combine
 
 final class NewReviewViewModel: ObservableObject {
-    
-    @Published var bookReviews: [BookReview]
+    @Published var bookReviews: Binding<[BookReview]>
     @Published var bookReview: BookReview = BookReview.emptyReview
     @Published var book: Book = Book(title: "", image: "", author: "", publisher: "", isbn: "", link: "")
     @Published var date: Date = Date()
@@ -20,13 +19,9 @@ final class NewReviewViewModel: ObservableObject {
     private var container: DIContainer
     private var subscriptions = Set<AnyCancellable>()
     
-    init(bookReviews: [BookReview], container: DIContainer) {
+    init(bookReviews: Binding<[BookReview]>, container: DIContainer) {
         self.bookReviews = bookReviews
         self.container = container
-        
-        $bookReviews.sink { bookReviews in
-            self.persist(bookReviews: bookReviews)
-        }.store(in: &subscriptions)
         
         $book.sink { book in
             self.update(book: book)
@@ -54,14 +49,10 @@ final class NewReviewViewModel: ObservableObject {
     func update(review: String) {
         self.bookReview.review = review
     }
-
-    func persist(bookReviews: [BookReview]) {
-        guard bookReviews.isEmpty == false else { return }
-        container.services.reviewStorageService.persist(bookReviews)
-    }
     
     func completed() {
-        bookReviews.append(bookReview)
+        bookReviews.wrappedValue.append(bookReview)
+        container.services.reviewStorageService.persist(bookReviews.wrappedValue)
         print(bookReview)
     }
 }

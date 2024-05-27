@@ -49,7 +49,7 @@ struct WishView: View {
                 }
             }
             .sheet(isPresented: $isPresentingNewWishView) {
-                NewWishView(vm: .init(wishlist: vm.wishlist, container: container), isPresentingNewWishView: $isPresentingNewWishView)
+                NewWishView(vm: .init(wishlist: $vm.wishlist, container: container), isPresentingNewWishView: $isPresentingNewWishView)
             }
         }
     }

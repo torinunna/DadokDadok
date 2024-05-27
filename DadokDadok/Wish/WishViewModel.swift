@@ -10,7 +10,6 @@ import Foundation
 class WishViewModel: ObservableObject {
     enum Action {
         case fetch
-        case persist
         case delete(IndexSet)
         case toggleFavorite(Wish)
     }
@@ -27,9 +26,6 @@ class WishViewModel: ObservableObject {
         switch action {
         case .fetch:
             wishlist = container.services.wishStorageService.fetch()
-            
-        case .persist:
-            container.services.wishStorageService.persist(wishlist)
             
         case .delete(let indexSet):
             wishlist.remove(atOffsets: indexSet)
