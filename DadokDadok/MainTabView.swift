@@ -18,7 +18,7 @@ struct MainTabView: View {
                     Text("나의 서재")
                 }
             
-            WishView(vm: .init(container: container))
+            WishlistView(vm: .init(container: container))
                 .tabItem {
                     Image(systemName: "heart")
                     Text("나의 위시")

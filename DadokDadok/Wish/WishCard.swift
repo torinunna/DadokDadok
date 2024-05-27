@@ -10,7 +10,7 @@ import SwiftUI
 struct WishCard: View {
     var wish: Wish
     @Environment(\.openURL) private var openURL
-    @EnvironmentObject var vm: WishViewModel
+    @EnvironmentObject var vm: WishlistViewModel
     @State private var isImageMagnified: Bool = false
     
     

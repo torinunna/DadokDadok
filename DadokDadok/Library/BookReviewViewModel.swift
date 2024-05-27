@@ -1,5 +1,5 @@
 //
-//  ReviewDetailViewModel.swift
+//  BookReviewViewModel.swift
 //  DadokDadok
 //
 //  Created by YUJIN KWON on 2023/11/15.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class ReviewDetailViewModel: ObservableObject {
+final class BookReviewViewModel: ObservableObject {
     @Published var bookReviews: Binding<[BookReview]>
     @Published var bookReview: BookReview
     

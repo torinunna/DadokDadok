@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LibraryDetailView: View {
-    
     @StateObject var vm: LibraryDetailViewModel
     @Environment(\.openURL) private var openURL
     @State private var isPresentingDetailView: Bool = false
@@ -55,8 +54,8 @@ struct LibraryDetailView: View {
             }
         }
         .sheet(isPresented: $isPresentingDetailView) {
-            let vm = ReviewDetailViewModel(bookReviews: $vm.bookReviews, bookReview: vm.bookReview)
-            ReviewDetailView(vm: vm)
+            let vm = BookReviewViewModel(bookReviews: $vm.bookReviews, bookReview: vm.bookReview)
+            BookReviewView(vm: vm)
         }
         .navigationBarTitleDisplayMode(.inline)
     }

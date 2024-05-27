@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WishViewModel: ObservableObject {
+class WishlistViewModel: ObservableObject {
     enum Action {
         case fetch
         case delete(IndexSet)

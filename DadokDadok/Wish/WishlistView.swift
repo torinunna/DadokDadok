@@ -1,5 +1,5 @@
 //
-//  WishView.swift
+//  WishlistView.swift
 //  DadokDadok
 //
 //  Created by YUJIN KWON on 5/19/24.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct WishView: View {
+struct WishlistView: View {
     @EnvironmentObject var container: DIContainer
-    @StateObject var vm: WishViewModel
+    @StateObject var vm: WishlistViewModel
     @State private var isPresentingNewWishView: Bool = false
     
     var body: some View {

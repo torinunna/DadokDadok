@@ -1,5 +1,5 @@
 //
-//  ReviewDetailView.swift
+//  BookReviewView.swift
 //  DadokDadok
 //
 //  Created by YUJIN KWON on 2023/09/18.
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct ReviewDetailView: View {
-    
-    @ObservedObject var vm: ReviewDetailViewModel
+struct BookReviewView: View {
+    @ObservedObject var vm: BookReviewViewModel
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) private var openURL
     
@@ -87,7 +86,7 @@ struct ReviewDetailView: View {
 
 struct ReviewDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let vm = ReviewDetailViewModel(bookReviews: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
-        ReviewDetailView(vm: vm)
+        let vm = BookReviewViewModel(bookReviews: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
+        BookReviewView(vm: vm)
     }
 }
