@@ -230,9 +230,9 @@
 				86883D782B0A447000905882 /* LibraryDetailViewModel.swift */,
 				86A0D8DC2AB8200100042B5F /* BookReviewView.swift */,
 				869350B32B049FBE0021A098 /* BookReviewViewModel.swift */,
-				8603637D2AF6321100FC5480 /* New Review */,
 				86A0D8DE2AB8352700042B5F /* EditReviewView.swift */,
 				86A288E12B341D0F000CE8F3 /* EditReviewViewModel.swift */,
+				8603637D2AF6321100FC5480 /* New Review */,
 			);
 			path = Library;
 			sourceTree = "<group>";

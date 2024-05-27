@@ -18,9 +18,12 @@ final class LibraryDetailViewModel: ObservableObject {
     @Published var bookReview: BookReview
     @Published var sortingOrder: SortingOrder = .descending
     
-    init(bookReviews: [BookReview], bookReview: BookReview) {
+    private var container: DIContainer
+    
+    init(bookReviews: [BookReview], bookReview: BookReview, container: DIContainer) {
         self.bookReviews = bookReviews
         self.bookReview = bookReview
+        self.container = container
     }
     
     func filteredReviews() -> [BookReview] {

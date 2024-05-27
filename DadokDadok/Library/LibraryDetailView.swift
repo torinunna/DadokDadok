@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct LibraryDetailView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var vm: LibraryDetailViewModel
     @Environment(\.openURL) private var openURL
-    @State private var isPresentingDetailView: Bool = false
-    
+    @State private var isPresentingDetailView = false
+    @State private var isPresentingNewReviewView = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             BookCover(bookReview: vm.bookReview)
@@ -53,9 +55,21 @@ struct LibraryDetailView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    isPresentingNewReviewView = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
         .sheet(isPresented: $isPresentingDetailView) {
             let vm = BookReviewViewModel(bookReviews: $vm.bookReviews, bookReview: vm.bookReview)
             BookReviewView(vm: vm)
+        }
+        .sheet(isPresented: $isPresentingNewReviewView) {
+            NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView)
         }
         .navigationBarTitleDisplayMode(.inline)
     }
