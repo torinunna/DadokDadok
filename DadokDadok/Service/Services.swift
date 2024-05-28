@@ -21,3 +21,10 @@ class Services: ServiceType {
         self.wishStorageService = WishStorageService()
     }
 }
+
+class StubServices: ServiceType {
+    var reviewStorageService: ReviewStorageServiceType = StubReviewStorageService()
+    
+    var wishStorageService: WishStorageServiceType = StubWishStorageService()
+}
+

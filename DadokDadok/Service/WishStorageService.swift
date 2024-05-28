@@ -22,3 +22,13 @@ class WishStorageService: WishStorageServiceType {
         return list
     }
 }
+
+class StubWishStorageService: WishStorageServiceType {
+    func persist(_ wishlist: [Wish]) {
+        
+    }
+    
+    func fetch() -> [Wish] {
+        return Wish.sampleData
+    }
+}

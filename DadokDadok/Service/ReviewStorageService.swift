@@ -22,3 +22,13 @@ class ReviewStorageService: ReviewStorageServiceType {
         return list
     }
 }
+
+class StubReviewStorageService: ReviewStorageServiceType {
+    func persist(_ bookReviews: [BookReview]) {
+        
+    }
+    
+    func fetch() -> [BookReview] {
+        return BookReview.sampleData
+    }
+}
