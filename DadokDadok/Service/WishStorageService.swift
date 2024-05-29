@@ -18,7 +18,7 @@ class WishStorageService: WishStorageServiceType {
     }
     
     func fetch() -> [Wish] {
-        let list = Storage.retrive("wishlist.json", from: .documents, as: [Wish].self) ?? []
+        let list = Storage.retrieve("wishlist.json", from: .documents, as: [Wish].self) ?? []
         return list
     }
 }

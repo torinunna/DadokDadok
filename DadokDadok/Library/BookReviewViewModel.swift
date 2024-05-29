@@ -35,7 +35,7 @@ final class BookReviewViewModel: ObservableObject {
             return
         }
         
-        let updatedReview = Storage.retrive("review_list.json", from: .documents, as: [BookReview].self)?
+        let updatedReview = Storage.retrieve("review_list.json", from: .documents, as: [BookReview].self)?
             .first(where: { $0.id == bookReview.id })
         
         if let updatedReview = updatedReview {

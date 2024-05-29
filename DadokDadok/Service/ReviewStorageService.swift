@@ -18,7 +18,7 @@ class ReviewStorageService: ReviewStorageServiceType {
     }
     
     func fetch() -> [BookReview] {
-        let list = Storage.retrive("review_list.json", from: .documents, as: [BookReview].self) ?? []
+        let list = Storage.retrieve("review_list.json", from: .documents, as: [BookReview].self) ?? []
         return list
     }
 }

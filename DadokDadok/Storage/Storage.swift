@@ -44,7 +44,7 @@ public class Storage {
         }
     }
 
-    static func retrive<T: Decodable>(_ fileName: String, from directory: Directory, as type: T.Type) -> T? {
+    static func retrieve<T: Decodable>(_ fileName: String, from directory: Directory, as type: T.Type) -> T? {
         let url = directory.url.appendingPathComponent(fileName, isDirectory: false)
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
         guard let data = FileManager.default.contents(atPath: url.path) else { return nil }
