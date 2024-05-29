@@ -13,6 +13,7 @@ struct LibraryDetailView: View {
     @Environment(\.openURL) private var openURL
     @State private var isPresentingDetailView = false
     @State private var isPresentingNewReviewView = false
+    @Binding var selectedBook: Book?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -58,6 +59,7 @@ struct LibraryDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    selectedBook = vm.bookReview.book
                     isPresentingNewReviewView = true
                 } label: {
                     Image(systemName: "plus")
@@ -69,7 +71,7 @@ struct LibraryDetailView: View {
             BookReviewView(vm: vm)
         }
         .sheet(isPresented: $isPresentingNewReviewView) {
-            NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView)
+            NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
         }
         .navigationBarTitleDisplayMode(.inline)
     }

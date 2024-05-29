@@ -11,8 +11,8 @@ import PhotosUI
 struct NewReviewView: View {
     @StateObject var vm: NewReviewViewModel
     @Binding var isPresentingNewReviewView: Bool
+    @Binding var selectedBook: Book?
     @State private var isPresentingBookSearchView = false
-    @State private var selectedBook: Book?
     
     var body: some View {
         NavigationStack {

@@ -11,6 +11,7 @@ struct LibraryView: View {
     @EnvironmentObject var container: DIContainer
     @StateObject var vm: LibraryViewModel
     @State private var isPresentingNewReviewView = false
+    @State private var selectedBook: Book?
     
     let layout: [GridItem] = [
         GridItem(.flexible()),
@@ -33,7 +34,7 @@ struct LibraryView: View {
                     vm.send(action: .fetch)
                 }
                 .sheet(isPresented: $isPresentingNewReviewView) {
-                    NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView)
+                    NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
                 }
                 .navigationTitle("나의 서재")
         }
@@ -44,7 +45,7 @@ struct LibraryView: View {
             LazyVGrid(columns: layout, spacing: 15) {
                 ForEach(vm.uniqueBookReviews) { bookReview in
                     NavigationLink {
-                        LibraryDetailView(vm: .init(bookReviews: vm.bookReviews, bookReview: bookReview, container: container))
+                        LibraryDetailView(vm: .init(bookReviews: vm.bookReviews, bookReview: bookReview, container: container), selectedBook: $selectedBook)
                     } label: {
                         BookCard(bookReview: bookReview)
                     }
