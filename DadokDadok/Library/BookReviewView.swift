@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookReviewView: View {
+    @EnvironmentObject var container: DIContainer
     @ObservedObject var vm: BookReviewViewModel
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) private var openURL
@@ -21,9 +22,12 @@ struct BookReviewView: View {
             
             HStack {
                 Spacer()
-                Text("읽은 날짜 : \(vm.bookReview.date)")
+                DatePicker("읽은 날짜", selection: $vm.reviewDate, displayedComponents: .date)
+                    .datePickerStyle(CompactDatePickerStyle())
+                    .environment(\.locale, Locale.init(identifier: "ko-KR"))
                     .font(.footnote)
                     .fontWeight(.medium)
+                
                 Spacer()
             }
             
@@ -32,8 +36,10 @@ struct BookReviewView: View {
                     .fill(ColorManager.cardColor.opacity(0.6))
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text(vm.bookReview.review)
+                        TextEditor(text: $vm.bookReview.review)
                             .font(.system(size: 15))
+                            .scrollContentBackground(.hidden) 
+                            .background(Color.clear)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -42,6 +48,7 @@ struct BookReviewView: View {
             
             HStack {
                 Spacer()
+                
                 Button {
                     vm.delete()
                     presentationMode.wrappedValue.dismiss()
@@ -52,15 +59,20 @@ struct BookReviewView: View {
                         .background(ColorManager.redColor)
                         .cornerRadius(10)
                 }
+                
                 Spacer()
                 
-                NavigationLink(destination: EditReviewView(vm: EditReviewViewModel(bookReview: vm.bookReview))) {
-                    Text("수정하기")
+                Button {
+                    vm.save()
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text("저장하기")
                         .frame(width: 120, height: 40)
                         .foregroundColor(.white)
                         .background(ColorManager.accentColor)
                         .cornerRadius(10)
                 }
+                
                 Spacer()
             }
         }
@@ -81,12 +93,5 @@ struct BookReviewView: View {
         .onAppear {
             vm.fetch()
         }
-    }
-}
-
-struct ReviewDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let vm = BookReviewViewModel(bookReviews: .constant(BookReview.sampleData), bookReview: BookReview.sampleData.first!)
-        BookReviewView(vm: vm)
     }
 }
