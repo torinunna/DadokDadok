@@ -58,6 +58,9 @@ struct NewReviewView: View {
                     .disabled(vm.selectedView == .searchBookView && selectedBook == nil || vm.selectedView == .userInputView && vm.book.title.isEmpty || vm.bookReview.review.isEmpty)
                 }
             }
+            .onDisappear {
+                selectedBook = nil
+            }
         }
     }
 }
