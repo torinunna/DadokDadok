@@ -10,7 +10,12 @@ import SwiftUI
 struct WishlistView: View {
     @EnvironmentObject var container: DIContainer
     @StateObject var vm: WishlistViewModel
-    @State private var isPresentingNewWishView: Bool = false
+    @State private var isPresentingNewWishView = false
+    @State private var showFavoritesOnly = false
+    
+    var filteredWishlist: [Wish] {
+        return showFavoritesOnly ? vm.wishlist.filter { $0.isFavorite } : vm.wishlist
+    }
     
     var body: some View {
         NavigationStack {
@@ -23,7 +28,7 @@ struct WishlistView: View {
                         Spacer()
                     } else {
                         List {
-                            ForEach(vm.wishlist) { wish in
+                            ForEach(filteredWishlist) { wish in
                                 WishCard(wish: wish)
                                     .environmentObject(vm)
                                     .listRowSeparator(.hidden)
@@ -42,10 +47,20 @@ struct WishlistView: View {
             }
             .navigationTitle("나의 위시")
             .toolbar {
-                Button {
-                    isPresentingNewWishView = true
-                } label: {
-                    Image(systemName: "plus")
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showFavoritesOnly.toggle()
+                    } label: {
+                        showFavoritesOnly ? Image(systemName: "star.fill") : Image(systemName: "star")
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isPresentingNewWishView = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
             .sheet(isPresented: $isPresentingNewWishView) {
