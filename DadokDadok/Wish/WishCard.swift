@@ -47,14 +47,21 @@ struct WishCard: View {
                     openURL(URL(string: wish.book.link)!)
                 } label: {
                     Image(systemName: "info.circle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20)
                 }
+                .foregroundStyle(ColorManager.accentColor)
                 .buttonStyle(PlainButtonStyle())
             }
             
             Button {
                 vm.send(action: .toggleFavorite(wish))
             } label: {
-                wish.isFavorite ? Image(systemName: "heart.fill") : Image(systemName: "heart")
+                (wish.isFavorite ? Image(systemName: "heart.fill") : Image(systemName: "heart"))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
             }
             .foregroundStyle(ColorManager.accentColor)
             .buttonStyle(PlainButtonStyle())
