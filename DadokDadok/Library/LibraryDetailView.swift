@@ -80,6 +80,12 @@ struct LibraryDetailView: View {
 struct DetailCard: View {
     var bookReview: BookReview
     
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월 d일"
+        return formatter
+    }()
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
@@ -87,7 +93,7 @@ struct DetailCard: View {
                 .frame(minHeight: 50)
             
             HStack(alignment: .center, spacing: 15) {
-                Text(bookReview.date)
+                Text(Self.dateFormatter.string(from: bookReview.date))
                     .font(.system(size: 13, weight: .medium))
                     .padding(.leading)
                 

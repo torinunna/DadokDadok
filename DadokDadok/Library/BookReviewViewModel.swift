@@ -13,21 +13,10 @@ final class BookReviewViewModel: ObservableObject {
     @Published var bookReview: BookReview
     @Published var reviewDate: Date
 
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일"
-        return formatter
-    }()
-    
     init(bookReviews: Binding<[BookReview]>, bookReview: BookReview) {
         self.bookReviews = bookReviews
         self.bookReview = bookReview
-        
-        if let date = BookReviewViewModel.dateFormatter.date(from: bookReview.date) {
-            self.reviewDate = date
-        } else {
-            self.reviewDate = Date()
-        }
+        self.reviewDate = bookReview.date
     }
     
     func fetch() {
@@ -41,10 +30,7 @@ final class BookReviewViewModel: ObservableObject {
         if let updatedReview = updatedReview {
             bookReviews.wrappedValue[index] = updatedReview
             bookReview = updatedReview
-            
-            if let date = BookReviewViewModel.dateFormatter.date(from: updatedReview.date) {
-                reviewDate = date
-            }
+            reviewDate = updatedReview.date
         }
     }
     
@@ -54,7 +40,7 @@ final class BookReviewViewModel: ObservableObject {
     }
     
     func save() {
-        bookReview.date = BookReviewViewModel.dateFormatter.string(from: reviewDate)
+        bookReview.date = reviewDate
         guard let index = bookReviews.wrappedValue.firstIndex(where: { $0.id == bookReview.id }) else {
             return
         }
