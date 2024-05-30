@@ -38,7 +38,7 @@ final class LibraryViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .fetch:
-            bookReviews = container.services.reviewStorageService.fetch()
+            bookReviews = container.services.reviewStorageService.fetch().sorted { $0.date > $1.date }
         }
     }
 }
