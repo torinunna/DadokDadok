@@ -51,7 +51,7 @@ struct WishlistView: View {
                     Button {
                         showFavoritesOnly.toggle()
                     } label: {
-                        showFavoritesOnly ? Image(systemName: "star.fill") : Image(systemName: "star")
+                        showFavoritesOnly ? Image(systemName: "heart.fill") : Image(systemName: "heart")
                     }
                 }
                 

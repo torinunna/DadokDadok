@@ -54,7 +54,7 @@ struct WishCard: View {
             Button {
                 vm.send(action: .toggleFavorite(wish))
             } label: {
-                wish.isFavorite ? Image(systemName: "star.fill") : Image(systemName: "star")
+                wish.isFavorite ? Image(systemName: "heart.fill") : Image(systemName: "heart")
             }
             .foregroundStyle(ColorManager.accentColor)
             .buttonStyle(PlainButtonStyle())
