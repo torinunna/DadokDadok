@@ -12,7 +12,8 @@ struct LibraryDetailView: View {
     @StateObject var vm: LibraryDetailViewModel
     @Environment(\.openURL) private var openURL
     @Environment(\.dismiss) private var dismiss
-    @State private var isPresentingDetailView = false
+    @State private var selectedReview: BookReview?
+    @State private var isPresentingBookReviewView = false
     @State private var isPresentingNewReviewView = false
     @Binding var selectedBook: Book?
 
@@ -29,7 +30,9 @@ struct LibraryDetailView: View {
                 
                 Spacer()
                 
-                Button(action: vm.sortOrder) {
+                Button {
+                    vm.sortOrder()
+                } label: {
                     Image(systemName: "arrow.up.arrow.down.circle")
                 }
             }
@@ -39,7 +42,8 @@ struct LibraryDetailView: View {
                 ForEach(vm.filteredReviews) { bookReview in
                     DetailCard(bookReview: bookReview)
                         .onTapGesture {
-                            isPresentingDetailView = true
+                            selectedReview = bookReview
+                            isPresentingBookReviewView = true
                         }
                 }
             }
@@ -67,9 +71,11 @@ struct LibraryDetailView: View {
                 }
             }
         }
-        .sheet(isPresented: $isPresentingDetailView) {
-            let vm = BookReviewViewModel(bookReviews: $vm.bookReviews, bookReview: vm.bookReview)
-            BookReviewView(vm: vm)
+        .sheet(isPresented: $isPresentingBookReviewView) {
+            if let selectedReview = selectedReview {
+                let vm = BookReviewViewModel(bookReviews: $vm.bookReviews, bookReview: selectedReview)
+                BookReviewView(vm: vm)
+            }
         }
         .sheet(isPresented: $isPresentingNewReviewView) {
             NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
