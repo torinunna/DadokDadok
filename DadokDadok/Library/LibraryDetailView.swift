@@ -11,6 +11,7 @@ struct LibraryDetailView: View {
     @EnvironmentObject var container: DIContainer
     @StateObject var vm: LibraryDetailViewModel
     @Environment(\.openURL) private var openURL
+    @Environment(\.dismiss) private var dismiss
     @State private var isPresentingDetailView = false
     @State private var isPresentingNewReviewView = false
     @Binding var selectedBook: Book?
@@ -35,7 +36,7 @@ struct LibraryDetailView: View {
             .padding(.horizontal)
             
             ScrollView {
-                ForEach(vm.filteredReviews()) { bookReview in
+                ForEach(vm.filteredReviews) { bookReview in
                     DetailCard(bookReview: bookReview)
                         .onTapGesture {
                             isPresentingDetailView = true
@@ -74,6 +75,16 @@ struct LibraryDetailView: View {
             NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: vm.filteredReviewsCount) { newCount in
+            if newCount == 0 {
+                dismiss()
+            }
+        }
+        .onAppear {
+            if vm.filteredReviewsCount == 0 {
+                dismiss()
+            }
+        }
     }
 }
 

@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 final class LibraryDetailViewModel: ObservableObject {
-    
     enum SortingOrder {
         case ascending, descending
     }
@@ -26,12 +25,16 @@ final class LibraryDetailViewModel: ObservableObject {
         self.container = container
     }
     
-    func filteredReviews() -> [BookReview] {
+    var filteredReviews: [BookReview] {
         let identifier = bookReview.book.isbn.isEmpty ? bookReview.book.title : bookReview.book.isbn
         return bookReviews.filter { review in
             let reviewIdentifier = review.book.isbn.isEmpty ? review.book.title : review.book.isbn
             return reviewIdentifier == identifier
         }
+    }
+    
+    var filteredReviewsCount: Int {
+        filteredReviews.count
     }
     
     func sortOrder() {
