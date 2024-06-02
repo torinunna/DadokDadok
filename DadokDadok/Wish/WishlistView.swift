@@ -45,6 +45,7 @@ struct WishlistView: View {
                 }
                 .font(.system(size: 14))
             }
+            .frame(maxWidth: .infinity)
             .background(ColorManager.backgroundColor)
             .onAppear {
                 vm.send(action: .fetch)
