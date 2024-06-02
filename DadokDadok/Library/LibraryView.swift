@@ -21,22 +21,37 @@ struct LibraryView: View {
     
     var body: some View {
         NavigationStack {
-            booksReadView
-                .toolbar {
-                    Button {
-                        isPresentingNewReviewView = true
-                    } label: {
-                        Image(systemName: "plus")
+            Group {
+                VStack {
+                    if vm.bookReviews.isEmpty {
+                        Spacer()
+                        Text("+ 버튼을 눌러\n서평을 추가해주세요!")
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(5)
+                            .tracking(1.5)
+                        Spacer()
+                    } else {
+                        booksReadView
                     }
                 }
-                .background(ColorManager.backgroundColor)
-                .onAppear {
-                    vm.send(action: .fetch)
+                .font(.system(size: 14))
+            }
+            .frame(maxWidth: .infinity)
+            .toolbar {
+                Button {
+                    isPresentingNewReviewView = true
+                } label: {
+                    Image(systemName: "plus")
                 }
-                .sheet(isPresented: $isPresentingNewReviewView) {
-                    NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
-                }
-                .navigationTitle("나의 서재")
+            }
+            .background(ColorManager.backgroundColor)
+            .onAppear {
+                vm.send(action: .fetch)
+            }
+            .sheet(isPresented: $isPresentingNewReviewView) {
+                NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
+            }
+            .navigationTitle("나의 서재")
         }
     }
     

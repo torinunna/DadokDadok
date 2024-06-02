@@ -20,11 +20,13 @@ struct WishlistView: View {
     var body: some View {
         NavigationStack {
             Group {
-                VStack {
+                VStack(alignment: .center) {
                     if vm.wishlist.isEmpty {
                         Spacer()
-                        Text("+ 버튼을 눌러")
-                        Text("읽고 싶은 책을 추가해주세요!")
+                        Text("+ 버튼을 눌러\n읽고 싶은 책을 추가해주세요!")
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(5)
+                            .tracking(1.5)
                         Spacer()
                     } else {
                         List {
@@ -47,11 +49,13 @@ struct WishlistView: View {
             }
             .navigationTitle("나의 위시")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showFavoritesOnly.toggle()
-                    } label: {
-                        showFavoritesOnly ? Image(systemName: "heart.fill") : Image(systemName: "heart")
+                if !vm.wishlist.isEmpty {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            showFavoritesOnly.toggle()
+                        } label: {
+                            showFavoritesOnly ? Image(systemName: "heart.fill") : Image(systemName: "heart")
+                        }
                     }
                 }
                 
