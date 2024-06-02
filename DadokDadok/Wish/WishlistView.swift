@@ -34,6 +34,7 @@ struct WishlistView: View {
                                 WishCard(wish: wish)
                                     .environmentObject(vm)
                                     .listRowSeparator(.hidden)
+                                    .listRowBackground(Color.clear)
                             }
                             .onDelete { indexSet in
                                 vm.send(action: .delete(indexSet))
@@ -44,6 +45,7 @@ struct WishlistView: View {
                 }
                 .font(.system(size: 14))
             }
+            .background(ColorManager.backgroundColor)
             .onAppear {
                 vm.send(action: .fetch)
             }
