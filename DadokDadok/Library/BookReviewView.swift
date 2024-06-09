@@ -12,6 +12,7 @@ struct BookReviewView: View {
     @ObservedObject var vm: BookReviewViewModel
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) private var openURL
+    @State private var showAlert = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -50,8 +51,7 @@ struct BookReviewView: View {
                 Spacer()
                 
                 Button {
-                    vm.delete()
-                    presentationMode.wrappedValue.dismiss()
+                    showAlert = true
                 } label: {
                     Text("삭제하기")
                         .frame(width: 120, height: 40)
@@ -59,7 +59,20 @@ struct BookReviewView: View {
                         .background(ColorManager.redColor)
                         .cornerRadius(10)
                 }
-                
+                .alert("서평을 삭제하시겠습니까?", isPresented: $showAlert) {
+                    Button {
+                    } label: {
+                        Text("취소")
+                    }
+                    
+                    Button {
+                        vm.delete()
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("삭제")
+                    }
+                }
+                                
                 Spacer()
                 
                 Button {
