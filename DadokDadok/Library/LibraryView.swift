@@ -12,6 +12,7 @@ struct LibraryView: View {
     @StateObject var vm: LibraryViewModel
     @State private var isPresentingNewReviewView = false
     @State private var selectedBook: Book?
+    @State private var isSearchBarVisible = false
     
     let layout: [GridItem] = [
         GridItem(.flexible()),
@@ -21,27 +22,38 @@ struct LibraryView: View {
     
     var body: some View {
         NavigationStack {
-            Group {
-                VStack {
-                    if vm.bookReviews.isEmpty {
-                        Spacer()
-                        Text("+ 버튼을 눌러\n서평을 추가해주세요!")
-                            .multilineTextAlignment(.center)
-                            .lineSpacing(5)
-                            .tracking(1.5)
-                        Spacer()
-                    } else {
-                        booksReadView
-                    }
+            VStack {
+                if isSearchBarVisible {
+                    SearchBar(text: $vm.searchQuery)
+                        .padding(.top, 5)
                 }
-                .font(.system(size: 14))
+                
+                if vm.bookReviews.isEmpty {
+                    Spacer()
+                    Text("+ 버튼을 눌러\n서평을 추가해주세요!")
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(5)
+                        .tracking(1.5)
+                    Spacer()
+                } else {
+                    booksReadView
+                }
             }
+            .font(.system(size: 14))
             .frame(maxWidth: .infinity)
             .toolbar {
-                Button {
-                    isPresentingNewReviewView = true
-                } label: {
-                    Image(systemName: "plus")
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        isSearchBarVisible.toggle()
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    
+                    Button {
+                        isPresentingNewReviewView = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
             .background(ColorManager.backgroundColor)
@@ -58,7 +70,7 @@ struct LibraryView: View {
     var booksReadView: some View {
         ScrollView {
             LazyVGrid(columns: layout, spacing: 15) {
-                ForEach(vm.uniqueBookReviews) { bookReview in
+                ForEach(vm.searchQuery.isEmpty ? vm.uniqueBookReviews : vm.searchedResult) { bookReview in
                     NavigationLink {
                         LibraryDetailView(vm: .init(bookReviews: vm.bookReviews, bookReview: bookReview, container: container), selectedBook: $selectedBook)
                     } label: {
@@ -68,5 +80,30 @@ struct LibraryView: View {
             }
         }
         .padding(10)
+    }
+}
+
+struct SearchBar: View {
+    @Binding var text: String
+    
+    var body: some View {
+        HStack {
+            TextField("도서명/저자/출판사를 입력해주세요", text: $text)
+                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+                .foregroundColor(.primary)
+                .background(ColorManager.cardColor.opacity(0.2))
+                .cornerRadius(6)
+            
+            if !text.isEmpty {
+                Button {
+                    self.text = ""
+                } label: {
+                    Image(systemName: "multiply.circle.fill")
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 8)
+                }
+            }
+        }
+        .padding(.horizontal, 15)
     }
 }

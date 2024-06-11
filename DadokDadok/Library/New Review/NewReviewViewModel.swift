@@ -50,6 +50,7 @@ final class NewReviewViewModel: ObservableObject {
     
     func completed() {
         bookReviews.wrappedValue.append(bookReview)
+        bookReviews.wrappedValue.sort { $0.date > $1.date }
         container.services.reviewStorageService.persist(bookReviews.wrappedValue)
         print(bookReview)
     }

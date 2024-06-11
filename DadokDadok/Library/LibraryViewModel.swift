@@ -14,6 +14,7 @@ final class LibraryViewModel: ObservableObject {
     }
     
     @Published var bookReviews: [BookReview] = []
+    @Published var searchQuery: String = ""
     
     private var container: DIContainer
  
@@ -32,6 +33,14 @@ final class LibraryViewModel: ObservableObject {
                 uniqueBooks.insert(identifier)
                 return true
             }
+        }
+    }
+    
+    var searchedResult: [BookReview] {
+        uniqueBookReviews.filter {
+            $0.book.title.localizedCaseInsensitiveContains(searchQuery) ||
+            $0.book.author.localizedCaseInsensitiveContains(searchQuery) ||
+            $0.book.publisher.localizedCaseInsensitiveContains(searchQuery)
         }
     }
     
