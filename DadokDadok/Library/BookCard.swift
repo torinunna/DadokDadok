@@ -14,6 +14,7 @@ struct BookCard: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(ColorManager.cardColor.opacity(0.2))
+                .shadow(color: .gray, radius: 3, x: 0, y: 2)
             
             VStack(alignment: .center, spacing: 15) {
                 if let data = Data(base64Encoded: bookReview.book.image, options: .ignoreUnknownCharacters){
