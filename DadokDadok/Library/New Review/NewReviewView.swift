@@ -41,6 +41,7 @@ struct NewReviewView: View {
             .padding(.horizontal, 20)
             .sheet(isPresented: $isPresentingBookSearchView) {
                 BookSearchView(isPresentingBookSearchView: $isPresentingBookSearchView, selectedBook: $selectedBook)
+                    .padding(.vertical)
             }
             .navigationTitle("서평 추가하기")
             .navigationBarTitleDisplayMode(.inline)
@@ -64,7 +65,6 @@ struct NewReviewView: View {
         }
     }
 }
-
 
 struct BookInfoView: View {
     let book: Book

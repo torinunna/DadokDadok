@@ -10,39 +10,43 @@ import SwiftUI
 struct BookSearchView: View {
     @StateObject private var requestAPI = RequestAPI.shared
     @State private var searchKeyword = ""
+    @State private var tappedBook: Book?
     @Binding var isPresentingBookSearchView: Bool
     @Binding var selectedBook: Book?
     
     var body: some View {
-        NavigationStack {
-            List {
-                if !searchKeyword.isEmpty {
+        VStack {
+            HStack(alignment: .center) {
+                SearchBar(text: $searchKeyword)
+                
+                Button {
+                    requestAPI.requestSearchBookList(query: searchKeyword)
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundStyle(ColorManager.accentColor)
+                }
+            }
+            .padding(.horizontal, 5)
+            
+            ScrollView {
+                VStack(alignment: .leading) {
                     ForEach(requestAPI.bookList, id: \.self) { book in
-                        BookSearchRowView(book: book)
-                            .listRowSeparator(.hidden)
+                        BookSearchRowView(book: book, isTapped: book == tappedBook)
                             .onTapGesture {
+                                tappedBook = book
                                 selectedBook = book
                                 isPresentingBookSearchView = false
                             }
                     }
                 }
             }
-            .listStyle(.plain)
-            .searchable(text: $searchKeyword, placement: .navigationBarDrawer(displayMode: .always), prompt: "도서명/저자/출판사를 입력해주세요")
-            .navigationTitle("도서 검색")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .padding(.horizontal, 10)
         .onSubmit(of: .search) {
             requestAPI.requestSearchBookList(query: searchKeyword)
         }
         .onDisappear {
             requestAPI.bookList = []
         }
-    }
-}
-
-struct BookSearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookSearchView(isPresentingBookSearchView: .constant(true), selectedBook: .constant(nil))
     }
 }

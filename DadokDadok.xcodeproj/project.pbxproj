@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8603637B2AF62A3700FC5480 /* NewReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */; };
+		8628CB972C1CA096002148FD /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628CB962C1CA096002148FD /* SearchBar.swift */; };
 		864488E22BF51C6500599951 /* BookCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864488E12BF51C6500599951 /* BookCover.swift */; };
 		864A39B12AC9664E00F5EDFD /* NewReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A39B02AC9664E00F5EDFD /* NewReviewView.swift */; };
 		866B0C742AB7469400F28C46 /* DadokDadokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B0C732AB7469400F28C46 /* DadokDadokApp.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		8603637A2AF62A3700FC5480 /* NewReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewViewModel.swift; sourceTree = "<group>"; };
+		8628CB962C1CA096002148FD /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		864488E12BF51C6500599951 /* BookCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCover.swift; sourceTree = "<group>"; };
 		864A39B02AC9664E00F5EDFD /* NewReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReviewView.swift; sourceTree = "<group>"; };
 		866B0C702AB7469400F28C46 /* DadokDadok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadokDadok.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				864488E12BF51C6500599951 /* BookCover.swift */,
 				86A5A4B82C0352F100E44BA0 /* DIContainer.swift */,
 				86A5A4D82C03A35B00E44BA0 /* ViewPicker.swift */,
+				8628CB962C1CA096002148FD /* SearchBar.swift */,
 				8693742D2AF37F86005684FF /* BookSearch */,
 			);
 			path = General;
@@ -328,6 +331,7 @@
 				866B0C822AB7470900F28C46 /* LibraryView.swift in Sources */,
 				86883D772B0A424200905882 /* LibraryDetailView.swift in Sources */,
 				864488E22BF51C6500599951 /* BookCover.swift in Sources */,
+				8628CB972C1CA096002148FD /* SearchBar.swift in Sources */,
 				86EFFD942B4150BB00FAB5FB /* NewWishView.swift in Sources */,
 				86B46F2B2B2F33B600C96FD3 /* Hide.swift in Sources */,
 				86BE32F52B8F1C7900066316 /* NewWishViewModel.swift in Sources */,

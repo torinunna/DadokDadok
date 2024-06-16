@@ -25,7 +25,6 @@ struct LibraryView: View {
             VStack {
                 if isSearchBarVisible {
                     SearchBar(text: $vm.searchQuery)
-                        .padding(.top, 5)
                 }
                 
                 if vm.bookReviews.isEmpty {
@@ -41,6 +40,7 @@ struct LibraryView: View {
             }
             .font(.system(size: 14))
             .frame(maxWidth: .infinity)
+            .padding(.horizontal, 15)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
@@ -79,31 +79,6 @@ struct LibraryView: View {
                 }
             }
         }
-        .padding(10)
-    }
-}
-
-struct SearchBar: View {
-    @Binding var text: String
-    
-    var body: some View {
-        HStack {
-            TextField("도서명/저자/출판사를 입력해주세요", text: $text)
-                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
-                .foregroundColor(.primary)
-                .background(ColorManager.cardColor.opacity(0.2))
-                .cornerRadius(6)
-            
-            if !text.isEmpty {
-                Button {
-                    self.text = ""
-                } label: {
-                    Image(systemName: "multiply.circle.fill")
-                        .foregroundColor(.gray)
-                        .padding(.trailing, 8)
-                }
-            }
-        }
-        .padding(.horizontal, 15)
+        .padding(.top, 10)
     }
 }

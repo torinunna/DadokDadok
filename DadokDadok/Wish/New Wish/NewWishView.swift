@@ -11,18 +11,16 @@ import PhotosUI
 struct NewWishView: View {
     @StateObject var vm: NewWishViewModel
     @Binding var isPresentingNewWishView: Bool
+    @State private var isPresentingBookSearchView = true
     @State private var selectedBook: Book?
-
+    
     var body: some View {
         NavigationStack {
             VStack {
                 ViewPicker(selectedView: $vm.selectedView)
                 
                 if vm.selectedView == .searchBookView {
-                    SearchView(selectedBook: $selectedBook)
-                        .onDisappear {
-                            selectedBook = nil
-                        }
+                    BookSearchView(isPresentingBookSearchView: $isPresentingBookSearchView, selectedBook: $selectedBook)
                 } else {
                     UserInputView(imageString: $vm.book.image, title: $vm.book.title, author: $vm.book.author, publisher: $vm.book.publisher)
                 }
@@ -53,60 +51,7 @@ struct NewWishView: View {
     }
 }
 
-// MARK: - Search View
-
-struct SearchView: View {
-    @State private var searchKeyword = ""
-    @ObservedObject var requestAPI = RequestAPI.shared
-    @Binding var selectedBook: Book?
-    
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                HStack {
-                    TextField("도서명/저자/출판사를 입력해주세요.", text: $searchKeyword) {
-                        requestAPI.requestSearchBookList(query: searchKeyword)
-                    }
-                    .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
-                    .foregroundColor(.primary)
-                    .background(ColorManager.cardColor.opacity(0.2))
-                    .cornerRadius(10.0)
-                    
-                    Button {
-                        requestAPI.requestSearchBookList(query: searchKeyword)
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundStyle(ColorManager.accentColor)
-                    }
-                }
-                
-                ForEach(requestAPI.bookList, id: \.self) { book in
-                    HStack(alignment: .center, spacing: 10) {
-                        Image(systemName: selectedBook == book ? "checkmark.square.fill" : "checkmark.square")
-                            .foregroundStyle(ColorManager.accentColor)
-                        BookSearchRowView(book: book)
-                    }
-                    .onTapGesture {
-                        if selectedBook == book {
-                            selectedBook = nil
-                        } else {
-                            selectedBook = book
-                            print("Book selected: \(book.title)")
-                        }
-                    }
-                }
-                .onDisappear {
-                    requestAPI.bookList = []
-                }
-            }
-            .padding(.horizontal, 15)
-        }
-    }
-}
-
-
 // MARK: - User Input
-
 struct UserInputView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
