@@ -10,7 +10,6 @@ import PhotosUI
 
 struct NewReviewView: View {
     @StateObject var vm: NewReviewViewModel
-    @Binding var isPresentingNewReviewView: Bool
     @Binding var selectedBook: Book?
     @State private var isPresentingBookSearchView = false
     
@@ -46,15 +45,9 @@ struct NewReviewView: View {
             .navigationTitle("서평 추가하기")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("취소") {
-                        isPresentingNewReviewView = false
-                    }
-                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("저장") {
                         vm.completed()
-                        isPresentingNewReviewView = false
                     }
                     .disabled(vm.selectedView == .searchBookView && selectedBook == nil || vm.selectedView == .userInputView && vm.book.title.isEmpty || vm.bookReview.review.isEmpty)
                 }

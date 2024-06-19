@@ -14,7 +14,7 @@ struct LibraryDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedReview: BookReview?
     @State private var isPresentingBookReviewView = false
-    @State private var isPresentingNewReviewView = false
+    @State private var isPresenting = false
     @Binding var selectedBook: Book?
 
     var body: some View {
@@ -65,7 +65,7 @@ struct LibraryDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     selectedBook = vm.bookReview.book
-                    isPresentingNewReviewView = true
+                    isPresenting = true
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -77,8 +77,8 @@ struct LibraryDetailView: View {
                 BookReviewView(vm: vm)
             }
         }
-        .sheet(isPresented: $isPresentingNewReviewView) {
-            NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
+        .sheet(isPresented: $isPresenting) {
+            NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container, isPresented: $isPresenting), selectedBook: $selectedBook)
         }
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: vm.filteredReviewsCount) { newCount in

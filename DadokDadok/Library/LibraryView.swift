@@ -10,7 +10,7 @@ import SwiftUI
 struct LibraryView: View {
     @EnvironmentObject var container: DIContainer
     @StateObject var vm: LibraryViewModel
-    @State private var isPresentingNewReviewView = false
+    @State private var isPresenting = false
     @State private var selectedBook: Book?
     @State private var isSearchBarVisible = false
     
@@ -50,7 +50,7 @@ struct LibraryView: View {
                     }
                     
                     Button {
-                        isPresentingNewReviewView = true
+                        isPresenting = true
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -60,8 +60,8 @@ struct LibraryView: View {
             .onAppear {
                 vm.send(action: .fetch)
             }
-            .sheet(isPresented: $isPresentingNewReviewView) {
-                NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container), isPresentingNewReviewView: $isPresentingNewReviewView, selectedBook: $selectedBook)
+            .sheet(isPresented: $isPresenting) {
+                NewReviewView(vm: .init(bookReviews: $vm.bookReviews, container: container, isPresented: $isPresenting), selectedBook: $selectedBook)
             }
             .navigationTitle("나의 서재")
         }

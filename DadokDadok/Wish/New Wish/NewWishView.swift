@@ -10,7 +10,6 @@ import PhotosUI
 
 struct NewWishView: View {
     @StateObject var vm: NewWishViewModel
-    @Binding var isPresentingNewWishView: Bool
     @State private var isPresentingBookSearchView = true
     @State private var selectedBook: Book?
     
@@ -26,20 +25,13 @@ struct NewWishView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("취소") {
-                        isPresentingNewWishView = false
-                    }
-                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("추가하기") {
                         if let selectedBook {
                             vm.update(book: selectedBook)
                             vm.completed()
-                            isPresentingNewWishView = false
                         } else {
                             vm.completed()
-                            isPresentingNewWishView = false
                         }
                     }
                     .disabled(vm.selectedView == .searchBookView && selectedBook == nil || vm.selectedView == .userInputView && vm.wish.book.title.isEmpty)

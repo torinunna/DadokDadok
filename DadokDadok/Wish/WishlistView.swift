@@ -10,7 +10,7 @@ import SwiftUI
 struct WishlistView: View {
     @EnvironmentObject var container: DIContainer
     @StateObject var vm: WishlistViewModel
-    @State private var isPresentingNewWishView = false
+    @State private var isPresenting = false
     @State private var showFavoritesOnly = false
     
     var filteredWishlist: [Wish] {
@@ -64,14 +64,14 @@ struct WishlistView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        isPresentingNewWishView = true
+                        isPresenting = true
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
-            .sheet(isPresented: $isPresentingNewWishView) {
-                NewWishView(vm: .init(wishlist: $vm.wishlist, container: container), isPresentingNewWishView: $isPresentingNewWishView)
+            .sheet(isPresented: $isPresenting) {
+                NewWishView(vm: .init(wishlist: $vm.wishlist, container: container, isPresented: $isPresenting))
             }
         }
     }

@@ -15,13 +15,15 @@ final class NewReviewViewModel: ObservableObject {
     @Published var date: Date = Date()
     @Published var review: String = ""
     @Published var selectedView: Views = .searchBookView
+    @Published var isPresented: Binding<Bool>
     
     private var container: DIContainer
     private var subscriptions = Set<AnyCancellable>()
     
-    init(bookReviews: Binding<[BookReview]>, container: DIContainer) {
+    init(bookReviews: Binding<[BookReview]>, container: DIContainer, isPresented: Binding<Bool>) {
         self.bookReviews = bookReviews
         self.container = container
+        self.isPresented = isPresented
         
         $book.sink { book in
             self.update(book: book)
@@ -52,6 +54,7 @@ final class NewReviewViewModel: ObservableObject {
         bookReviews.wrappedValue.append(bookReview)
         bookReviews.wrappedValue.sort { $0.date > $1.date }
         container.services.reviewStorageService.persist(bookReviews.wrappedValue)
+        isPresented.wrappedValue = false
         print(bookReview)
     }
 }
