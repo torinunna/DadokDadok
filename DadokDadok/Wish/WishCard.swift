@@ -13,11 +13,10 @@ struct WishCard: View {
     @EnvironmentObject var vm: WishlistViewModel
     @State private var isImageMagnified: Bool = false
     
-    
     var body: some View {
         VStack {
             HStack(alignment: .center, spacing: 15) {
-                BookImageView(wish: wish)
+                BookCover(imageString: wish.book.image)
                     .frame(width: 60, height: 80)
                     .onTapGesture {
                         isImageMagnified = true
@@ -74,36 +73,9 @@ struct WishCard: View {
         }
         .background(ColorManager.backgroundColor)
         .popover(isPresented: $isImageMagnified) {
-            BookImageView(wish: wish)
+            BookCover(imageString: wish.book.image)
                 .frame(width: 250, height: 250)
                 .presentationCompactAdaptation(.popover)
-        }
-    }
-}
-
-
-// MARK: - book image view
-
-struct BookImageView: View {
-    var wish: Wish
-    
-    var body: some View {
-        if let data = Data(base64Encoded: wish.book.image, options: .ignoreUnknownCharacters){
-            let image = UIImage(data: data)
-            Image(uiImage: image ?? UIImage())
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        } else {
-            fetchImage(url: wish.book.image)
-        }
-    }
-    
-    func fetchImage(url: String) -> some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image.resizable()
-                .aspectRatio(contentMode: .fit)
-        } placeholder: {
-            Image(systemName: "book")
         }
     }
 }

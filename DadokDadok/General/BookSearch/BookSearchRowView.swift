@@ -14,7 +14,8 @@ struct BookSearchRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .center, spacing: 15) {
-                fetchImage(url: book.image)
+                BookCover(imageString: book.image)
+                    .frame(width: 70, height: 90)
                 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(book.title)
@@ -35,14 +36,5 @@ struct BookSearchRowView: View {
         .frame(maxWidth: .infinity)
         .background(isTapped ? ColorManager.cardColor.opacity(0.2) : Color.clear)
         .cornerRadius(8)
-    }
-    
-    func fetchImage(url: String) -> some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image.resizable()
-        } placeholder: {
-            ProgressView()
-        }
-        .frame(width: 70, height: 90)
     }
 }

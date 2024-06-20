@@ -20,7 +20,7 @@ struct NewReviewView: View {
                 
                 if vm.selectedView == .searchBookView {
                     if let selectedBook {
-                        BookInfoView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
+                        SelectedBookView(book: selectedBook, isPresentingBookSearchView: $isPresentingBookSearchView)
                             .onAppear {
                                 vm.update(book: selectedBook)
                             }
@@ -59,13 +59,14 @@ struct NewReviewView: View {
     }
 }
 
-struct BookInfoView: View {
+struct SelectedBookView: View {
     let book: Book
     @Binding var isPresentingBookSearchView: Bool
     
     var body: some View {
         HStack(alignment: .center, spacing: 20) {
-            fetchImage(url: book.image)
+            BookCover(imageString: book.image)
+                .frame(width: 40, height: 80)
             
             VStack(alignment: .leading, spacing: 3) {
                 Text(book.title)
@@ -87,15 +88,6 @@ struct BookInfoView: View {
                     .foregroundStyle(Color.secondary)
             }
         }
-    }
-    
-    func fetchImage(url: String) -> some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image.resizable()
-        } placeholder: {
-            ProgressView()
-        }
-        .frame(width: 60, height: 80)
     }
 }
 

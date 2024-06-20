@@ -17,15 +17,8 @@ struct BookCard: View {
                 .shadow(color: .gray, radius: 3, x: 0, y: 2)
             
             VStack(alignment: .center, spacing: 15) {
-                if let data = Data(base64Encoded: bookReview.book.image, options: .ignoreUnknownCharacters){
-                    let image = UIImage(data: data)
-                    Image(uiImage: image ?? UIImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 90)
-                } else {
-                    fetchImage(url: bookReview.book.image)
-                }
+                BookCover(imageString: bookReview.book.image)
+                    .frame(height: 90)
                 
                 Text(bookReview.book.title)
                     .font(.system(size: 12.0, weight: .bold))
@@ -36,17 +29,5 @@ struct BookCard: View {
             .padding(.vertical, 12)
             .padding(.horizontal, 8)
         }
-    }
-    
-    func fetchImage(url: String) -> some View {
-        AsyncImage(url: URL(string: url)) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .shadow(radius: 5)
-        } placeholder: {
-            Image(systemName: "book")
-        }
-        .frame(height: 90)
     }
 }

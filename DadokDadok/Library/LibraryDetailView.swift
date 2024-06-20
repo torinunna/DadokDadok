@@ -19,7 +19,7 @@ struct LibraryDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            BookCover(bookReview: vm.bookReview)
+            BookInfoView(bookReview: vm.bookReview)
             
             Divider()
                 .padding(.vertical, 5)
