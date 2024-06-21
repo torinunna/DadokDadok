@@ -42,7 +42,7 @@ struct BookSearchView: View {
             }
         }
         .padding(.horizontal, 10)
-        .onSubmit(of: .search) {
+        .onSubmit {
             requestAPI.requestSearchBookList(query: searchKeyword)
         }
         .onDisappear {
